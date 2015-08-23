@@ -15,6 +15,8 @@ import FBSDKCoreKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var drawerContainer: MMDrawerController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -27,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        buildUserInterface()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -69,6 +73,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    func buildUserInterface()
+    {
+        
+        
+        let userName:String? =  NSUserDefaults.standardUserDefaults().stringForKey("user_name")
+        
+        if(userName != nil)
+        {
+            // Navigate to Protected page
+            let mainStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+            
+            // Create View Controllers
+            var homePage:HomeViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+            
+            var menuPage:MenuViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+            
+            var feedPage:RSSFeedViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("RSSFeedViewController") as! RSSFeedViewController
+  
+            // Wrap into Navigation controllers
+            var homePageNav = UINavigationController(rootViewController:homePage)
+            var menuPageNav = UINavigationController(rootViewController:menuPage)
+            var feedPageNav = UINavigationController(rootViewController:feedPage)
+            
+            drawerContainer = MMDrawerController(centerViewController: homePageNav, leftDrawerViewController: menuPageNav, rightDrawerViewController: feedPageNav)
+            
+            drawerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+            drawerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+            
+            window?.rootViewController = drawerContainer
+        }
+        
+        
+        
+        
+    }
 
 }
 

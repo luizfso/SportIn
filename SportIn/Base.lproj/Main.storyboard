@@ -4,6 +4,100 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Register View Controller-->
+        <scene sceneID="yhP-Yp-iXA">
+            <objects>
+                <viewController storyboardIdentifier="RegisterViewController" id="Ow5-0P-q59" customClass="RegisterViewController" customModule="SportIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fN5-dv-DMS"/>
+                        <viewControllerLayoutGuide type="bottom" id="dXj-Oa-aGo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sph-p8-rwP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iCz-1a-HLU">
+                                <rect key="frame" x="16" y="151" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ultimo nome" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Akl-7N-YdB">
+                                <rect key="frame" x="16" y="227" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Primeiro nome" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sui-oI-hG8">
+                                <rect key="frame" x="16" y="189" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faU-4O-sFV">
+                                <rect key="frame" x="16" y="303" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CPF (somente numeros)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qJ0-bd-osx">
+                                <rect key="frame" x="16" y="265" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirma senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LRL-tJ-xrF">
+                                <rect key="frame" x="16" y="341" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdR-qP-JAe">
+                                <rect key="frame" x="156" y="93" width="141" height="30"/>
+                                <state key="normal" title="Selecionar do album">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectProfilePhotoButton:" destination="Ow5-0P-q59" eventType="touchUpInside" id="IvK-Um-mUb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIo-9e-wLu">
+                                <rect key="frame" x="119" y="464" width="83" height="30"/>
+                                <state key="normal" title="Me registrar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registrarButton:" destination="Ow5-0P-q59" eventType="touchUpInside" id="UGi-5y-DgX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZZ-T1-HLP">
+                                <rect key="frame" x="84" y="518" width="153" height="30"/>
+                                <state key="normal" title="Importar do Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_pic_512" translatesAutoresizingMaskIntoConstraints="NO" id="KYZ-kN-qJ3">
+                                <rect key="frame" x="74" y="72" width="71" height="71"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="m9q-Sh-bYV">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Wh8-MM-0ID">
+                            <connections>
+                                <action selector="cancelButton:" destination="Ow5-0P-q59" id="gI9-xQ-Bga"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="profileImgView" destination="KYZ-kN-qJ3" id="2AF-8U-bBt"/>
+                        <outlet property="userCPFText" destination="qJ0-bd-osx" id="pTB-XY-BQ2"/>
+                        <outlet property="userEmailTextField" destination="iCz-1a-HLU" id="MH3-Fo-O3b"/>
+                        <outlet property="userFirstNameTextField" destination="Sui-oI-hG8" id="ahT-Ef-6aO"/>
+                        <outlet property="userLastNameTextField" destination="Akl-7N-YdB" id="Mfo-DJ-0b3"/>
+                        <outlet property="userPassVerifText" destination="LRL-tJ-xrF" id="4xd-1a-J50"/>
+                        <outlet property="userPasswordText" destination="faU-4O-sFV" id="ZBC-qj-zb8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gbZ-Fy-zdB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="204" y="-344"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -48,6 +142,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createNewAccount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dcv-HN-idA"/>
+                                    <segue destination="Ow5-0P-q59" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="0EZ-mb-bUo"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oKk-fE-kQI">
@@ -68,7 +163,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="PIJ-W4-eVE"/>
                     <connections>
-                        <outlet property="email" destination="sGl-a7-JEr" id="Vaf-7j-Erw"/>
                         <outlet property="userEmailTextField" destination="sGl-a7-JEr" id="AbN-1s-1AT"/>
                         <outlet property="userPasswordTextField" destination="zEr-iL-5ec" id="ohU-em-wha"/>
                     </connections>
@@ -77,7 +171,7 @@
             </objects>
             <point key="canvasLocation" x="204" y="280"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="PJM-pM-gfT">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="Gbe-Jv-Hvr" customClass="HomeViewController" customModule="SportIn" customModuleProvider="target" sceneMemberID="viewController">
@@ -90,12 +184,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="SE6-Xq-VE0"/>
+                    <navigationItem key="navigationItem" title="Home" id="SE6-Xq-VE0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="ezO-Km-57d">
+                            <connections>
+                                <action selector="menuButton:" destination="Gbe-Jv-Hvr" id="b9e-Ba-S25"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="tuc-A2-rvu">
+                            <connections>
+                                <action selector="rssFeedButton:" destination="Gbe-Jv-Hvr" id="XiV-06-gJB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuC-if-gwv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="970"/>
+            <point key="canvasLocation" x="204" y="949"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pdO-v1-QOr">
@@ -133,7 +238,110 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3oy-Fr-LTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-161" y="970"/>
+            <point key="canvasLocation" x="-161" y="949"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jq6-nF-I3C">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BH0-2s-mWc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xud-1w-yFh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ow5-0P-q59" kind="relationship" relationship="rootViewController" id="cUx-PC-zbi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BOM-8b-v32" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-161" y="-344"/>
+        </scene>
+        <!--Menu-->
+        <scene sceneID="VLO-nB-ZgT">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="fLt-o6-ggm" customClass="MenuViewController" customModule="SportIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zqB-UW-0zE"/>
+                        <viewControllerLayoutGuide type="bottom" id="v6m-Ze-5x3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="We7-kE-OiN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Menu" id="oNN-cX-L4E"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kKs-wt-CMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-671" y="949"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="N2I-Ds-M58">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nch-xw-sdi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aFr-1P-rY7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fLt-o6-ggm" kind="relationship" relationship="rootViewController" id="ZxJ-7k-kBu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5r-pb-eWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1052" y="949"/>
+        </scene>
+        <!--RSS Feed-->
+        <scene sceneID="m3H-Pv-EQh">
+            <objects>
+                <viewController storyboardIdentifier="RSSFeedViewController" id="etD-kj-0zA" customClass="RSSFeedViewController" customModule="SportIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m9V-Wi-9Nc"/>
+                        <viewControllerLayoutGuide type="bottom" id="7tk-hZ-dXz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kOY-Zj-idP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RSS Feed" id="65y-X6-zZN"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLZ-Uj-a3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="949"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tSe-j5-zGS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YaC-KH-rar" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k8e-pg-peK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="etD-kj-0zA" kind="relationship" relationship="rootViewController" id="4Lf-BJ-8wi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4R-Jv-vXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="608" y="949"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="profile_pic_512" width="512" height="512"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0EZ-mb-bUo"/>
+    </inferredMetricsTieBreakers>
 </document>

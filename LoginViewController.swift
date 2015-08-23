@@ -8,11 +8,12 @@
 
 import UIKit
 import Parse
+import ParseUI
 import FBSDKLoginKit
 import FBSDKCoreKit
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var userEmailTextField: UITextField!
     
@@ -48,7 +49,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButton(sender: AnyObject) {
         
-        let userEmail = userEmailAddressTextField.text
+        let userEmail = userEmailTextField.text
         let userPassword = userPasswordTextField.text
         
         if(userEmail.isEmpty || userPassword.isEmpty)
@@ -57,15 +58,15 @@ class LoginViewController: UIViewController {
         }
         
         
-        //let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        //spiningActivity.labelText = "Sending"
-        //spiningActivity.detailsLabelText = "Please wait"
+        let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        spiningActivity.labelText = "Sending"
+        spiningActivity.detailsLabelText = "Please wait"
         //spiningActivity.userInteractionEnabled = false
         
         
         PFUser.logInWithUsernameInBackground(userEmail, password: userPassword) { (user:PFUser?, error:NSError?) -> Void in
             
-            //MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             
             
             var userMessage = "Welcome!"
@@ -84,9 +85,7 @@ class LoginViewController: UIViewController {
                 var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 appDelegate.buildUserInterface()
-                
-                
-                
+
             } else {
                 
                 userMessage = error!.localizedDescription

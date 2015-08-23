@@ -11,5 +11,7 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import "MBProgressHUD.h"
+#import "MMDrawerController.h"
 
 #endif
