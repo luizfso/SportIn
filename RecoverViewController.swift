@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  RecoverViewController.swift
 //  SportIn
 //
 //  Created by Luiz Fernando Santiago on 8/23/15.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class RecoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,16 +21,6 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func menuButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func rssFeedButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Right, animated: true, completion: nil)
-    }
 
     /*
     // MARK: - Navigation

@@ -36,6 +36,10 @@
 		164B95411B89A9DA004515B3 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164B953D1B89A9DA004515B3 /* UIViewController+MMDrawerController.m */; };
 		164B95441B89AA4F004515B3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B95431B89AA4F004515B3 /* MenuViewController.swift */; };
 		164B95461B89AA79004515B3 /* RSSFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B95451B89AA79004515B3 /* RSSFeedViewController.swift */; };
+		164B95481B89C6C8004515B3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B95471B89C6C8004515B3 /* AboutViewController.swift */; };
+		164B954A1B89C714004515B3 /* PartnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B95491B89C714004515B3 /* PartnersViewController.swift */; };
+		164B954E1B8A3AC0004515B3 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */; };
+		164B95501B8A5A2A004515B3 /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B954F1B8A5A2A004515B3 /* RecoverViewController.swift */; };
 		169F2FD31B7037A5000DF6E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F2FD21B7037A5000DF6E6 /* AppDelegate.swift */; };
 		169F2FD81B7037A5000DF6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FD61B7037A5000DF6E6 /* Main.storyboard */; };
 		169F2FDA1B7037A5000DF6E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FD91B7037A5000DF6E6 /* Images.xcassets */; };
@@ -90,6 +94,10 @@
 		164B953D1B89A9DA004515B3 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		164B95431B89AA4F004515B3 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ../MenuViewController.swift; sourceTree = "<group>"; };
 		164B95451B89AA79004515B3 /* RSSFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSSFeedViewController.swift; path = ../RSSFeedViewController.swift; sourceTree = "<group>"; };
+		164B95471B89C6C8004515B3 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ../AboutViewController.swift; sourceTree = "<group>"; };
+		164B95491B89C714004515B3 /* PartnersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartnersViewController.swift; path = ../PartnersViewController.swift; sourceTree = "<group>"; };
+		164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = ../EditProfileViewController.swift; sourceTree = "<group>"; };
+		164B954F1B8A5A2A004515B3 /* RecoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverViewController.swift; path = ../RecoverViewController.swift; sourceTree = "<group>"; };
 		169F2FCD1B7037A5000DF6E6 /* SportIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		169F2FD11B7037A5000DF6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		169F2FD21B7037A5000DF6E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -217,8 +225,12 @@
 				164B95451B89AA79004515B3 /* RSSFeedViewController.swift */,
 				164B95431B89AA4F004515B3 /* MenuViewController.swift */,
 				164B95231B898D46004515B3 /* HomeViewController.swift */,
+				164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */,
+				164B95491B89C714004515B3 /* PartnersViewController.swift */,
+				164B95471B89C6C8004515B3 /* AboutViewController.swift */,
 				164B95251B898D6B004515B3 /* LoginViewController.swift */,
 				164B95301B89A6EC004515B3 /* RegisterViewController.swift */,
+				164B954F1B8A5A2A004515B3 /* RecoverViewController.swift */,
 				169F2FD61B7037A5000DF6E6 /* Main.storyboard */,
 				169F2FD91B7037A5000DF6E6 /* Images.xcassets */,
 				169F2FDB1B7037A5000DF6E6 /* LaunchScreen.xib */,
@@ -364,7 +376,11 @@
 				164B953E1B89A9DA004515B3 /* MMDrawerBarButtonItem.m in Sources */,
 				164B953F1B89A9DA004515B3 /* MMDrawerController.m in Sources */,
 				169F2FD31B7037A5000DF6E6 /* AppDelegate.swift in Sources */,
+				164B954A1B89C714004515B3 /* PartnersViewController.swift in Sources */,
+				164B954E1B8A3AC0004515B3 /* EditProfileViewController.swift in Sources */,
 				164B95461B89AA79004515B3 /* RSSFeedViewController.swift in Sources */,
+				164B95501B8A5A2A004515B3 /* RecoverViewController.swift in Sources */,
+				164B95481B89C6C8004515B3 /* AboutViewController.swift in Sources */,
 				164B95401B89A9DA004515B3 /* MMDrawerVisualState.m in Sources */,
 				164B95341B89A8CE004515B3 /* MBProgressHUD.m in Sources */,
 				164B95411B89A9DA004515B3 /* UIViewController+MMDrawerController.m in Sources */,
