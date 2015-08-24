@@ -50,6 +50,10 @@
 		169F2FDA1B7037A5000DF6E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FD91B7037A5000DF6E6 /* Images.xcassets */; };
 		169F2FDD1B7037A5000DF6E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FDB1B7037A5000DF6E6 /* LaunchScreen.xib */; };
 		169F2FE91B7037A6000DF6E6 /* SportInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F2FE81B7037A6000DF6E6 /* SportInTests.swift */; };
+		16CA96B61B8B70B800599D7B /* ConexoesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */; };
+		16CA96B81B8B70E100599D7B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */; };
+		16CA96BA1B8B70F400599D7B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96B91B8B70F400599D7B /* CalendarViewController.swift */; };
+		16CA96BC1B8B714200599D7B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96BB1B8B714200599D7B /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +121,10 @@
 		169F2FE21B7037A6000DF6E6 /* SportInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		169F2FE71B7037A6000DF6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		169F2FE81B7037A6000DF6E6 /* SportInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportInTests.swift; sourceTree = "<group>"; };
+		16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConexoesViewController.swift; sourceTree = "<group>"; };
+		16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		16CA96B91B8B70F400599D7B /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		16CA96BB1B8B714200599D7B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,23 +237,11 @@
 			isa = PBXGroup;
 			children = (
 				164B95421B89A9EF004515B3 /* MMDrawer */,
-				164B95321B89A8CE004515B3 /* MBProgressHUD.h */,
-				164B95331B89A8CE004515B3 /* MBProgressHUD.m */,
+				16CA96B41B8B704000599D7B /* MBProcess HUD */,
+				16CA96B31B8B6FCF00599D7B /* Menu Pages */,
+				16CA96B21B8B6FC500599D7B /* RSS Pages */,
+				16CA96B11B8B6FB500599D7B /* Login Pages */,
 				164B95271B898F30004515B3 /* FacebookLogin-Bridging-Header.h */,
-				164B95451B89AA79004515B3 /* RSSFeedViewController.swift */,
-				164B95431B89AA4F004515B3 /* MenuViewController.swift */,
-				164B95231B898D46004515B3 /* HomeViewController.swift */,
-				164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */,
-				164B95491B89C714004515B3 /* PartnersViewController.swift */,
-				164B95471B89C6C8004515B3 /* AboutViewController.swift */,
-				164B95251B898D6B004515B3 /* LoginViewController.swift */,
-				164B95301B89A6EC004515B3 /* RegisterViewController.swift */,
-				164B954F1B8A5A2A004515B3 /* RecoverViewController.swift */,
-				164B95511B8AC973004515B3 /* FeedPageViewController.swift */,
-				164B95531B8AC98F004515B3 /* FeedTableViewController.swift */,
-				164B95551B8AC9A4004515B3 /* NewFeedViewController.swift */,
-				164B95571B8AC9B7004515B3 /* FeedWebPageViewController.swift */,
-				164B95591B8AC9CC004515B3 /* XmlParserManager.swift */,
 				169F2FD61B7037A5000DF6E6 /* Main.storyboard */,
 				169F2FD91B7037A5000DF6E6 /* Images.xcassets */,
 				169F2FDB1B7037A5000DF6E6 /* LaunchScreen.xib */,
@@ -278,6 +274,54 @@
 				169F2FE71B7037A6000DF6E6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		16CA96B11B8B6FB500599D7B /* Login Pages */ = {
+			isa = PBXGroup;
+			children = (
+				164B95251B898D6B004515B3 /* LoginViewController.swift */,
+				164B95301B89A6EC004515B3 /* RegisterViewController.swift */,
+				164B954F1B8A5A2A004515B3 /* RecoverViewController.swift */,
+			);
+			name = "Login Pages";
+			sourceTree = "<group>";
+		};
+		16CA96B21B8B6FC500599D7B /* RSS Pages */ = {
+			isa = PBXGroup;
+			children = (
+				164B95451B89AA79004515B3 /* RSSFeedViewController.swift */,
+				164B95511B8AC973004515B3 /* FeedPageViewController.swift */,
+				164B95531B8AC98F004515B3 /* FeedTableViewController.swift */,
+				164B95551B8AC9A4004515B3 /* NewFeedViewController.swift */,
+				164B95571B8AC9B7004515B3 /* FeedWebPageViewController.swift */,
+				164B95591B8AC9CC004515B3 /* XmlParserManager.swift */,
+			);
+			name = "RSS Pages";
+			sourceTree = "<group>";
+		};
+		16CA96B31B8B6FCF00599D7B /* Menu Pages */ = {
+			isa = PBXGroup;
+			children = (
+				164B95431B89AA4F004515B3 /* MenuViewController.swift */,
+				164B95231B898D46004515B3 /* HomeViewController.swift */,
+				16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */,
+				16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */,
+				16CA96B91B8B70F400599D7B /* CalendarViewController.swift */,
+				16CA96BB1B8B714200599D7B /* SettingsViewController.swift */,
+				164B95471B89C6C8004515B3 /* AboutViewController.swift */,
+				164B95491B89C714004515B3 /* PartnersViewController.swift */,
+				164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */,
+			);
+			name = "Menu Pages";
+			sourceTree = "<group>";
+		};
+		16CA96B41B8B704000599D7B /* MBProcess HUD */ = {
+			isa = PBXGroup;
+			children = (
+				164B95321B89A8CE004515B3 /* MBProgressHUD.h */,
+				164B95331B89A8CE004515B3 /* MBProgressHUD.m */,
+			);
+			name = "MBProcess HUD";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,10 +434,13 @@
 				164B95441B89AA4F004515B3 /* MenuViewController.swift in Sources */,
 				164B953E1B89A9DA004515B3 /* MMDrawerBarButtonItem.m in Sources */,
 				164B953F1B89A9DA004515B3 /* MMDrawerController.m in Sources */,
+				16CA96BA1B8B70F400599D7B /* CalendarViewController.swift in Sources */,
+				16CA96B81B8B70E100599D7B /* MyProfileViewController.swift in Sources */,
 				169F2FD31B7037A5000DF6E6 /* AppDelegate.swift in Sources */,
 				164B954A1B89C714004515B3 /* PartnersViewController.swift in Sources */,
 				164B954E1B8A3AC0004515B3 /* EditProfileViewController.swift in Sources */,
 				164B95521B8AC973004515B3 /* FeedPageViewController.swift in Sources */,
+				16CA96B61B8B70B800599D7B /* ConexoesViewController.swift in Sources */,
 				164B95461B89AA79004515B3 /* RSSFeedViewController.swift in Sources */,
 				164B95561B8AC9A4004515B3 /* NewFeedViewController.swift in Sources */,
 				164B95541B8AC98F004515B3 /* FeedTableViewController.swift in Sources */,
@@ -406,6 +453,7 @@
 				164B95241B898D46004515B3 /* HomeViewController.swift in Sources */,
 				164B95581B8AC9B7004515B3 /* FeedWebPageViewController.swift in Sources */,
 				164B95311B89A6EC004515B3 /* RegisterViewController.swift in Sources */,
+				16CA96BC1B8B714200599D7B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,12 +13,10 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var userEmailTextField: UITextField!
-    
     @IBOutlet weak var userPasswordTextField: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +28,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // codigo para personalizar o navigationBar
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
-        //self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
-        let logotipo = UIImage(named: "logoSmall.png")
-        let imageCenter = UIImageView(image: logotipo)
-        self.navigationItem.titleView = imageCenter;
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //let logotipo = UIImage(named: "logoSmall.png")
+        //let imageCenter = UIImageView(image: logotipo)
+        //self.navigationItem.titleView = imageCenter;
         
         
         if(FBSDKAccessToken.currentAccessToken() == nil)

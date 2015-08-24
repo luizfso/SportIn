@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var userEmailTextField: UITextField!
@@ -18,6 +18,43 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var userCPFText: UITextField!
     @IBOutlet weak var userPasswordText: UITextField!
     @IBOutlet weak var userPassVerifText: UITextField!
+    
+    
+    let userType = ["Jogador", "Empresario", "Clube"]
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return userType.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return userType[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        var newBackgroundColor : UIColor
+        
+        switch row {
+        case 0:
+            println("Jogador Selecionado")
+            //newBackgroundColor = UIColor.yellowColor()
+        case 1:
+            //newBackgroundColor = UIColor.darkGrayColor()
+            println("Empresario Selecionado")
+        case 2:
+            //newBackgroundColor = UIColor.lightGrayColor()
+            println("Clube Selecionado")
+        default:
+            //newBackgroundColor = UIColor(red: 200/255, green: 255/255, blue: 200/255, alpha: 1.0)
+            println("Nada Selecionado")
+        }
+        
+        //self.view.backgroundColor = newBackgroundColor
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

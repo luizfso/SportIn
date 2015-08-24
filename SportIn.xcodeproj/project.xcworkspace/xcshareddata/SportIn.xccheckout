@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>28945D07-AAB0-4470-9348-CBA6BE1479F3</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>SportIn</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>E9CE35C6652AAFB99B51E1DF7AC72B734459B0C2</key>
 		<string>https://github.com/luizfso/SportIn.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SportIn.xcodeproj/project.xcworkspace</string>
+	<string>SportIn.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>E9CE35C6652AAFB99B51E1DF7AC72B734459B0C2</key>

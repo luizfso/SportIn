@@ -51,6 +51,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.featuresInfoView.hidden = true
         self.contactInfoView.hidden = true
         
+        //Circular Image
+        profilePictureImageView.layer.cornerRadius = 10 //profilePictureImageView.frame.size.width/3
+        profilePictureImageView.clipsToBounds = true
+        profilePictureImageView.layer.borderWidth = 1
+        profilePictureImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        
+        
         // Load user details
         let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
         let userLName = PFUser.currentUser()?.objectForKey("last_name") as! String
@@ -73,6 +81,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             })
         }
         
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {

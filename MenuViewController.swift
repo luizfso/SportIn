@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var userProfilePicture: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
@@ -25,8 +25,17 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
+        //Circular Image
+        userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.width/2
+        userProfilePicture.clipsToBounds = true
+        userProfilePicture.layer.borderWidth = 1
+        userProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+        
         loadUserDetails()
         
+    }
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +62,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch(indexPath.row)
         {
         case 0:
-            // open main page
+            // open Home page
             
             var homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
             
@@ -69,7 +78,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
             
         case 1:
-            // open about page
+            // open "Meu Perfil"
             
             var aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
             
@@ -83,7 +92,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
             
         case 2:
-            // open about page
+            // open "Conexoes"
             
             var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
             
@@ -95,9 +104,65 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             appDelegate.drawerContainer!.centerViewController = partnersPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             break
-            
-            
+       
         case 3:
+            // open "Calendario"
+            
+            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
+            
+            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = partnersPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+
+        case 4:
+            // open "Configuracoes"
+            
+            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
+            
+            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = partnersPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+     
+        case 5:
+            // open "Sobre"
+            
+            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
+            
+            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = partnersPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+    
+        case 6:
+            // open "Parceiros"
+            
+            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
+            
+            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = partnersPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+
+            
+        case 7:
             // perform sign out and take user to sign in page
             
             
