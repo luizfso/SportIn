@@ -23,6 +23,8 @@ class NewFeedViewController: UIViewController {
         // codigo para personalizar o navigationBar
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        // Descobrir codigo para cor em itens
+        
     }
     
     @IBAction func boneButton(sender: AnyObject) {
