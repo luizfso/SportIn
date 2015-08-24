@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             var menuPage:MenuViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
             
-            var feedPage:RSSFeedViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("RSSFeedViewController") as! RSSFeedViewController
+            var feedPage:FeedTableViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("FeedTableViewController") as! FeedTableViewController
   
             // Wrap into Navigation controllers
             var homePageNav = UINavigationController(rootViewController:homePage)

@@ -11,6 +11,15 @@ import Parse
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var parcInfoView: UIView!
+    @IBOutlet weak var proInfoView: UIView!
+    @IBOutlet weak var videoInfoView: UIView!
+    @IBOutlet weak var featuresInfoView: UIView!
+    @IBOutlet weak var contactInfoView: UIView!
+    
+    
+    
+    @IBOutlet weak var typeEdit: UISegmentedControl!
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var userFNameTextField: UITextField!
@@ -26,9 +35,21 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     var opener: MenuViewController!
     
+    let typeOfEdit: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // codigo para personalizar o navigationBar
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        //Hidden Others Views
+        self.parcInfoView.hidden = false
+        self.proInfoView.hidden = true
+        self.videoInfoView.hidden = true
+        self.featuresInfoView.hidden = true
+        self.contactInfoView.hidden = true
         
         // Load user details
         let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
@@ -58,6 +79,52 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func selectTypeEdit(sender: AnyObject) {
+        if typeEdit.selectedSegmentIndex == 0{
+            println("Personal info")
+            self.parcInfoView.hidden = false
+            self.proInfoView.hidden = true
+            self.videoInfoView.hidden = true
+            self.featuresInfoView.hidden = true
+            self.contactInfoView.hidden = true
+            
+        }
+        if typeEdit.selectedSegmentIndex == 1{
+            println("Professional info")
+            self.parcInfoView.hidden = true
+            self.proInfoView.hidden = false
+            self.videoInfoView.hidden = true
+            self.featuresInfoView.hidden = true
+            self.contactInfoView.hidden = true
+        }
+        if typeEdit.selectedSegmentIndex == 2{
+            println("Video info")
+            self.parcInfoView.hidden = true
+            self.proInfoView.hidden = true
+            self.videoInfoView.hidden = false
+            self.featuresInfoView.hidden = true
+            self.contactInfoView.hidden = true
+        }
+        if typeEdit.selectedSegmentIndex == 3{
+            println("Features info")
+            self.parcInfoView.hidden = true
+            self.proInfoView.hidden = true
+            self.videoInfoView.hidden = true
+            self.featuresInfoView.hidden = false
+            self.contactInfoView.hidden = true
+        }
+        if typeEdit.selectedSegmentIndex == 4{
+            println("Features info")
+            self.parcInfoView.hidden = true
+            self.proInfoView.hidden = true
+            self.videoInfoView.hidden = true
+            self.featuresInfoView.hidden = true
+            self.contactInfoView.hidden = false
+        }
+    
+    }
+    
     
     @IBAction func doneButtonTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)

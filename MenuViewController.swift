@@ -14,13 +14,16 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userProfilePicture: UIImageView!
     @IBOutlet weak var userFullNameLabel: UILabel!
     
-    var menuItems:[String] = ["Home","Sobre","Parceiros","Sign out"]
+    var menuItems:[String] = ["Home","Meu Perfil","Conexoes","Calendario","Configuracoes","Sobre","Parceiros","Sign out"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         loadUserDetails()
         

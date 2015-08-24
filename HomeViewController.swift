@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HomeViewController: UIViewController {
 
@@ -14,6 +15,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // codigo para personalizar o navigationBar
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
+        //self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
+        let logotipo = UIImage(named: "logoSmall.png")
+        let imageCenter = UIImageView(image: logotipo)
+        self.navigationItem.titleView = imageCenter;
         
     }
 
