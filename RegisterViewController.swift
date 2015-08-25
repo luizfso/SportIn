@@ -64,6 +64,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
+        profileImgView.layer.cornerRadius = 10 //profilePictureImageView.frame.size.width/3
+        profileImgView.clipsToBounds = true
+        profileImgView.layer.borderWidth = 1
+        profileImgView.layer.borderColor = UIColor.whiteColor().CGColor
+        
     }
 
     override func didReceiveMemoryWarning() {
