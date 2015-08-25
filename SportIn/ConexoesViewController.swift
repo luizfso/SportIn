@@ -14,6 +14,9 @@ class ConexoesViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // codigo para personalizar o navigationBar
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +24,11 @@ class ConexoesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    @IBAction func menuButton(sender: AnyObject) {
+        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

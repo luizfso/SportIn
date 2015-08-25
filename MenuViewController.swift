@@ -80,6 +80,62 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 1:
             // open "Meu Perfil"
             
+            var myProfileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MyProfileViewController") as! MyProfileViewController
+            
+            var myProfilePageNav = UINavigationController(rootViewController: myProfileViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = myProfilePageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+            
+        case 2:
+            // open "Conexoes"
+            
+            var conexoesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConexoesViewController") as! ConexoesViewController
+            
+            var conexoesPageNav = UINavigationController(rootViewController: conexoesViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = conexoesPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+       
+        case 3:
+            // open "Calendario"
+            
+            var calendarViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CalendarViewController") as! CalendarViewController
+            
+            var calendarPageNav = UINavigationController(rootViewController: calendarViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = calendarPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+
+        case 4:
+            // open "Configuracoes"
+            
+            var settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
+            
+            var settingsPageNav = UINavigationController(rootViewController: settingsViewController)
+            
+            
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.drawerContainer!.centerViewController = settingsPageNav
+            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            break
+     
+        case 5:
+            // open "Sobre"
+            
             var aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
             
             var aboutPageNav = UINavigationController(rootViewController: aboutViewController)
@@ -88,62 +144,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = aboutPageNav
-            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-            break
-            
-        case 2:
-            // open "Conexoes"
-            
-            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
-            
-            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
-            
-            
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            appDelegate.drawerContainer!.centerViewController = partnersPageNav
-            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-            break
-       
-        case 3:
-            // open "Calendario"
-            
-            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
-            
-            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
-            
-            
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            appDelegate.drawerContainer!.centerViewController = partnersPageNav
-            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-            break
-
-        case 4:
-            // open "Configuracoes"
-            
-            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
-            
-            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
-            
-            
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            appDelegate.drawerContainer!.centerViewController = partnersPageNav
-            appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-            break
-     
-        case 5:
-            // open "Sobre"
-            
-            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
-            
-            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
-            
-            
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            appDelegate.drawerContainer!.centerViewController = partnersPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             break
     

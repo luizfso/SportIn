@@ -66,8 +66,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         profileImgView.layer.cornerRadius = 10 //profilePictureImageView.frame.size.width/3
         profileImgView.clipsToBounds = true
-        profileImgView.layer.borderWidth = 1
-        profileImgView.layer.borderColor = UIColor.whiteColor().CGColor
         
     }
 
@@ -83,13 +81,13 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         self.presentViewController(myPickerController, animated: true, completion: nil)
         
-        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
         
         profileImgView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
@@ -101,7 +99,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func registrarButton(sender: AnyObject) {
         
         self.view.endEditing(true)
-        
         
         let userName = userEmailTextField.text
         let userPassword = userPasswordText.text
@@ -137,7 +134,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             return
         }
         
-        
         let myUser:PFUser = PFUser()
         myUser.username = userName
         myUser.password = userPassword
@@ -159,9 +155,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         spiningActivity.labelText = "Sending"
         spiningActivity.detailsLabelText = "Please wait"
-        
-        
-        
         
         myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
             
@@ -198,6 +191,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
+    @IBAction func backButton(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
     /*
