@@ -17,10 +17,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var featuresInfoView: UIView!
     @IBOutlet weak var contactInfoView: UIView!
     
-    
-    
     @IBOutlet weak var typeEdit: UISegmentedControl!
     
+    //user Personal Info
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var userFNameTextField: UITextField!
     @IBOutlet weak var userLNameTextField: UITextField!
@@ -32,6 +31,36 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var generoTextField: UITextField!
     @IBOutlet weak var nacionalidadeTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    
+    //Professional Info
+    @IBOutlet weak var userModalTextField: UITextField!
+    @IBOutlet weak var userKickFootTextField: UITextField!
+    @IBOutlet weak var userHightTextField: UITextField!
+    @IBOutlet weak var userWeightTextField: UITextField!
+    @IBOutlet weak var userNumFootTextField: UITextField!
+    @IBOutlet weak var userPositionTextField: UITextField!
+    @IBOutlet weak var userLevelTextField: UITextField!
+    
+    //user link videos Info
+    @IBOutlet weak var userLinkOneTextField: UITextField!
+    @IBOutlet weak var userLinkTwoTextField: UITextField!
+    @IBOutlet weak var userLinkTreeTextField: UITextField!
+    @IBOutlet weak var userLinkFourTextField: UITextField!
+    
+    //User Features Info
+    @IBOutlet weak var userGradeTextField: UITextField!
+    @IBOutlet weak var userMemberClubTextField: UITextField!
+    @IBOutlet weak var userTeamDreamTextField: UITextField!
+    @IBOutlet weak var userPrefBrandsTextField: UITextField!
+    @IBOutlet weak var userFederatedTextField: UITextField!
+    
+    //User Contact Info
+    @IBOutlet weak var userEmailProTextField: UITextField!
+    @IBOutlet weak var userFBLinkPageTextField: UITextField!
+    @IBOutlet weak var userLInLinkPageTextField: UITextField!
+    @IBOutlet weak var userTwtLinkPageTextField: UITextField!
+    @IBOutlet weak var userCellPhoneTextField: UITextField!
+    
     
     var opener: MenuViewController!
     
@@ -59,13 +88,86 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         
         
-        // Load user details
+        // Load user details if they no Blanks
         let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
+        if userFName != ""{
+             userFNameTextField.text = userFName
+        }
         let userLName = PFUser.currentUser()?.objectForKey("last_name") as! String
+        if userLName != ""{
+            userLNameTextField.text = userLName
+        }
         
-        userFNameTextField.text = userFName
-        userLNameTextField.text = userLName
+        let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as! String
+        if userFName != ""{
+            CPFTextField.text = userCPF
+        }
+
         
+        /*
+        CPFTextField.text = userCPF
+        nascDataTextField.text = userBirth
+        apelidoTextField.text = userApelido
+        generoTextField.text = userGen
+        nacionalidadeTextField.text = userNationality
+        addressTextField.text = userAddress
+        
+        userModal: UITextField!
+        userKickFoot: UITextField!
+        userHight: UITextField!
+        userWeight: UITextField!
+        userNumFoot: UITextField!
+        userPosition: UITextField!
+        userLevel: UITextField!
+        
+        userLinkOne: UITextField!
+        userLinkTwo: UITextField!
+        userLinkTree: UITextField!
+        userLinkFour: UITextField!
+        
+        userGrade: UITextField!
+        userMemberClub: UITextField!
+        userTeamDream: UITextField!
+        userPrefBrands: UITextField!
+        userFederated: UITextField!
+        
+        userEmailPro: UITextField!
+        userFBLinkPage: UITextField!
+        userLInLinkPage: UITextField!
+        userTwtLinkPage: UITextField!
+        userCellPhone: UITextField!
+    
+        
+        // Set new values for Pro Info
+        myUser.setObject(userMod, forKey: "user_modal")
+        myUser.setObject(userKFoot, forKey: "user_kickfoot")
+        myUser.setObject(userHth, forKey: "user_height")
+        myUser.setObject(userWth, forKey: "user_weight")
+        myUser.setObject(userNmFoot, forKey: "user_numfoot")
+        myUser.setObject(userPos, forKey: "user_position")
+        myUser.setObject(userLvl, forKey: "user_level")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userLk1, forKey: "user_linkone")
+        myUser.setObject(userLk2, forKey: "user_linktwo")
+        myUser.setObject(userLk3, forKey: "user_linktree")
+        myUser.setObject(userLk4, forKey: "user_linkfour")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userSchool, forKey: "user_grade")
+        myUser.setObject(userMClub, forKey: "user_menberclub")
+        myUser.setObject(userDream, forKey: "user_teamdream")
+        myUser.setObject(userBrands, forKey: "user_prefbrands")
+        myUser.setObject(userFed, forKey: "user_federated")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userMPro, forKey: "user_emailpro")
+        myUser.setObject(userFBLPage, forKey: "user_fbpage")
+        myUser.setObject(userLNLPage, forKey: "user_lipage")
+        myUser.setObject(userTWLinkPage, forKey: "user_twtpage")
+        myUser.setObject(userMobile, forKey: "user_cellphone")
+        
+        */
         
         if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
         {
@@ -215,6 +317,37 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let userNationality = nacionalidadeTextField.text
         let userAddress = addressTextField.text
         
+        // Set new values for Pro Info
+        let userMod = userModalTextField.text
+        let userKFoot = userKickFootTextField.text
+        let userHth = userHightTextField.text
+        let userWth = userWeightTextField.text
+        let userNmFoot = userNumFootTextField.text
+        let userPos = userPositionTextField.text
+        let userLvl = userLevelTextField.text
+        
+        // Set new values for Pro Info
+        let userLk1 = userLinkOneTextField.text
+        let userLk2 = userLinkTwoTextField.text
+        let userLk3 = userLinkTreeTextField.text
+        let userLk4 = userLinkFourTextField.text
+        
+        // Set new values for Pro Info
+        let userSchool = userGradeTextField.text
+        let userMClub = userMemberClubTextField.text
+        let userDream = userTeamDreamTextField.text
+        let userBrands = userPrefBrandsTextField.text
+        let userFed = userFederatedTextField.text
+        
+        // Set new values for Pro Info
+        let userMPro = userEmailProTextField.text
+        let userFBLPage = userFBLinkPageTextField.text
+        let userLNLPage = userLInLinkPageTextField.text
+        let userTWLinkPage = userTwtLinkPageTextField.text
+        let userMobile = userCellPhoneTextField.text
+        
+        
+        // Set new values for Personal Info
         myUser.setObject(userFName, forKey: "first_name")
         myUser.setObject(userLName, forKey: "last_name")
         myUser.setObject(userCPF, forKey: "user_CPF")
@@ -223,6 +356,36 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         myUser.setObject(userGen, forKey: "user_gen")
         myUser.setObject(userNationality, forKey: "user_natio")
         myUser.setObject(userAddress, forKey: "user_address")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userMod, forKey: "user_modal")
+        myUser.setObject(userKFoot, forKey: "user_kickfoot")
+        myUser.setObject(userHth, forKey: "user_height")
+        myUser.setObject(userWth, forKey: "user_weight")
+        myUser.setObject(userNmFoot, forKey: "user_numfoot")
+        myUser.setObject(userPos, forKey: "user_position")
+        myUser.setObject(userLvl, forKey: "user_level")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userLk1, forKey: "user_linkone")
+        myUser.setObject(userLk2, forKey: "user_linktwo")
+        myUser.setObject(userLk3, forKey: "user_linktree")
+        myUser.setObject(userLk4, forKey: "user_linkfour")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userSchool, forKey: "user_grade")
+        myUser.setObject(userMClub, forKey: "user_menberclub")
+        myUser.setObject(userDream, forKey: "user_teamdream")
+        myUser.setObject(userBrands, forKey: "user_prefbrands")
+        myUser.setObject(userFed, forKey: "user_federated")
+        
+        // Set new values for Pro Info
+        myUser.setObject(userMPro, forKey: "user_emailpro")
+        myUser.setObject(userFBLPage, forKey: "user_fbpage")
+        myUser.setObject(userLNLPage, forKey: "user_lipage")
+        myUser.setObject(userTWLinkPage, forKey: "user_twtpage")
+        myUser.setObject(userMobile, forKey: "user_cellphone")
+        
         
         // set new password
         if(!passwordTextField.text.isEmpty)

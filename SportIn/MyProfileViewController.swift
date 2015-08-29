@@ -7,9 +7,34 @@
 //
 
 import UIKit
+import Parse
 
-class MyProfileViewController: UIViewController {
+class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    @IBOutlet weak var userProfilePicture: UIImageView!
+    @IBOutlet weak var userFNameLabel: UILabel!
+    @IBOutlet weak var userLNameLabel: UILabel!
+    @IBOutlet weak var generoLabel: UILabel!
+    @IBOutlet weak var nacionalidadeLabel: UILabel!
+    @IBOutlet weak var CPFLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var userModalLabel: UILabel!
+    @IBOutlet weak var userKickFootLabel: UILabel!
+    @IBOutlet weak var userHightLabel: UILabel!
+    @IBOutlet weak var userWeightLabel: UILabel!
+    @IBOutlet weak var imcCalcLabel: UILabel!
+    @IBOutlet weak var userNumFootLabel: UILabel!
+    @IBOutlet weak var userPositionLabel: UILabel!
+    @IBOutlet weak var userLevelLabel: UILabel!
+    @IBOutlet weak var userPrefBrandsLabel: UILabel!
+    @IBOutlet weak var userGradeLabel: UILabel!
+    @IBOutlet weak var userMemberClubLabel: UILabel!
+    @IBOutlet weak var userFederatedLabel: UILabel!
+    @IBOutlet weak var userTeamDreamLabel: UILabel!
+    @IBOutlet weak var userCellPhoneLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +43,9 @@ class MyProfileViewController: UIViewController {
         // codigo para personalizar o navigationBar
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        loadUserDetails()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +58,66 @@ class MyProfileViewController: UIViewController {
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
 
+    //Load user Details
+    func loadUserDetails() {
+        let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
+        let userLName = PFUser.currentUser()?.objectForKey("last_name") as! String
+        let userEmail = PFUser.currentUser()?.objectForKey("first_name") as! String
+        let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as! String
+        let userAddress = PFUser.currentUser()?.objectForKey("user_address") as! String
+        let userApelido = PFUser.currentUser()?.objectForKey("user_apelido") as! String
+        let userBirth = PFUser.currentUser()?.objectForKey("user_birth") as! String
+        let userGen = PFUser.currentUser()?.objectForKey("user_gen") as! String
+        let userNationality = PFUser.currentUser()?.objectForKey("user_natio") as! String
+        let userMod = PFUser.currentUser()?.objectForKey("user_modal") as! String
+        let userKFoot = PFUser.currentUser()?.objectForKey("user_kickfoot") as! String
+        let userHth = PFUser.currentUser()?.objectForKey("user_height") as! String
+        let userWth = PFUser.currentUser()?.objectForKey("user_weight") as! String
+        let userNmFoot = PFUser.currentUser()?.objectForKey("user_numfoot") as! String
+        let userPos = PFUser.currentUser()?.objectForKey("user_position") as! String
+        let userLvl = PFUser.currentUser()?.objectForKey("user_level") as! String
+        let userSchool = PFUser.currentUser()?.objectForKey("user_grade") as! String
+        let userMClub = PFUser.currentUser()?.objectForKey("user_menberclub") as! String
+        let userDream = PFUser.currentUser()?.objectForKey("user_teamdream") as! String
+        let userPrefBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as! String
+        let userBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as! String
+        let userFed = PFUser.currentUser()?.objectForKey("user_federated") as! String
+        let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as! String
+        
+        
+        userFNameLabel.text = userFName
+        userLNameLabel.text = userLName
+        generoLabel.text = userGen
+        nacionalidadeLabel.text = userNationality
+        CPFLabel.text = userCPF
+        addressLabel.text = userAddress
+        userModalLabel.text = userMod
+        userKickFootLabel.text = userKFoot
+        userHightLabel.text = userHth
+        userWeightLabel.text = userWth
+        userNumFootLabel.text = userNmFoot
+        userPositionLabel.text = userPos
+        userLevelLabel.text = userLvl
+        userGradeLabel.text = userSchool
+        userMemberClubLabel.text = userMClub
+        userTeamDreamLabel.text = userDream
+        userPrefBrandsLabel.text = userPrefBrands
+        userFederatedLabel.text = userFed
+        userCellPhoneLabel.text = userMobile
+        
+        let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+        
+        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+            
+            if(imageData != nil)
+            {
+                self.userProfilePicture.image = UIImage(data: imageData!)
+            }
+            
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 
