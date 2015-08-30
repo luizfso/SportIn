@@ -90,18 +90,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         // Load user details if they no Blanks
         let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
-        if userFName != ""{
-             userFNameTextField.text = userFName
-        }
+        userFNameTextField.text = userFName
+        
         let userLName = PFUser.currentUser()?.objectForKey("last_name") as! String
-        if userLName != ""{
-            userLNameTextField.text = userLName
-        }
+        userLNameTextField.text = userLName
         
         let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as! String
-        if userFName != ""{
-            CPFTextField.text = userCPF
-        }
+        CPFTextField.text = userCPF
 
         
         /*

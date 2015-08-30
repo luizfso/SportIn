@@ -140,6 +140,11 @@
                                             <action selector="backButton:" destination="Ow5-0P-q59" eventType="touchUpInside" id="yxi-Ut-bma"/>
                                         </connections>
                                     </button>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oz2-Aq-vZk">
+                                        <rect key="frame" x="8" y="497" width="97" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
                                     <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="epX-MQ-rQa">
                                         <rect key="frame" x="8" y="363" width="304" height="88"/>
                                         <connections>
@@ -205,6 +210,7 @@
                         <outlet property="userLastNameTextField" destination="Akl-7N-YdB" id="Mfo-DJ-0b3"/>
                         <outlet property="userPassVerifText" destination="LRL-tJ-xrF" id="4xd-1a-J50"/>
                         <outlet property="userPasswordText" destination="faU-4O-sFV" id="ZBC-qj-zb8"/>
+                        <outlet property="userTypeSelected" destination="oz2-Aq-vZk" id="7Pk-eA-YO0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbZ-Fy-zdB" userLabel="First Responder" sceneMemberID="firstResponder"/>

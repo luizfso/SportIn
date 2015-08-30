@@ -18,9 +18,10 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var userCPFText: UITextField!
     @IBOutlet weak var userPasswordText: UITextField!
     @IBOutlet weak var userPassVerifText: UITextField!
+    @IBOutlet weak var userTypeSelected: UITextField!
     
     
-    let userType = ["Jogador", "Empresario", "Clube"]
+    let userType = ["Selecionar Meu Perfil","Jogador", "Empresario", "Clube"]
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -38,17 +39,34 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         var newBackgroundColor : UIColor
         
         switch row {
+            
         case 0:
+            println("Selecionar Meu Perfil")
+            //newBackgroundColor = UIColor.yellowColor()
+            userTypeSelected.text = ""
+            println("Nada Selecionado")
+            
+        case 1:
             println("Jogador Selecionado")
             //newBackgroundColor = UIColor.yellowColor()
-        case 1:
-            //newBackgroundColor = UIColor.darkGrayColor()
-            println("Empresario Selecionado")
+            let pickedProfile = userType[row]
+            userTypeSelected.text = pickedProfile
+            
         case 2:
+            println("Empresario Selecionado")
+            //newBackgroundColor = UIColor.darkGrayColor()
+            let pickedProfile = userType[row]
+            userTypeSelected.text = pickedProfile
+            
+        case 3:
             //newBackgroundColor = UIColor.lightGrayColor()
             println("Clube Selecionado")
+            let pickedProfile = userType[row]
+            userTypeSelected.text = pickedProfile
+            
         default:
             //newBackgroundColor = UIColor(red: 200/255, green: 255/255, blue: 200/255, alpha: 1.0)
+            userTypeSelected.text = ""
             println("Nada Selecionado")
         }
         
@@ -73,6 +91,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     @IBAction func selectProfilePhotoButton(sender: AnyObject) {
         var myPickerController = UIImagePickerController()
@@ -100,17 +119,18 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         self.view.endEditing(true)
         
-        let userName = userEmailTextField.text
-        let userPassword = userPasswordText.text
-        let userPasswordVerif = userPassVerifText.text
+        let userEmail = userEmailTextField.text
         let userFirstName = userFirstNameTextField.text
         let userLastName = userLastNameTextField.text
+        let userPassword = userPasswordText.text
+        let userPasswordVerif = userPassVerifText.text
+        let selectedProfile = userTypeSelected.text
         let userCPF = userCPFText.text
         
-        if(userName.isEmpty || userPassword.isEmpty || userPasswordVerif.isEmpty || userFirstName.isEmpty || userLastName.isEmpty)
+        if(userEmail.isEmpty || userPassword.isEmpty || userPasswordVerif.isEmpty || userFirstName.isEmpty || userLastName.isEmpty || userCPF.isEmpty)
         {
             
-            var myAlert = UIAlertController(title:"Alert", message:"All fields are required to fill in", preferredStyle:UIAlertControllerStyle.Alert)
+            var myAlert = UIAlertController(title:"Alert", message:"Todos os campos devem ser preenchidos", preferredStyle:UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -133,13 +153,33 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             
             return
         }
+
+        if(selectedProfile == "")
+        {
+            
+            var myAlert = UIAlertController(title:"Alert", message:"Selecione ao menos uma opção para seu perfil", preferredStyle:UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+            
+            myAlert.addAction(okAction)
+            
+            self.presentViewController(myAlert, animated: true, completion: nil)
+            
+            return
+        }
+
         
+        if(selectedProfile == "Jogador")
+        {
+          
         let myUser:PFUser = PFUser()
-        myUser.username = userName
+        myUser.username = userEmail
         myUser.password = userPassword
-        myUser.email = userName
+        myUser.email = userEmail
         myUser.setObject(userFirstName, forKey: "first_name")
         myUser.setObject(userLastName, forKey: "last_name")
+        myUser.setObject(userCPF, forKey: "user_CPF")
+        myUser.setObject(selectedProfile, forKey: "profile_type")
         
         //let profileBlankImg = UIImage(named:"profile_pic_512")
         
@@ -187,6 +227,137 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             
         }
         
+        }
+        
+        if(selectedProfile == "Empresario")
+        {
+            
+            let myUser:PFUser = PFUser()
+            myUser.username = userEmail
+            myUser.password = userPassword
+            myUser.email = userEmail
+            
+            let myUserEmpresario:PFObject = PFObject(className: "UserEmpresario")
+            myUserEmpresario["test"] = "teste"
+            myUserEmpresario.setObject(userFirstName, forKey: "first_name")
+            myUserEmpresario.setObject(userLastName, forKey: "last_name")
+            myUserEmpresario.setObject(userCPF, forKey: "user_CPF")
+            myUserEmpresario.setObject(selectedProfile, forKey: "profile_type")
+           
+            //let profileBlankImg = UIImage(named:"profile_pic_512")
+            
+            let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
+            
+            if(profileImgData != nil)
+            {
+                let profileImageFile = PFFile(data: profileImgData)
+                myUserEmpresario.setObject(profileImageFile, forKey: "profile_picture")
+            }
+            
+            // Show activity indicator
+            let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            spiningActivity.labelText = "Sending"
+            spiningActivity.detailsLabelText = "Please wait"
+            
+            myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            myUserEmpresario.saveInBackground()
+                
+                // Hide activity indicator
+                spiningActivity.hide(true)
+                
+                var userMessage = "Registration is successful. Thank you!"
+                
+                if(!success)
+                {
+                    //userMessage = "Could not register at this time please try again later."
+                    userMessage = error!.localizedDescription
+                }
+                
+                
+                var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default){ action in
+                    
+                    if(success)
+                    {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    
+                }
+                
+                myAlert.addAction(okAction)
+                
+                self.presentViewController(myAlert, animated: true, completion: nil)
+                
+            }
+            
+        }
+        
+        
+        if(selectedProfile == "Clube")
+        {
+            
+            let myUser:PFUser = PFUser()
+            myUser.username = userEmail
+            myUser.password = userPassword
+            myUser.email = userEmail
+            
+            let myUserClube:PFObject = PFObject(className: "UserClube")
+            myUserClube["test"] = "teste"
+            myUserClube.setObject(userFirstName, forKey: "first_name")
+            myUserClube.setObject(userLastName, forKey: "last_name")
+            myUserClube.setObject(userCPF, forKey: "user_CPF")
+            myUserClube.setObject(selectedProfile, forKey: "profile_type")
+            
+            //let profileBlankImg = UIImage(named:"profile_pic_512")
+            
+            let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
+            
+            if(profileImgData != nil)
+            {
+                let profileImageFile = PFFile(data: profileImgData)
+                myUserClube.setObject(profileImageFile, forKey: "profile_picture")
+            }
+            
+            // Show activity indicator
+            let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            spiningActivity.labelText = "Sending"
+            spiningActivity.detailsLabelText = "Please wait"
+            
+            myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+                myUserEmpresario.saveInBackground()
+                
+                // Hide activity indicator
+                spiningActivity.hide(true)
+                
+                var userMessage = "Registration is successful. Thank you!"
+                
+                if(!success)
+                {
+                    //userMessage = "Could not register at this time please try again later."
+                    userMessage = error!.localizedDescription
+                }
+                
+                
+                var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default){ action in
+                    
+                    if(success)
+                    {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    
+                }
+                
+                myAlert.addAction(okAction)
+                
+                self.presentViewController(myAlert, animated: true, completion: nil)
+                
+            }
+            
+        }
+
         
         
     }
