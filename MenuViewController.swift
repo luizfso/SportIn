@@ -31,7 +31,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userProfilePicture.layer.borderWidth = 1
         userProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
         
+        
         loadUserDetails()
+         
         
     }
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -215,26 +217,72 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func loadUserDetails() {
-    let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
+        
+        let userType = PFUser.currentUser()?.objectForKey("profile_type") as! String
+        
+        if (userType == "Jogador"){
+            let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
+            let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
+            
+            userFullNameLabel.text = userFirstName + " " + userLastName
+            
+            let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+            
+            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                if(imageData != nil)
+                {
+                    self.userProfilePicture.image = UIImage(data: imageData!)
+                }
+                
+            }
+            
+            }
+        
     
-    let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
+        if (userType == "Empresario"){
+            
+            var query = PFQuery(className:"User")
+            //query.whereKey("first_name", equalTo:"Sean Plott")
+            query.findObjectsInBackgroundWithBlock {
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                
+                if error == nil {
+                    // The find succeeded.
+                    println("Successfully retrieved \(objects!.count) scores.")
+                    // Do something with the found objects
+                    if let objects = objects as? [PFObject] {
+                        for object in objects {
+                            println(object.objectId)
+                        }
+                    }
+                } else {
+                    // Log details of the failure
+                    println("Error: \(error!) \(error!.userInfo!)")
+                }
+            }
     
-    userFullNameLabel.text = userFirstName + " " + userLastName
+        /*var query = PFQuery(className: "Empresario")
+            let userFirstName:String? = PFObject["first_name"] as? String
+            let userLastName:String? = PFObject()["last_name"] as? String
     
-    let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+        userFullNameLabel.text = userFirstName! + " " + userLastName!
     
-    profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+        let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
     
-    if(imageData != nil)
-    {
-    self.userProfilePicture.image = UIImage(data: imageData!)
+        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+    
+        if(imageData != nil)
+        {
+        self.userProfilePicture.image = UIImage(data: imageData!)
+        }
+        }*/
+    
+   
+    
+      }
     }
     
-    }
-    
-    }
-
-
     /*
     // MARK: - Navigation
 

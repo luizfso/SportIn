@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
@@ -19,6 +20,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var userPasswordText: UITextField!
     @IBOutlet weak var userPassVerifText: UITextField!
     @IBOutlet weak var userTypeSelected: UITextField!
+    @IBOutlet weak var objectIdLabel: UILabel!
     
     
     let userType = ["Selecionar Meu Perfil","Jogador", "Empresario", "Clube"]
@@ -115,6 +117,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    
     @IBAction func registrarButton(sender: AnyObject) {
         
         self.view.endEditing(true)
@@ -126,6 +129,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         let userPasswordVerif = userPassVerifText.text
         let selectedProfile = userTypeSelected.text
         let userCPF = userCPFText.text
+        //let objecttId = objectIdLabel.text
         
         if(userEmail.isEmpty || userPassword.isEmpty || userPasswordVerif.isEmpty || userFirstName.isEmpty || userLastName.isEmpty || userCPF.isEmpty)
         {
@@ -236,15 +240,20 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUser.username = userEmail
             myUser.password = userPassword
             myUser.email = userEmail
+            myUser.setObject(selectedProfile, forKey: "profile_type")
+            
+            //var query = PFQuery(className:"User")
+            //query.getObjectInBackgroundWithId("xWMyZEGZ")
             
             let myUserEmpresario:PFObject = PFObject(className: "UserEmpresario")
             myUserEmpresario["test"] = "teste"
             myUserEmpresario.setObject(userFirstName, forKey: "first_name")
             myUserEmpresario.setObject(userLastName, forKey: "last_name")
             myUserEmpresario.setObject(userCPF, forKey: "user_CPF")
-            myUserEmpresario.setObject(selectedProfile, forKey: "profile_type")
-           
-            //let profileBlankImg = UIImage(named:"profile_pic_512")
+            myUserEmpresario.setObject(selectedProfile, forKey: "keyUser")
+            
+            
+            
             
             let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
             
@@ -259,8 +268,15 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             spiningActivity.labelText = "Sending"
             spiningActivity.detailsLabelText = "Please wait"
             
-            myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            /*let myUserEmpresario:PFObject = PFObject(className: "UserEmpresario")
+            let keyUserStored = PFUser.currentUser()?.objectForKey("objectId") as! String
+            
+            myUserEmpresario.setObject(keyUserStored, forKey: "keyUser")
             myUserEmpresario.saveInBackground()
+            */
+            
+            myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            
                 
                 // Hide activity indicator
                 spiningActivity.hide(true)
@@ -290,6 +306,24 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.presentViewController(myAlert, animated: true, completion: nil)
                 
             }
+            myUserEmpresario.saveInBackground()
+            
+            myUser.objectId?.getMirror()
+           
+            /*
+            let getId:PFObject = PFObject(className: "UserEmpresario")
+            let id = getId.objectId
+            println(id)
+            
+            var query = PFObject(className:"User")
+            query.whereKeyExists("objectId")
+            query = PFObject.objectForKey("objectId") as! String
+            println(query)
+            
+            var queryEmp = PFQuery(className:"UserEmpresario")
+            queryEmp.whereKeyExists("objectId")
+            println(queryEmp)
+*/
             
         }
         
@@ -325,7 +359,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             spiningActivity.detailsLabelText = "Please wait"
             
             myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
-                myUserEmpresario.saveInBackground()
+                myUserClube.saveInBackground()
                 
                 // Hide activity indicator
                 spiningActivity.hide(true)
@@ -357,7 +391,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             }
             
         }
-
+        
+        
         
         
     }

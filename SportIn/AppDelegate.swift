@@ -99,8 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             drawerContainer = MMDrawerController(centerViewController: homePageNav, leftDrawerViewController: menuPageNav, rightDrawerViewController: feedPageNav)
             
-            drawerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
-            drawerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+           // drawerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+           // drawerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
             
             window?.rootViewController = drawerContainer
         }

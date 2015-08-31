@@ -86,6 +86,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 appDelegate.buildUserInterface()
+                
 
             } else {
                 

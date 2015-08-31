@@ -11,9 +11,26 @@ import Parse
 
 class HomeViewController: UIViewController {
 
+    
+    @IBOutlet weak var ScrollView: UIScrollView!
+    @IBOutlet weak var itemView: UIImageView!
+    
+    @IBOutlet weak var obIDLabel: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let item1 = UIImage(named: "espn_logo100x100.fw.png")
+        itemView.image = item1 as UIImage?
+        let item2 = UIImage(named: "FoxSport-logo100x100.fw.png")
+        itemView.image = item2 as UIImage?
+        let item3 = UIImage(named: "espn_logo100x100.fw.png")
+        let item4 = UIImage(named: "espn_logo100x100.fw.png")
+        
+        ScrollView.contentSize = CGSize(width: 3000, height: 200)
+        itemView.frame = CGRect(x: 2700, y: 2, width: 100, height: 100)
+        ScrollView.addSubview(itemView)
+        
         // Do any additional setup after loading the view.
         
         // codigo para personalizar o navigationBar
@@ -22,6 +39,16 @@ class HomeViewController: UIViewController {
         let logotipo = UIImage(named: "logoSmall.png")
         let imageCenter = UIImageView(image: logotipo)
         self.navigationItem.titleView = imageCenter;
+        
+        
+
+        var numKeyObj:PFUser = PFUser()
+        var id = numKeyObj.objectId
+        println(id)
+        
+        //let myUser:PFUser = PFUser()
+        //obIDLabel.text = myUser.objectForKey("objectId") as? String
+        //println(obIDLabel.text)
         
     }
 
