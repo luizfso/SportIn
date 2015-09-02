@@ -110,6 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func loginWithFacebook(sender: AnyObject) {
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile","email"], block: {(user:PFUser?, error:NSError?) -> Void in
             
             if(error != nil)
@@ -124,6 +125,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 return
             }
             
+            let userName:String? = user?.username
+            
+            NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "user_name")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
             println(user)
             println("Current user token=\(FBSDKAccessToken.currentAccessToken().tokenString)")
             
@@ -131,14 +137,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
-                let homePage = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                               
+                var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
-                let homePageNav = UINavigationController(rootViewController: homePage)
-                
-                let appDelagate = UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                appDelagate.window?.rootViewController = homePageNav
-                
+                appDelegate.buildUserInterface()
             }
             
         })

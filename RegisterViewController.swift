@@ -308,6 +308,10 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             }
             myUserEmpresario.saveInBackground()
             
+            println(myUser)
+            
+            println(myUser.objectId)
+            
             myUser.objectId?.getMirror()
            
             /*

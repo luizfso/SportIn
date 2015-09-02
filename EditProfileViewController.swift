@@ -132,7 +132,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         userTwtLinkPage: UITextField!
         userCellPhone: UITextField!
     
-        
         // Set new values for Pro Info
         myUser.setObject(userMod, forKey: "user_modal")
         myUser.setObject(userKFoot, forKey: "user_kickfoot")

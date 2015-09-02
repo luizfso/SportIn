@@ -220,7 +220,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let userType = PFUser.currentUser()?.objectForKey("profile_type") as! String
         
-        if (userType == "Jogador"){
+        if(userType == "Jogador"){
             let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
             let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
             
@@ -240,7 +240,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         
     
-        if (userType == "Empresario"){
+        if(userType == "Empresario"){
             
             var query = PFQuery(className:"User")
             //query.whereKey("first_name", equalTo:"Sean Plott")
@@ -262,6 +262,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
     
+
+            
+            
         /*var query = PFQuery(className: "Empresario")
             let userFirstName:String? = PFObject["first_name"] as? String
             let userLastName:String? = PFObject()["last_name"] as? String
@@ -281,8 +284,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
    
     
       }
+       
     }
-    
+
+
     /*
     // MARK: - Navigation
 

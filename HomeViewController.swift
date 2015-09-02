@@ -41,10 +41,16 @@ class HomeViewController: UIViewController {
         self.navigationItem.titleView = imageCenter;
         
         
+        //let myUser:PFUser = PFUser()
+        //println(myUser)
+        
+        //println(myUser.email)
+        //println(myUser)
+        
 
-        var numKeyObj:PFUser = PFUser()
-        var id = numKeyObj.objectId
-        println(id)
+       // var numKeyObj:PFUser = PFUser()
+        //var id = numKeyObj.objectId
+        //println(id)
         
         //let myUser:PFUser = PFUser()
         //obIDLabel.text = myUser.objectForKey("objectId") as? String
