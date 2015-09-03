@@ -137,7 +137,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
-                               
+                
                 var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 appDelegate.buildUserInterface()
