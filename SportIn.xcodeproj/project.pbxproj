@@ -51,6 +51,7 @@
 		169F2FDD1B7037A5000DF6E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FDB1B7037A5000DF6E6 /* LaunchScreen.xib */; };
 		169F2FE91B7037A6000DF6E6 /* SportInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F2FE81B7037A6000DF6E6 /* SportInTests.swift */; };
 		16C07D1B1B98B3790001A867 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C07D1A1B98B3790001A867 /* SettingsViewController.swift */; };
+		16C07D1D1B99E2A00001A867 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C07D1C1B99E2A00001A867 /* MapKit.framework */; };
 		16CA96B61B8B70B800599D7B /* ConexoesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */; };
 		16CA96B81B8B70E100599D7B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */; };
 		16CA96BA1B8B70F400599D7B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA96B91B8B70F400599D7B /* CalendarViewController.swift */; };
@@ -122,6 +123,7 @@
 		169F2FE71B7037A6000DF6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		169F2FE81B7037A6000DF6E6 /* SportInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportInTests.swift; sourceTree = "<group>"; };
 		16C07D1A1B98B3790001A867 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		16C07D1C1B99E2A00001A867 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConexoesViewController.swift; sourceTree = "<group>"; };
 		16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		16CA96B91B8B70F400599D7B /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			files = (
 				164B951B1B898406004515B3 /* libsqlite3.dylib in Frameworks */,
 				164B95191B898400004515B3 /* libz.dylib in Frameworks */,
+				16C07D1D1B99E2A00001A867 /* MapKit.framework in Frameworks */,
 				164B95221B8986E4004515B3 /* FBSDKShareKit.framework in Frameworks */,
 				164B95171B8983FA004515B3 /* SystemConfiguration.framework in Frameworks */,
 				164B952B1B8991A6004515B3 /* ParseTwitterUtils.framework in Frameworks */,
@@ -167,6 +170,7 @@
 		164B94FF1B89823D004515B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				16C07D1C1B99E2A00001A867 /* MapKit.framework */,
 				164B952E1B89A634004515B3 /* ParseUI.framework */,
 				164B952C1B8991FA004515B3 /* Parse.framework */,
 				164B95281B8991A6004515B3 /* ParseFacebookUtilsV4.framework */,
@@ -377,6 +381,9 @@
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
 							};
 						};
 					};
