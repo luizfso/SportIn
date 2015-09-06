@@ -20,6 +20,9 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     
     var itensOnNewEvent = [PFObject]()
     var itensOnPastEvent = [PFObject]()
+    var localizacao = [PFGeoPoint]()
+    var verificacao = [PFObject]()
+    let date = NSDate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +67,18 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     // Load data into the collectionView when the view appears
     override func viewDidAppear(animated: Bool) {
         loadCollectionViewData()
+        loadCollectionViewDataPast()
     }
 
+    
+    /*
+    ==========================================================================================
+    Function for Geo Localization
+    ==========================================================================================
+    */
+    
+    
+    
     
     /*
     ==========================================================================================
@@ -77,53 +90,58 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         // Build a parse query object
         var query = PFQuery(className:"Events")
+        query.whereKey("Status", containsString: "open")
         
         // Check to see if there is a search term
         if mySearchBar.text != "" {
             query.whereKey("searchText", containsString: mySearchBar.text.lowercaseString)
         }
-        
-        /*
-        
-        If:
-        var tituloNameQuery = PFQuery(className:"Events")
-        tituloNameQuery.whereKey("titulo", containsString: searchBar.text)
-        
-        var subtituloNameQuery = PFQuery(className:"Events")
-        subtituloNameQuery.whereKey("subtitulo", matchesRegex: "(?i)\(searchBar.text)")
-        
-        If:
-        
-        var tituloNameQuery = PFQuery(className:"Events")
-        tituloNameQuery.whereKey("titulo", containsString: searchBar.text)
-        
-        var subtituloNameQuery = PFQuery(className:"Events")
-        subtituloNameQuery.whereKey("subtitulo", matchesRegex: "(?i)\(searchBar.text)")
-        
-        */
-        
-        
-        
-        
         // Fetch data from the parse platform
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            // The find succeeded now rocess the found objects into the countries array
+            // The find succeeded now rocess the found objects into the events array
             if error == nil {
-                
-                // Clear existing country data
-                self.itensOnNewEvent.removeAll(keepCapacity: true)
-                
-                // Add country objects to our array
-                if let objects = objects as? [PFObject] {
+            // Clear existing event data
+            self.itensOnNewEvent.removeAll(keepCapacity: true)
+            // Add events objects to our array
+            if let objects = objects as? [PFObject] {
                 self.itensOnNewEvent = Array(objects.generate())
-                }
-                
-                // reload our data into the collection view
+            }
+            // reload our data into the collection view
                 self.myTableView.reloadData()
-                
-            } else {
+            }
+            else {
+                // Log details of the failure
+                println("Error: \(error!) \(error!.userInfo!)")
+            }
+        }
+    }
+    
+    func loadCollectionViewDataPast() {
+        
+        // Build a parse query object
+        var query = PFQuery(className:"Events")
+        query.whereKey("Status", containsString: "close")
+        
+        // Check to see if there is a search term
+        if mySearchBar.text != "" {
+            query.whereKey("searchText", containsString: mySearchBar.text.lowercaseString)
+        }
+        // Fetch data from the parse platform
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            // The find succeeded now rocess the found objects into the events array
+            if error == nil {
+            // Clear existing event data
+            self.itensOnPastEvent.removeAll(keepCapacity: true)
+            // Add events objects to our array
+            if let objects = objects as? [PFObject] {
+                self.itensOnPastEvent = Array(objects.generate())
+            }
+            // reload our data into the collection view
+            self.myTableView.reloadData()
+            }
+            else {
                 // Log details of the failure
                 println("Error: \(error!) \(error!.userInfo!)")
             }
@@ -159,8 +177,10 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         let mycellMaps = tableView.dequeueReusableCellWithIdentifier("cellMaps", forIndexPath: indexPath) as! UITableViewCell
         
         if indexPath.section == 0 {
+            
             let valueA = itensOnNewEvent[indexPath.row]["titulo"] as? String
             let valueB = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
+            let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? String
             mycellMaps.textLabel?.text = valueA
             mycellMaps.detailTextLabel?.text = valueB
         }
@@ -175,8 +195,6 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
             
             mycellMaps.textLabel?.text = searchResults[indexPath.row]
         }
-        
-        
         
         return mycellMaps
     }
@@ -304,51 +322,6 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
     }
     
-
-    
-    
-  
-    /*
-    let eventsNew = [
-    ("Peneira do Xico","Lorem Ipsum"),
-    ("Selecao de Players","Lorem Ipsum"),
-    ("Feira de Taletos","Lorem Ipsum"),
-    ("Bate papo com KAKA","Lorem Ipsum")]
-    
-    let eventsPast = [
-    ("Selecao do Sao Paulo","Lorem Ipsum?"),
-    ("Selecao do Santos","Lorem Ipsum"),
-    ("Selecao de base Corinthians","Lorem Ipsum"),
-    ("Encontro de altetas","Lorem Ipsum"),
-    ("Corrida no parque Ibira","Lorem Ipsum")]
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-    if section == 0 {
-    return eventsNew.count
-    }else {
-    return eventsPast.count
-    }
-    }
-    */
-    
-    /*
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    */
-    
-    /*
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 0 {
-    return "Novos eventos"
-    }
-    else {
-    return "Eventos que já aconteceram"
-    }
-    }
-    */
     
     /*
     // MARK: - Navigation
@@ -362,125 +335,3 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
 
 }
 
-/*
-func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-var cell = tableView.dequeueReusableCellWithIdentifier("cellMaps", forIndexPath: indexPath) as! UITableViewCell
-
-if indexPath.section == 0 {
-let (courseTitle,courseAuthor) = eventsNew[indexPath.row]
-cell.textLabel?.text = courseTitle
-cell.detailTextLabel?.text = courseAuthor
-}
-else {
-let (courseTitle,courseAuthor) = eventsPast[indexPath.row]
-cell.textLabel?.text = courseTitle
-cell.detailTextLabel?.text = courseAuthor
-}
-// Retrieve an image
-//var myImage = UIImage(named: "CellIcon")
-//cell.imageView?.image = myImage
-
-return cell
-}
-*/
-
-
-
-/*
-findEventsNew.removeAllObjects()
-findEventsPast.removeAllObjects()
-
-var DBQueryNew:PFQuery = PFQuery(className:"Events")
-DBQueryNew.findObjectsInBackgroundWithBlock{
-(objects:[AnyObject]?, error:NSError?) -> Void in
-
-if error == nil{
-for object:AnyObject in objects!{
-let newEvent:PFObject = object as! PFObject
-self.findEventsNew.addObject(newEvent)
-}
-}
-}
-
-
-
-var searchResults = [String]()
-
-
-func searchBarSearchButton(searchBar: UISearchBar){
-searchBar.resignFirstResponder()
-println("Search word = \(searchBar.text)")
-
-var tituloNameQuery = PFQuery(className:"Events")
-tituloNameQuery.whereKey("titulo", containsString: searchBar.text)
-
-var subtituloNameQuery = PFQuery(className:"Events")
-subtituloNameQuery.whereKey("subtitulo", matchesRegex: "(?i)\(searchBar.text)")
-// a regular expression that will match the search word and the value in the Parse class
-// and the comparison will be case insensetive.
-
-var queryFromSearch = PFQuery.orQueryWithSubqueries([tituloNameQuery, subtituloNameQuery])
-
-queryFromSearch.findObjectsInBackgroundWithBlock {
-(resultsFromSearch: [AnyObject]?, error: NSError?) -> Void in
-
-if error != nil {
-var myAlert = UIAlertController(title:"Alert", message:error?.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
-
-let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-
-myAlert.addAction(okAction)
-
-self.presentViewController(myAlert, animated: true, completion: nil)
-
-return
-}
-
-if let objectsSearch = resultsFromSearch as? [PFObject] {
-
-self.searchResults.removeAll(keepCapacity: false)
-
-for objectFind in objectsSearch {
-let tituloName = objectFind.objectForKey("titulo") as! String
-let subtituloName = objectFind.objectForKey("subtitulo") as! String
-let localizacaoName = tituloName + " " + subtituloName
-
-self.searchResults.append(localizacaoName)
-}
-
-dispatch_async(dispatch_get_main_queue()) {
-self.myTableView.reloadData()
-self.mySearchBar.resignFirstResponder()
-
-}
-}
-}
-}
-
-
-
-
-
-*/
-
-
-/*
-let eventsNew = [
-("Peneira do Xico","Lorem Ipsum"),
-("Selecao de Players","Lorem Ipsum"),
-("Feira de Taletos","Lorem Ipsum"),
-("Bate papo com KAKA","Lorem Ipsum")]
-
-let eventsPast = [
-("Selecao do Sao Paulo","Lorem Ipsum?"),
-("Selecao do Santos","Lorem Ipsum"),
-("Selecao de base Corinthians","Lorem Ipsum"),
-("Encontro de altetas","Lorem Ipsum"),
-("Corrida no parque Ibira","Lorem Ipsum")]
-
-
-
-var eventsNew = [String]()
-var eventsPast = [String]()
-*/
