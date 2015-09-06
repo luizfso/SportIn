@@ -91,6 +91,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         // Build a parse query object
         var query = PFQuery(className:"Events")
         query.whereKey("Status", containsString: "open")
+        query.orderByDescending("createdAt")
         
         // Check to see if there is a search term
         if mySearchBar.text != "" {
@@ -122,6 +123,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         // Build a parse query object
         var query = PFQuery(className:"Events")
         query.whereKey("Status", containsString: "close")
+        query.orderByDescending("createdAt")
         
         // Check to see if there is a search term
         if mySearchBar.text != "" {
@@ -180,13 +182,14 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
             
             let valueA = itensOnNewEvent[indexPath.row]["titulo"] as? String
             let valueB = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
-            let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? String
+            let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
             mycellMaps.textLabel?.text = valueA
             mycellMaps.detailTextLabel?.text = valueB
         }
         if indexPath.section == 1{
             let valueAP = itensOnPastEvent[indexPath.row]["titulo"] as? String
             let valueBP = itensOnPastEvent[indexPath.row]["subtitulo"] as? String
+            let valueCP = itensOnNewEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
             mycellMaps.textLabel?.text = valueAP
             mycellMaps.detailTextLabel?.text = valueBP
             

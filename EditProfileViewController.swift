@@ -44,7 +44,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //user link videos Info
     @IBOutlet weak var userLinkOneTextField: UITextField!
     @IBOutlet weak var userLinkTwoTextField: UITextField!
-    @IBOutlet weak var userLinkTreeTextField: UITextField!
+    @IBOutlet weak var userLinkThreeTextField: UITextField!
     @IBOutlet weak var userLinkFourTextField: UITextField!
     
     //User Features Info
@@ -81,7 +81,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.contactInfoView.hidden = true
         
         //Circular Image
-        profilePictureImageView.layer.cornerRadius = 10 //profilePictureImageView.frame.size.width/3
+        profilePictureImageView.layer.cornerRadius = 11 //profilePictureImageView.frame.size.width/3
         profilePictureImageView.clipsToBounds = true
         profilePictureImageView.layer.borderWidth = 1
         profilePictureImageView.layer.borderColor = UIColor.whiteColor().CGColor
@@ -89,6 +89,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         
         // Load user details if they no Blanks
+        /*
+        ==========================================================================================
+        Load Personal Info
+        ==========================================================================================
+        */
         let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
         userFNameTextField.text = userFName
         
@@ -97,72 +102,106 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as! String
         CPFTextField.text = userCPF
-
         
-        /*
-        CPFTextField.text = userCPF
+        let userBirth = PFUser.currentUser()?.objectForKey("user_birth") as! String
         nascDataTextField.text = userBirth
+        
+        let userApelido = PFUser.currentUser()?.objectForKey("user_apelido") as! String
         apelidoTextField.text = userApelido
+
+        let userGen = PFUser.currentUser()?.objectForKey("user_gen") as! String
         generoTextField.text = userGen
+        
+        let userNationality = PFUser.currentUser()?.objectForKey("user_natio") as! String
         nacionalidadeTextField.text = userNationality
+        
+        let userAddress = PFUser.currentUser()?.objectForKey("user_address") as! String
         addressTextField.text = userAddress
         
-        userModal: UITextField!
-        userKickFoot: UITextField!
-        userHight: UITextField!
-        userWeight: UITextField!
-        userNumFoot: UITextField!
-        userPosition: UITextField!
-        userLevel: UITextField!
+        // Password is in another position on this code
         
-        userLinkOne: UITextField!
-        userLinkTwo: UITextField!
-        userLinkTree: UITextField!
-        userLinkFour: UITextField!
-        
-        userGrade: UITextField!
-        userMemberClub: UITextField!
-        userTeamDream: UITextField!
-        userPrefBrands: UITextField!
-        userFederated: UITextField!
-        
-        userEmailPro: UITextField!
-        userFBLinkPage: UITextField!
-        userLInLinkPage: UITextField!
-        userTwtLinkPage: UITextField!
-        userCellPhone: UITextField!
-    
-        // Set new values for Pro Info
-        myUser.setObject(userMod, forKey: "user_modal")
-        myUser.setObject(userKFoot, forKey: "user_kickfoot")
-        myUser.setObject(userHth, forKey: "user_height")
-        myUser.setObject(userWth, forKey: "user_weight")
-        myUser.setObject(userNmFoot, forKey: "user_numfoot")
-        myUser.setObject(userPos, forKey: "user_position")
-        myUser.setObject(userLvl, forKey: "user_level")
-        
-        // Set new values for Pro Info
-        myUser.setObject(userLk1, forKey: "user_linkone")
-        myUser.setObject(userLk2, forKey: "user_linktwo")
-        myUser.setObject(userLk3, forKey: "user_linktree")
-        myUser.setObject(userLk4, forKey: "user_linkfour")
-        
-        // Set new values for Pro Info
-        myUser.setObject(userSchool, forKey: "user_grade")
-        myUser.setObject(userMClub, forKey: "user_menberclub")
-        myUser.setObject(userDream, forKey: "user_teamdream")
-        myUser.setObject(userBrands, forKey: "user_prefbrands")
-        myUser.setObject(userFed, forKey: "user_federated")
-        
-        // Set new values for Pro Info
-        myUser.setObject(userMPro, forKey: "user_emailpro")
-        myUser.setObject(userFBLPage, forKey: "user_fbpage")
-        myUser.setObject(userLNLPage, forKey: "user_lipage")
-        myUser.setObject(userTWLinkPage, forKey: "user_twtpage")
-        myUser.setObject(userMobile, forKey: "user_cellphone")
-        
+        /*
+        ==========================================================================================
+        Load Professional Info
+        ==========================================================================================
         */
         
+        let userModal = PFUser.currentUser()?.objectForKey("user_modal") as! String
+        userModalTextField.text = userModal
+        
+        let userKickFoot = PFUser.currentUser()?.objectForKey("user_kickfoot") as! String
+        userKickFootTextField.text = userKickFoot
+        
+        let userHight = PFUser.currentUser()?.objectForKey("user_height") as! String
+        userHightTextField.text = userHight
+        
+        let userWeight = PFUser.currentUser()?.objectForKey("user_weight") as! String
+        userWeightTextField.text = userWeight
+        
+        
+        let userNumFoot = PFUser.currentUser()?.objectForKey("user_numfoot") as! String
+        userNumFootTextField.text = userNumFoot
+        let userPosition = PFUser.currentUser()?.objectForKey("user_position") as! String
+        userPositionTextField.text = userPosition
+        let userLevel = PFUser.currentUser()?.objectForKey("user_level") as! String
+        userLevelTextField.text = userLevel
+        
+        /*
+        ==========================================================================================
+        Load Link Info
+        ==========================================================================================
+        */
+        
+        let userLk1 = PFUser.currentUser()?.objectForKey("user_linkone") as! String
+        userLinkOneTextField.text = userLk1
+        let userLk2 = PFUser.currentUser()?.objectForKey("user_linktwo") as! String
+        userLinkTwoTextField.text = userLk2
+        let userLk3 = PFUser.currentUser()?.objectForKey("user_linktree") as! String
+        userLinkThreeTextField.text = userLk3
+        let userLk4 = PFUser.currentUser()?.objectForKey("user_linkfour") as! String
+        userLinkOneTextField.text = userLk4
+        
+        /*
+        ==========================================================================================
+        Load Plus Informations
+        ==========================================================================================
+        */
+        
+        
+        let userSchool = PFUser.currentUser()?.objectForKey("user_grade") as! String
+        userGradeTextField.text = userSchool
+        let userMClub = PFUser.currentUser()?.objectForKey("user_menberclub") as! String
+        userMemberClubTextField.text = userMClub
+        let userDream = PFUser.currentUser()?.objectForKey("user_teamdream") as! String
+        userTeamDreamTextField.text = userDream
+        let userBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as! String
+        userPrefBrandsTextField.text = userBrands
+        let userFed = PFUser.currentUser()?.objectForKey("user_federated") as! String
+        userFederatedTextField.text = userFed
+        
+        /*
+        ==========================================================================================
+        Load Contact Informations
+        ==========================================================================================
+        */
+        
+        let userMPro = PFUser.currentUser()?.objectForKey("user_emailpro") as! String
+        userEmailProTextField.text = userMPro
+        let userFBLPage = PFUser.currentUser()?.objectForKey("user_fbpage") as! String
+        userFBLinkPageTextField.text = userFBLPage
+        let userLNLPage = PFUser.currentUser()?.objectForKey("user_lipage") as! String
+        userLInLinkPageTextField.text = userLNLPage
+        let userTWLinkPage = PFUser.currentUser()?.objectForKey("user_twtpage") as! String
+        userTwtLinkPageTextField.text = userTWLinkPage
+        let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as! String
+        userCellPhoneTextField.text = userMobile
+        
+      
+        /*
+        ==========================================================================================
+        Load Picture User
+        ==========================================================================================
+        */
         if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
         {
             let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
@@ -323,7 +362,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Set new values for Pro Info
         let userLk1 = userLinkOneTextField.text
         let userLk2 = userLinkTwoTextField.text
-        let userLk3 = userLinkTreeTextField.text
+        let userLk3 = userLinkThreeTextField.text
         let userLk4 = userLinkFourTextField.text
         
         // Set new values for Pro Info

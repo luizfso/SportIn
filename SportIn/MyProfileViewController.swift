@@ -73,8 +73,6 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         let userKFoot = PFUser.currentUser()?.objectForKey("user_kickfoot") as! String
         let userHth = PFUser.currentUser()?.objectForKey("user_height") as! String
         let userWth = PFUser.currentUser()?.objectForKey("user_weight") as! String
-        let userHthCalc = PFUser.currentUser()?.objectForKey("user_height") as! String
-        let userWthCalc = PFUser.currentUser()?.objectForKey("user_weight") as! String
         let userNmFoot = PFUser.currentUser()?.objectForKey("user_numfoot") as! String
         let userPos = PFUser.currentUser()?.objectForKey("user_position") as! String
         let userLvl = PFUser.currentUser()?.objectForKey("user_level") as! String
@@ -95,11 +93,8 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         addressLabel.text = userAddress
         userModalLabel.text = userMod
         userKickFootLabel.text = userKFoot
-        userHightLabel.text = userHth
-        userWeightLabel.text = userWth
-        
-        imcCalcLabel.text = "Imc é \(userHthCalc * userWthCalc) "
-        
+        userHightLabel.text = userHth + " metros"
+        userWeightLabel.text = userWth + " quilos"
         userNumFootLabel.text = userNmFoot
         userPositionLabel.text = userPos
         userLevelLabel.text = userLvl

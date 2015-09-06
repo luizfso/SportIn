@@ -20,7 +20,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var userPasswordText: UITextField!
     @IBOutlet weak var userPassVerifText: UITextField!
     @IBOutlet weak var userTypeSelected: UITextField!
-    @IBOutlet weak var objectIdLabel: UILabel!
     
     
     let userType = ["Selecionar Meu Perfil","Jogador", "Empresario", "Clube"]
@@ -129,7 +128,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         let userPasswordVerif = userPassVerifText.text
         let selectedProfile = userTypeSelected.text
         let userCPF = userCPFText.text
-        //let objecttId = objectIdLabel.text
+        
         
         if(userEmail.isEmpty || userPassword.isEmpty || userPasswordVerif.isEmpty || userFirstName.isEmpty || userLastName.isEmpty || userCPF.isEmpty)
         {

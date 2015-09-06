@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var itemView: UIImageView!
     
-    @IBOutlet weak var obIDLabel: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +39,7 @@ class HomeViewController: UIViewController {
         let imageCenter = UIImageView(image: logotipo)
         self.navigationItem.titleView = imageCenter;
         
-        
-        //let myUser:PFUser = PFUser()
-        //println(myUser)
-        
-        //println(myUser.email)
-        //println(myUser)
-        
-
-       // var numKeyObj:PFUser = PFUser()
-        //var id = numKeyObj.objectId
-        //println(id)
-        
-        //let myUser:PFUser = PFUser()
-        //obIDLabel.text = myUser.objectForKey("objectId") as? String
-        //println(obIDLabel.text)
-        
+               
     }
 
     override func didReceiveMemoryWarning() {
