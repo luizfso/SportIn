@@ -67,15 +67,15 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
     func loadCollectionViewData() {
         
         // Build a parse query object
-        var query = PFQuery(className:"User")
+        var query = PFUser.query()
         
         // Check to see if there is a search term
         if searchBar.text != "" {
-            query.whereKey("searchText", containsString: searchBar.text.lowercaseString)
+            query!.whereKey("searchText", containsString: searchBar.text.lowercaseString)
         }
         
         // Fetch data from the parse platform
-        query.findObjectsInBackgroundWithBlock {
+        query!.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
             // The find succeeded now rocess the found objects into the countries array
@@ -118,6 +118,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ConexoesCollectionViewCell
         
         // Display the country name
+
         if let value = conexoes[indexPath.row]["first_name"] as? String {
             cell.cellTitle.text = value
         }

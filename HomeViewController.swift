@@ -19,15 +19,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let item1 = UIImage(named: "business-person.png")
-        itemView.image = item1 as UIImage?
-        //let item2 = UIImage(named: "FoxSport-logo100x100.fw.png")
-        //itemView.image = item2 as UIImage?
-        //let item3 = UIImage(named: "espn_logo100x100.fw.png")
-        //let item4 = UIImage(named: "espn_logo100x100.fw.png")
+        //let imageItemView = UIImageView(frame: CGRectMake(0, 0, 100, 100));
+        // set as you want
+        let item1 = UIImage(named: "business-person.png");
         
-        ScrollView.contentSize = CGSize(width: 3000, height: 200)
-        itemView.frame = CGRect(x: 2700, y: 2, width: 100, height: 100)
+        itemView.image = item1 as UIImage?
+        itemView.contentMode = .ScaleAspectFit
+        
+        ScrollView.contentSize = CGSize(width: 13000, height: 130)
+        itemView.frame = CGRect(x: 12700, y: 2, width: 100, height: 100)
         ScrollView.addSubview(itemView)
         
         // Do any additional setup after loading the view.

@@ -85,25 +85,25 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as! String
         
         
-        userFNameLabel.text = userFName
-        userLNameLabel.text = userLName
-        generoLabel.text = userGen
-        nacionalidadeLabel.text = userNationality
-        CPFLabel.text = userCPF
-        addressLabel.text = userAddress
-        userModalLabel.text = userMod
-        userKickFootLabel.text = userKFoot
-        userHightLabel.text = userHth + " metros"
-        userWeightLabel.text = userWth + " quilos"
-        userNumFootLabel.text = userNmFoot
-        userPositionLabel.text = userPos
-        userLevelLabel.text = userLvl
-        userGradeLabel.text = userSchool
-        userMemberClubLabel.text = userMClub
-        userTeamDreamLabel.text = userDream
-        userPrefBrandsLabel.text = userPrefBrands
-        userFederatedLabel.text = userFed
-        userCellPhoneLabel.text = userMobile
+        userFNameLabel.text = "Nome: " + userFName
+        userLNameLabel.text = "Sobrenome: " + userLName
+        generoLabel.text = "Genero: " + userGen
+        nacionalidadeLabel.text = "Nascionalidade: " + userNationality
+        CPFLabel.text = "Meu Cpf: " + userCPF
+        addressLabel.text = "Endereço: " + userAddress
+        userModalLabel.text = "Minha modalidade: " + userMod
+        userKickFootLabel.text = "Perna que chuto: " + userKFoot
+        userHightLabel.text = "Minha altura: " + userHth + "cm"
+        userWeightLabel.text = "Meu peso atual: " + userWth + "Kg"
+        userNumFootLabel.text = "Meu No de calçado: " + userNmFoot
+        userPositionLabel.text = "Posição que jogo melhor: " + userPos
+        userLevelLabel.text = "Meu nivel é: " + userLvl
+        userGradeLabel.text = "Minha escolaridade: " + userSchool
+        userMemberClubLabel.text = "Já sou membrod e um CLube? : " + userMClub
+        userTeamDreamLabel.text = "Time que eu sonho em jogar: " + userDream
+        userPrefBrandsLabel.text = "Minha marca preferida é: " + userPrefBrands
+        userFederatedLabel.text = "Já sou federado? : " + userFed
+        userCellPhoneLabel.text = "Meu celeular: " + userMobile
         
         let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
         
@@ -116,6 +116,15 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
             
         }
         
+    }
+    
+    @IBAction func editProfileButton(sender: AnyObject) {
+        var editProfile = self.storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
+        //editProfile.opener = self
+        
+        let editProfileNav = UINavigationController(rootViewController: editProfile)
+        
+        self.presentViewController(editProfileNav, animated: true, completion: nil)
     }
     
     /*
