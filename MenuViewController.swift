@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var userProfilePicture: UIImageView!
@@ -218,6 +219,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func loadUserDetails() {
         
+        //let myUserPlayer = PFObject(className: "UserPlayer")
+        //myUserPlayer["playerKey"] = PFUser.currentUser()
+        //myUserPlayer["userProfile_type"] = "Jogador"
+        //myUserPlayer.saveInBackground()
+        
+        
         let userType = PFUser.currentUser()?.objectForKey("profile_type") as! String
         
         if(userType == "Jogador"){
@@ -260,6 +267,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     // Log details of the failure
                     println("Error: \(error!) \(error!.userInfo!)")
                 }
+
             }
     
 

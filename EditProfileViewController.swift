@@ -94,28 +94,28 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         Load Personal Info
         ==========================================================================================
         */
-        let userFName = PFUser.currentUser()?.objectForKey("first_name") as! String
+        let userFName = PFUser.currentUser()?.objectForKey("first_name") as? String
         userFNameTextField.text = userFName
         
-        let userLName = PFUser.currentUser()?.objectForKey("last_name") as! String
+        let userLName = PFUser.currentUser()?.objectForKey("last_name") as? String
         userLNameTextField.text = userLName
         
-        let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as! String
+        let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as? String
         CPFTextField.text = userCPF
         
-        let userBirth = PFUser.currentUser()?.objectForKey("user_birth") as! String
+        let userBirth = PFUser.currentUser()?.objectForKey("user_birth") as? String
         nascDataTextField.text = userBirth
         
-        let userApelido = PFUser.currentUser()?.objectForKey("user_apelido") as! String
+        let userApelido = PFUser.currentUser()?.objectForKey("user_apelido") as? String
         apelidoTextField.text = userApelido
 
-        let userGen = PFUser.currentUser()?.objectForKey("user_gen") as! String
+        let userGen = PFUser.currentUser()?.objectForKey("user_gen") as? String
         generoTextField.text = userGen
         
-        let userNationality = PFUser.currentUser()?.objectForKey("user_natio") as! String
+        let userNationality = PFUser.currentUser()?.objectForKey("user_natio") as? String
         nacionalidadeTextField.text = userNationality
         
-        let userAddress = PFUser.currentUser()?.objectForKey("user_address") as! String
+        let userAddress = PFUser.currentUser()?.objectForKey("user_address") as? String
         addressTextField.text = userAddress
         
         // Password is in another position on this code
@@ -126,24 +126,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         ==========================================================================================
         */
         
-        let userModal = PFUser.currentUser()?.objectForKey("user_modal") as! String
+        let userModal = PFUser.currentUser()?.objectForKey("user_modal") as? String
         userModalTextField.text = userModal
         
-        let userKickFoot = PFUser.currentUser()?.objectForKey("user_kickfoot") as! String
+        let userKickFoot = PFUser.currentUser()?.objectForKey("user_kickfoot") as? String
         userKickFootTextField.text = userKickFoot
         
-        let userHight = PFUser.currentUser()?.objectForKey("user_height") as! String
+        let userHight = PFUser.currentUser()?.objectForKey("user_height") as? String
         userHightTextField.text = userHight
         
-        let userWeight = PFUser.currentUser()?.objectForKey("user_weight") as! String
+        let userWeight = PFUser.currentUser()?.objectForKey("user_weight") as? String
         userWeightTextField.text = userWeight
         
         
-        let userNumFoot = PFUser.currentUser()?.objectForKey("user_numfoot") as! String
+        let userNumFoot = PFUser.currentUser()?.objectForKey("user_numfoot") as? String
         userNumFootTextField.text = userNumFoot
-        let userPosition = PFUser.currentUser()?.objectForKey("user_position") as! String
+        let userPosition = PFUser.currentUser()?.objectForKey("user_position") as? String
         userPositionTextField.text = userPosition
-        let userLevel = PFUser.currentUser()?.objectForKey("user_level") as! String
+        let userLevel = PFUser.currentUser()?.objectForKey("user_level") as? String
         userLevelTextField.text = userLevel
         
         /*
@@ -152,13 +152,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         ==========================================================================================
         */
         
-        let userLk1 = PFUser.currentUser()?.objectForKey("user_linkone") as! String
+        let userLk1 = PFUser.currentUser()?.objectForKey("user_linkone") as? String
         userLinkOneTextField.text = userLk1
-        let userLk2 = PFUser.currentUser()?.objectForKey("user_linktwo") as! String
+        let userLk2 = PFUser.currentUser()?.objectForKey("user_linktwo") as? String
         userLinkTwoTextField.text = userLk2
-        let userLk3 = PFUser.currentUser()?.objectForKey("user_linktree") as! String
+        let userLk3 = PFUser.currentUser()?.objectForKey("user_linktree") as? String
         userLinkThreeTextField.text = userLk3
-        let userLk4 = PFUser.currentUser()?.objectForKey("user_linkfour") as! String
+        let userLk4 = PFUser.currentUser()?.objectForKey("user_linkfour") as? String
         userLinkOneTextField.text = userLk4
         
         /*
@@ -168,15 +168,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         */
         
         
-        let userSchool = PFUser.currentUser()?.objectForKey("user_grade") as! String
+        let userSchool = PFUser.currentUser()?.objectForKey("user_grade") as? String
         userGradeTextField.text = userSchool
-        let userMClub = PFUser.currentUser()?.objectForKey("user_menberclub") as! String
+        let userMClub = PFUser.currentUser()?.objectForKey("user_menberclub") as? String
         userMemberClubTextField.text = userMClub
-        let userDream = PFUser.currentUser()?.objectForKey("user_teamdream") as! String
+        let userDream = PFUser.currentUser()?.objectForKey("user_teamdream") as? String
         userTeamDreamTextField.text = userDream
-        let userBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as! String
+        let userBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as? String
         userPrefBrandsTextField.text = userBrands
-        let userFed = PFUser.currentUser()?.objectForKey("user_federated") as! String
+        let userFed = PFUser.currentUser()?.objectForKey("user_federated") as? String
         userFederatedTextField.text = userFed
         
         /*
@@ -185,15 +185,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         ==========================================================================================
         */
         
-        let userMPro = PFUser.currentUser()?.objectForKey("user_emailpro") as! String
+        let userMPro = PFUser.currentUser()?.objectForKey("user_emailpro") as? String
         userEmailProTextField.text = userMPro
-        let userFBLPage = PFUser.currentUser()?.objectForKey("user_fbpage") as! String
+        let userFBLPage = PFUser.currentUser()?.objectForKey("user_fbpage") as? String
         userFBLinkPageTextField.text = userFBLPage
-        let userLNLPage = PFUser.currentUser()?.objectForKey("user_lipage") as! String
+        let userLNLPage = PFUser.currentUser()?.objectForKey("user_lipage") as? String
         userLInLinkPageTextField.text = userLNLPage
-        let userTWLinkPage = PFUser.currentUser()?.objectForKey("user_twtpage") as! String
+        let userTWLinkPage = PFUser.currentUser()?.objectForKey("user_twtpage") as? String
         userTwtLinkPageTextField.text = userTWLinkPage
-        let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as! String
+        let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as? String
         userCellPhoneTextField.text = userMobile
         
       

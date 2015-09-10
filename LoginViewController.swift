@@ -111,6 +111,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func loginWithFacebook(sender: AnyObject) {
         
+        let myUser:PFUser = PFUser()
+        myUser.setObject("Sem perfil definido", forKey: "profile_type")
+        myUser.saveInBackground()
+            
+            
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile","email"], block: {(user:PFUser?, error:NSError?) -> Void in
             
             if(error != nil)

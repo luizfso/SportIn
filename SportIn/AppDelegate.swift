@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        //let myUserPlayer = PFObject(className: "UserPlayer")
+        //myUserPlayer["playerKey"] = PFUser.currentUser()
+        //myUserPlayer.saveInBackground()
         
     }
     

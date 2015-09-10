@@ -174,7 +174,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if(selectedProfile == "Jogador")
         {
-          
+        
+       /* let myUserPlayer = PFObject(className: "UserPlayer")
+            myUserPlayer["playerKey"] = ""
+            myUserPlayer.saveInBackground()
+           */
         let myUser:PFUser = PFUser()
         myUser.username = userEmail
         myUser.password = userPassword
@@ -183,6 +187,15 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         myUser.setObject(userLastName, forKey: "last_name")
         myUser.setObject(userCPF, forKey: "user_CPF")
         myUser.setObject(selectedProfile, forKey: "profile_type")
+            
+            //let gameQuery = PFQuery(className:"UserPlayer")
+            //if let user = PFUser.currentUser() {
+            //    gameQuery.whereKey("playerKey", equalTo: user)
+            //}
+            
+            //let myUserPlayer = PFObject(className: "UserPlayer")
+           
+            
         
         //let profileBlankImg = UIImage(named:"profile_pic_512")
         
@@ -206,6 +219,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             
             var userMessage = "Registration is successful. Thank you!"
             
+            
             if(!success)
             {
                 //userMessage = "Could not register at this time please try again later."
@@ -220,6 +234,10 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 if(success)
                 {
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    
+                    //myUserPlayer["playerKey"] = PFUser.currentUser()
+                    //myUserPlayer.saveInBackground()
                 }
                 
             }
@@ -396,7 +414,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         
-        
+        //let myUserPlayer = PFObject(className: "UserPlayer")
+        //myUserPlayer["playerKey"] = PFUser.object(id)
+        //myUserPlayer.saveInBackground()
         
     }
     
