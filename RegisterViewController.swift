@@ -74,20 +74,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    func DismissKeyborad(){
-    view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        userEmailTextField.resignFirstResponder()
-        userFirstNameTextField.resignFirstResponder()
-        userLastNameTextField.resignFirstResponder()
-        userCPFText.resignFirstResponder()
-        userPasswordText.resignFirstResponder()
-        userPassVerifText.resignFirstResponder()
-        return true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,6 +101,23 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
+    
+    func DismissKeyborad(){
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        userEmailTextField.resignFirstResponder()
+        userFirstNameTextField.resignFirstResponder()
+        userLastNameTextField.resignFirstResponder()
+        userCPFText.resignFirstResponder()
+        userPasswordText.resignFirstResponder()
+        userPassVerifText.resignFirstResponder()
+        
+        return true
+    }
+    
     
     @IBAction func openPickerView(sender: AnyObject) {
         self.pickerView.hidden = false

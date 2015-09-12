@@ -48,6 +48,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        userEmailTextField.resignFirstResponder()
+        userPasswordTextField.resignFirstResponder()
+        
+        return true
+    }
+    
     @IBAction func loginButton(sender: AnyObject) {
         
         let userEmail = userEmailTextField.text
