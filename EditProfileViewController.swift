@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var parcInfoView: UIView!
     @IBOutlet weak var proInfoView: UIView!
@@ -482,8 +482,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         
     }
-
-
+    
     /*
     // MARK: - Navigation
 

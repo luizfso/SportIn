@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var userEmailTextField: UITextField!
@@ -20,6 +20,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var userPasswordText: UITextField!
     @IBOutlet weak var userPassVerifText: UITextField!
     @IBOutlet weak var userTypeSelected: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var perfilSelected: UILabel!
     
     
     let userType = ["Selecionar Meu Perfil","Jogador", "Empresario", "Clube"]
@@ -37,46 +39,61 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var newBackgroundColor : UIColor
         
         switch row {
             
         case 0:
             println("Selecionar Meu Perfil")
-            //newBackgroundColor = UIColor.yellowColor()
             userTypeSelected.text = ""
             println("Nada Selecionado")
             
         case 1:
             println("Jogador Selecionado")
-            //newBackgroundColor = UIColor.yellowColor()
             let pickedProfile = userType[row]
             userTypeSelected.text = pickedProfile
+            perfilSelected.text = pickedProfile
+            self.pickerView.hidden = true
             
         case 2:
             println("Empresario Selecionado")
-            //newBackgroundColor = UIColor.darkGrayColor()
             let pickedProfile = userType[row]
             userTypeSelected.text = pickedProfile
+            perfilSelected.text = pickedProfile
+            self.pickerView.hidden = true
             
         case 3:
-            //newBackgroundColor = UIColor.lightGrayColor()
             println("Clube Selecionado")
             let pickedProfile = userType[row]
             userTypeSelected.text = pickedProfile
+            perfilSelected.text = pickedProfile
+            self.pickerView.hidden = true
             
         default:
-            //newBackgroundColor = UIColor(red: 200/255, green: 255/255, blue: 200/255, alpha: 1.0)
             userTypeSelected.text = ""
             println("Nada Selecionado")
         }
-        
-        //self.view.backgroundColor = newBackgroundColor
-        
+    }
+    
+    func DismissKeyborad(){
+    view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        userEmailTextField.resignFirstResponder()
+        userFirstNameTextField.resignFirstResponder()
+        userLastNameTextField.resignFirstResponder()
+        userCPFText.resignFirstResponder()
+        userPasswordText.resignFirstResponder()
+        userPassVerifText.resignFirstResponder()
+        return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyborad")
+        view.addGestureRecognizer(tap)
+        //scrollView.delegate = self
 
         // Do any additional setup after loading the view.
         
@@ -86,6 +103,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         profileImgView.layer.cornerRadius = 10 //profilePictureImageView.frame.size.width/3
         profileImgView.clipsToBounds = true
         
+        self.pickerView.hidden = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +112,13 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func openPickerView(sender: AnyObject) {
+        self.pickerView.hidden = false
+    }
     
     @IBAction func selectProfilePhotoButton(sender: AnyObject) {
         var myPickerController = UIImagePickerController()
@@ -195,8 +221,44 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             
             //let myUserPlayer = PFObject(className: "UserPlayer")
            
+            //set blank info for evoid conflict in MyProfile Access
+            // Set new values for Personal Info
+            myUser.setObject("", forKey: "user_birth")
+            myUser.setObject("", forKey: "user_apelido")
+            myUser.setObject("", forKey: "user_gen")
+            myUser.setObject("", forKey: "user_natio")
+            myUser.setObject("", forKey: "user_address")
             
-        
+            // Set new values for Pro Info
+            myUser.setObject("", forKey: "user_modal")
+            myUser.setObject("", forKey: "user_kickfoot")
+            myUser.setObject("", forKey: "user_height")
+            myUser.setObject("", forKey: "user_weight")
+            myUser.setObject("", forKey: "user_numfoot")
+            myUser.setObject("", forKey: "user_position")
+            myUser.setObject("", forKey: "user_level")
+            
+            // Set new values for Pro Info
+            myUser.setObject("", forKey: "user_linkone")
+            myUser.setObject("", forKey: "user_linktwo")
+            myUser.setObject("", forKey: "user_linktree")
+            myUser.setObject("", forKey: "user_linkfour")
+            
+            // Set new values for Pro Info
+            myUser.setObject("", forKey: "user_grade")
+            myUser.setObject("", forKey: "user_menberclub")
+            myUser.setObject("", forKey: "user_teamdream")
+            myUser.setObject("", forKey: "user_prefbrands")
+            myUser.setObject("", forKey: "user_federated")
+            
+            // Set new values for Pro Info
+            myUser.setObject("", forKey: "user_emailpro")
+            myUser.setObject("", forKey: "user_fbpage")
+            myUser.setObject("", forKey: "user_lipage")
+            myUser.setObject("", forKey: "user_twtpage")
+            myUser.setObject("", forKey: "user_cellphone")
+            
+            
         //let profileBlankImg = UIImage(named:"profile_pic_512")
         
         let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)

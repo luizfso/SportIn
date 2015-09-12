@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class RecoverViewController: UIViewController {
+class RecoverViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailAddressTextField: UITextField!
     
@@ -73,6 +73,10 @@ class RecoverViewController: UIViewController {
 
     @IBAction func cancelButton(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
 
     /*
