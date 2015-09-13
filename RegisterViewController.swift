@@ -175,7 +175,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if(userPassword != userPasswordVerif)
         {
-            var myAlert = UIAlertController(title:"Alert", message:"Passwords do not match. Please try again", preferredStyle:UIAlertControllerStyle.Alert)
+            var myAlert = UIAlertController(title:"Alert", message:"Password não é o mesmo. Tente novamente", preferredStyle:UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -334,7 +334,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUserEmpresario.setObject(userCPF, forKey: "user_CPF")
             myUserEmpresario.setObject(selectedProfile, forKey: "keyUser")
             
-            
+            //myUserEmpresario.saveInBackground()
             
             
             let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
@@ -356,9 +356,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUserEmpresario.setObject(keyUserStored, forKey: "keyUser")
             myUserEmpresario.saveInBackground()
             */
-            
+           
             myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
-            
+             myUserEmpresario.saveInBackground()
                 
                 // Hide activity indicator
                 spiningActivity.hide(true)
@@ -388,7 +388,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.presentViewController(myAlert, animated: true, completion: nil)
                 
             }
-            myUserEmpresario.saveInBackground()
+           
             
             println(myUser)
             
@@ -421,13 +421,14 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUser.username = userEmail
             myUser.password = userPassword
             myUser.email = userEmail
+            myUser.setObject(selectedProfile, forKey: "profile_type")
             
             let myUserClube:PFObject = PFObject(className: "UserClube")
             myUserClube["test"] = "teste"
             myUserClube.setObject(userFirstName, forKey: "first_name")
             myUserClube.setObject(userLastName, forKey: "last_name")
             myUserClube.setObject(userCPF, forKey: "user_CPF")
-            myUserClube.setObject(selectedProfile, forKey: "profile_type")
+            myUserClube.setObject(selectedProfile, forKey: "keyUser")
             
             //let profileBlankImg = UIImage(named:"profile_pic_512")
             

@@ -99,7 +99,7 @@
                                         <rect key="frame" x="8" y="128" width="304" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ow5-0P-q59" id="SGh-yu-jr7"/>
                                         </connections>
