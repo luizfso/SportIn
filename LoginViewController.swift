@@ -13,8 +13,10 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 
-class LoginViewController: UIViewController, UITextFieldDelegate{
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate{
 
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
+    
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
     
@@ -41,12 +43,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             println("user is logged in")
         }
         
+        loginButton.delegate = self
+        loginButton.readPermissions = ["public_profile","email","user_friends"]
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
+    
+    {
+        if(error != nil)
+        {
+            println(error.localizedDescription)
+            return
+        }
+        
+        if let userToken = result.token
+        {
+            //get user access token
+            let token:FBSDKAccessToken = result.token
+            
+            println("Token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
+            println("User ID = \(FBSDKAccessToken.currentAccessToken().userID)")
+        
+            let registerPage = self.storyboard?.instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
+        
+            let registerPageNav = UINavigationController (rootViewController: registerPage)
+            
+            let appDelagate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelagate.window?.rootViewController = registerPageNav
+            
+        }
+        
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
+    {
+        println("user is logged out")
+    }
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
