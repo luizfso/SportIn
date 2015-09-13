@@ -358,7 +358,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             */
            
             myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
-             myUserEmpresario.saveInBackground()
+             //myUserEmpresario.saveInBackground()
                 
                 // Hide activity indicator
                 spiningActivity.hide(true)
