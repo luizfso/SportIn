@@ -80,6 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             
             appDelagate.window?.rootViewController = registerPageNav
             
+            //alteracao
         }
         
     }
