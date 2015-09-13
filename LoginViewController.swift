@@ -158,54 +158,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    @IBAction func createNewAccount(sender: AnyObject) {
-        
-    }
-    
-    @IBAction func loginWithFacebook(sender: AnyObject) {
-        
-        let myUser:PFUser = PFUser()
-        myUser.setObject("Sem perfil definido", forKey: "profile_type")
-            
-            
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile","email"], block: {(user:PFUser?, error:NSError?) -> Void in
-            
-            myUser.saveInBackground()
-
-            
-            if(error != nil)
-            {
-                //DIsplay alert and message error
-                var myAlert = UIAlertController(title:"Alert", message:error?.localizedDescription , preferredStyle: UIAlertControllerStyle.Alert);
-                
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-                myAlert.addAction(okAction);
-                self.presentViewController(myAlert, animated: true, completion: nil);
-                
-                return
-            }
-            
-            let userName:String? = user?.username
-            
-            NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "user_name")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            println(user)
-            println("Current user token=\(FBSDKAccessToken.currentAccessToken().tokenString)")
-            
-            println("Current user id=\(FBSDKAccessToken.currentAccessToken().userID)")
-            
-            if(FBSDKAccessToken.currentAccessToken() != nil)
-            {
-                
-                var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                appDelegate.buildUserInterface()
-            }
-            
-        })
-
-    }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
