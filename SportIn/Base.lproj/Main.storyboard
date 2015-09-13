@@ -327,17 +327,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.18661721910000001" green="0.20871266699999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phe-W3-8eo">
-                                <rect key="frame" x="45" y="395" width="161" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Entrar com o Facebook">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginWithFacebook:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="icK-m5-sGF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0b-hU-gx9">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0b-hU-gx9">
                                 <rect key="frame" x="45" y="518" width="155" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Esqueci minha senha?">
@@ -361,7 +351,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createNewAccount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dcv-HN-idA"/>
                                     <segue destination="Ow5-0P-q59" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="ljO-sW-Arx"/>
                                 </connections>
                             </button>
@@ -370,11 +359,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sGl-a7-JEr" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="1gj-gN-IBx"/>
-                            <constraint firstItem="Phe-W3-8eo" firstAttribute="top" secondItem="KFM-9u-iZx" secondAttribute="bottom" constant="16" id="5CY-tv-pZX"/>
                             <constraint firstItem="sGl-a7-JEr" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="29" id="6gI-xb-D6u"/>
-                            <constraint firstItem="KFM-9u-iZx" firstAttribute="leading" secondItem="Phe-W3-8eo" secondAttribute="leading" id="BnO-i2-8TA"/>
                             <constraint firstItem="sGl-a7-JEr" firstAttribute="trailing" secondItem="zEr-iL-5ec" secondAttribute="trailing" id="J8S-Nu-PMz"/>
-                            <constraint firstItem="i0b-hU-gx9" firstAttribute="leading" secondItem="Phe-W3-8eo" secondAttribute="leading" id="NRd-WN-UF2"/>
                             <constraint firstItem="Ucm-b2-gEn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="88" id="RXR-Fj-Bwp"/>
                             <constraint firstItem="sGl-a7-JEr" firstAttribute="top" secondItem="Ucm-b2-gEn" secondAttribute="bottom" constant="16" id="TpH-x3-m2h"/>
                             <constraint firstItem="Ucm-b2-gEn" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="Tvc-s6-BZB"/>
@@ -390,6 +376,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bem Vindo !" id="PIJ-W4-eVE"/>
                     <connections>
+                        <outlet property="loginWithFacebook" destination="oKk-fE-kQI" id="XEA-Rd-S4E"/>
                         <outlet property="userEmailTextField" destination="sGl-a7-JEr" id="AbN-1s-1AT"/>
                         <outlet property="userPasswordTextField" destination="zEr-iL-5ec" id="ohU-em-wha"/>
                     </connections>
@@ -2492,7 +2479,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eg7-lL-fci">
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eg7-lL-fci">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <animations/>
                                 <textInputTraits key="textInputTraits"/>
