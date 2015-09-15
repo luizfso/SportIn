@@ -224,7 +224,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         myUserPlayer["playerKey"] = PFUser.currentUser()
         myUserPlayer["userProfile_type"] = "Jogador"
         myUserPlayer.saveInBackground()
-        */
+
+        
         
         let userType = PFUser.currentUser()?.objectForKey("profile_type") as! String
         
@@ -293,7 +294,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
    
     
       }
-
+*/
     }
 
 

@@ -212,54 +212,63 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         myUser.username = userEmail
         myUser.password = userPassword
         myUser.email = userEmail
-        myUser.setObject(userFirstName, forKey: "first_name")
-        myUser.setObject(userLastName, forKey: "last_name")
         myUser.setObject(userCPF, forKey: "user_CPF")
         myUser.setObject(selectedProfile, forKey: "profile_type")
+       
+        
+            /*
+            // Set Basic infos
+            myUserPlayer.setObject(userFirstName, forKey: "first_name")
+            myUserPlayer.setObject(userLastName, forKey: "last_name")
+            myUserPlayer.setObject(userEmail, forKey: "username")
             
+       
+            */
+            // Set new values for Personal Info
+            //myUserPlayer.setObject(userCPF, forKey: "pCPF")
+            /*myUserPlayer.setObject("", forKey: "pNascimento")
+            myUserPlayer.setObject("", forKey: "pApelido")
+            myUserPlayer.setObject("", forKey: "pGenero")
+            myUserPlayer.setObject("", forKey: "pNacionalidade")
+            myUserPlayer.setObject("", forKey: "pEndereço")
+            
+            // Set new values for Pro Info
+            myUserPlayer.setObject("", forKey: "pModalidade")
+            myUserPlayer.setObject("", forKey: "pPernaChuta")
+            myUserPlayer.setObject("", forKey: "pAltura")
+            myUserPlayer.setObject("", forKey: "pPeso")
+            myUserPlayer.setObject("", forKey: "pNumeroCalcado")
+            myUserPlayer.setObject("", forKey: "pPosicao")
+            myUserPlayer.setObject("", forKey: "pLevel")
+            
+            // Set new values for Pro Info
+            myUserPlayer.setObject("", forKey: "pLinkUm")
+            myUserPlayer.setObject("", forKey: "pLinkDois")
+            myUserPlayer.setObject("", forKey: "pLinkTres")
+            myUserPlayer.setObject("", forKey: "pLinkQuatro")
+            
+            // Set new values for Pro Info
+            myUserPlayer.setObject("", forKey: "pEscolaridade")
+            myUserPlayer.setObject("", forKey: "pMembroClube")
+            myUserPlayer.setObject("", forKey: "pTimeSonho")
+            myUserPlayer.setObject("", forKey: "pPrefrenciaMarcas")
+            myUserPlayer.setObject("", forKey: "pFederado")
+            
+            // Set new values for Pro Info
+            myUserPlayer.setObject("", forKey: "pEmailPro")
+            myUserPlayer.setObject("", forKey: "pFBpage")
+            myUserPlayer.setObject("", forKey: "pLinkedpage")
+            myUserPlayer.setObject("", forKey: "pTwitterpage")
+            myUserPlayer.setObject("", forKey: "pCellphone")
+            */
             //let gameQuery = PFQuery(className:"UserPlayer")
             //if let user = PFUser.currentUser() {
             //    gameQuery.whereKey("playerKey", equalTo: user)
             //}
             
             //let myUserPlayer = PFObject(className: "UserPlayer")
-           
+            
             //set blank info for evoid conflict in MyProfile Access
-            // Set new values for Personal Info
-            myUser.setObject("", forKey: "user_birth")
-            myUser.setObject("", forKey: "user_apelido")
-            myUser.setObject("", forKey: "user_gen")
-            myUser.setObject("", forKey: "user_natio")
-            myUser.setObject("", forKey: "user_address")
-            
-            // Set new values for Pro Info
-            myUser.setObject("", forKey: "user_modal")
-            myUser.setObject("", forKey: "user_kickfoot")
-            myUser.setObject("", forKey: "user_height")
-            myUser.setObject("", forKey: "user_weight")
-            myUser.setObject("", forKey: "user_numfoot")
-            myUser.setObject("", forKey: "user_position")
-            myUser.setObject("", forKey: "user_level")
-            
-            // Set new values for Pro Info
-            myUser.setObject("", forKey: "user_linkone")
-            myUser.setObject("", forKey: "user_linktwo")
-            myUser.setObject("", forKey: "user_linktree")
-            myUser.setObject("", forKey: "user_linkfour")
-            
-            // Set new values for Pro Info
-            myUser.setObject("", forKey: "user_grade")
-            myUser.setObject("", forKey: "user_menberclub")
-            myUser.setObject("", forKey: "user_teamdream")
-            myUser.setObject("", forKey: "user_prefbrands")
-            myUser.setObject("", forKey: "user_federated")
-            
-            // Set new values for Pro Info
-            myUser.setObject("", forKey: "user_emailpro")
-            myUser.setObject("", forKey: "user_fbpage")
-            myUser.setObject("", forKey: "user_lipage")
-            myUser.setObject("", forKey: "user_twtpage")
-            myUser.setObject("", forKey: "user_cellphone")
             
             
         //let profileBlankImg = UIImage(named:"profile_pic_512")
@@ -269,6 +278,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         if(profileImgData != nil)
         {
             let profileImageFile = PFFile(data: profileImgData)
+            
             myUser.setObject(profileImageFile, forKey: "profile_picture")
         }
         
@@ -277,13 +287,17 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         spiningActivity.labelText = "Sending"
         spiningActivity.detailsLabelText = "Please wait"
         
+        
+            // Indicador que inicia o metodo de gravar no banco de dados
+        
         myUser.signUpInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            
+            //myUserPlayer.saveInBackground()
             
             // Hide activity indicator
             spiningActivity.hide(true)
             
-            var userMessage = "Registration is successful. Thank you!"
-            
+            var userMessage = "Registro efetuado com sucesso. Obrigado!"
             
             if(!success)
             {
@@ -300,18 +314,41 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
+                    let user = PFUser.currentUser()
                     
-                    //myUserPlayer["playerKey"] = PFUser.currentUser()
-                    //myUserPlayer.saveInBackground()
+                    println(user?.objectId)
+                    
+                    let userID = user!.objectId
+                    
+                    let myUserPlayer:PFObject = PFObject(className: "UserPlayer")
+                    
+                    // Set Basic infos
+                    myUserPlayer.setObject(userFirstName, forKey: "first_name")
+                    myUserPlayer.setObject(userLastName, forKey: "last_name")
+                    myUserPlayer.setObject(userEmail, forKey: "username")
+                    
+                    // Set new values for Personal Info
+                    myUserPlayer.setObject(userCPF, forKey: "pCPF")
+                    //myUserPlayer.setObject(userID, forKey: "playerKey")
+                    myUserPlayer["playerKey"] = PFUser.objectWithoutDataWithObjectId(userID)
+                    
+                    myUserPlayer.saveInBackground()
+                    
+                    
                 }
-                
+
             }
             
             myAlert.addAction(okAction)
             
             self.presentViewController(myAlert, animated: true, completion: nil)
             
+            
+            
+            
         }
+            
+            
         
         }
         

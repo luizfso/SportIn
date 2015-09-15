@@ -60,6 +60,79 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
 
     //Load user Details
     func loadUserDetails() {
+        
+        let user:PFUser = PFUser.currentUser()!
+        let sameuser:PFObject = PFObject(className: "UserPlayer")
+        
+        let query:PFQuery = PFUser.query()!
+        query.whereKey("username", equalTo: user.username!)
+        println(user.username)
+        
+        let query2:PFQuery = PFObject.query()!
+            query2.whereKey("username", equalTo: sameuser)
+        
+        let findInPlayer = PFQuery(className: "UserPlayer")
+            findInPlayer.whereKey("username", equalTo: sameuser)
+        
+        if findInPlayer != user.username{
+            let userPlayer  = PFObject(className: "UserPlayer")
+            userPlayer["playerKey"] = PFUser.currentUser()
+            userPlayer["userProfile_type"] = "Jogador"
+            
+            println(findInPlayer)
+            println(sameuser)
+            println(user.username)
+        }else{
+            println("Nao é igual")
+        }
+        /*
+        let getuserid:PFObject = PFObject(className: "UserPlayer")
+        
+        var findTheID:PFQuery = PFUser.query()!
+        findTheID.whereKey("liked", equalTo: getuserid.objectId!)
+        
+        if let myUserPlayerQuery: PFQuery = PFQuery(className: "UserPlayer"){
+            myUserPlayerQuery.whereKey("username", equalTo: PFUser.currentUser()!)
+            
+        
+            
+             userPlayer.saveInBackground()
+        }else{
+        println("fail")
+        }
+        */
+        
+
+       
+        
+       // if myUserPlayerQuery.whereKey("username", equalTo: userName){
+         //   println(PFUser.currentUser())
+        
+       // }
+       // println("erro")
+        
+        
+        
+        
+        
+        /*
+        let setUserPlayer: PFQuery = PFQuery(className: "UserPlayer")
+        
+        query.getObjectInBackgroundWithId() {
+            (gameScore: PFObject?, error: NSError?) -> Void in
+            if error == nil && gameScore != nil {
+                println(gameScore)
+            } else {
+                println(error)
+            }
+        }
+        
+        let myUserPlayer = PFObject(className: "UserPlayer")
+        myUserPlayer["playerKey"] = PFUser.currentUser()
+        myUserPlayer["userProfile_type"] = "Jogador"
+        myUserPlayer.saveInBackground()
+        
+        
         let userFName = PFUser.currentUser()?.objectForKey("first_name") as? String
         let userLName = PFUser.currentUser()?.objectForKey("last_name") as? String
         let userEmail = PFUser.currentUser()?.objectForKey("first_name") as? String
@@ -115,7 +188,8 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
             }
             
         }
-        
+*/
+
     }
     
     @IBAction func editProfileButton(sender: AnyObject) {
