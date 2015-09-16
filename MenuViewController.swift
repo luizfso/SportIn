@@ -219,21 +219,33 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func loadUserDetails() {
         
-        /*
         let myUserPlayer = PFObject(className: "UserPlayer")
-        myUserPlayer["playerKey"] = PFUser.currentUser()
-        myUserPlayer["userProfile_type"] = "Jogador"
-        myUserPlayer.saveInBackground()
-
-        
         
         let userType = PFUser.currentUser()?.objectForKey("profile_type") as! String
         
         if(userType == "Jogador"){
-            let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
-            let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
             
-            userFullNameLabel.text = userFirstName + " " + userLastName
+            var query1 = PFQuery(className:"UserPlayer")
+            query1.includeKey("playerKey")
+            query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        var userFirstName = object["first_name"]  as! String
+                        var userLastName =  object["last_name"]  as! String
+                        
+                        self.userFullNameLabel.text = userFirstName + " " + userLastName
+
+                    }
+                }
+            }
+            
+            //let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
+            //let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
+            
             
             let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
             
@@ -294,7 +306,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
    
     
       }
-*/
+
     }
 
 

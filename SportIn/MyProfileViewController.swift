@@ -64,77 +64,37 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         let user:PFUser = PFUser.currentUser()!
         let sameuser:PFObject = PFObject(className: "UserPlayer")
         
-        let query:PFQuery = PFUser.query()!
-        query.whereKey("username", equalTo: user.username!)
-        println(user.username)
-        
-        let query2:PFQuery = PFObject.query()!
-            query2.whereKey("username", equalTo: sameuser)
-        
-        let findInPlayer = PFQuery(className: "UserPlayer")
-            findInPlayer.whereKey("username", equalTo: sameuser)
-        
-        if findInPlayer != user.username{
-            let userPlayer  = PFObject(className: "UserPlayer")
-            userPlayer["playerKey"] = PFUser.currentUser()
-            userPlayer["userProfile_type"] = "Jogador"
+        var query1 = PFQuery(className:"UserPlayer")
+        query1.includeKey("playerKey")
+        query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             
-            println(findInPlayer)
-            println(sameuser)
-            println(user.username)
-        }else{
-            println("Nao é igual")
-        }
-        /*
-        let getuserid:PFObject = PFObject(className: "UserPlayer")
-        
-        var findTheID:PFQuery = PFUser.query()!
-        findTheID.whereKey("liked", equalTo: getuserid.objectId!)
-        
-        if let myUserPlayerQuery: PFQuery = PFQuery(className: "UserPlayer"){
-            myUserPlayerQuery.whereKey("username", equalTo: PFUser.currentUser()!)
             
-        
-            
-             userPlayer.saveInBackground()
-        }else{
-        println("fail")
-        }
-        */
-        
-
-       
-        
-       // if myUserPlayerQuery.whereKey("username", equalTo: userName){
-         //   println(PFUser.currentUser())
-        
-       // }
-       // println("erro")
-        
-        
-        
-        
-        
-        /*
-        let setUserPlayer: PFQuery = PFQuery(className: "UserPlayer")
-        
-        query.getObjectInBackgroundWithId() {
-            (gameScore: PFObject?, error: NSError?) -> Void in
-            if error == nil && gameScore != nil {
-                println(gameScore)
-            } else {
-                println(error)
+            if let objects = objects {
+                
+                for object in objects {
+                    
+                    var userFirstName = object["first_name"]  as! String
+                    
+                    var userLastName =  object["last_name"]  as! String
+                    
+                    self.userFNameLabel.text = "Nome: " + userFirstName
+                    self.userLNameLabel.text = "Sobrenome: " + userLastName
+                    
+                }
             }
         }
+      
         
-        let myUserPlayer = PFObject(className: "UserPlayer")
-        myUserPlayer["playerKey"] = PFUser.currentUser()
-        myUserPlayer["userProfile_type"] = "Jogador"
-        myUserPlayer.saveInBackground()
+       
+       
+        
+        //let userFName = PFUser.currentUser()?.objectForKey("first_name") as? String
+        //let userLName = PFUser.currentUser()?.objectForKey("last_name") as? String
         
         
-        let userFName = PFUser.currentUser()?.objectForKey("first_name") as? String
-        let userLName = PFUser.currentUser()?.objectForKey("last_name") as? String
+        //let myUserPlayer = PFObject(className: "UserPlayer")
+        
+        /*
         let userEmail = PFUser.currentUser()?.objectForKey("first_name") as? String
         let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as? String
         let userAddress = PFUser.currentUser()?.objectForKey("user_address") as? String
@@ -156,10 +116,10 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         let userBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as? String
         let userFed = PFUser.currentUser()?.objectForKey("user_federated") as? String
         let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as? String
+        */
         
-        
-        userFNameLabel.text = "Nome: " + userFName!
-        userLNameLabel.text = "Sobrenome: " + userLName!
+        /*
+       
         generoLabel.text = "Genero: " + userGen!
         nacionalidadeLabel.text = "Nascionalidade: " + userNationality!
         CPFLabel.text = "Meu Cpf: " + userCPF!
@@ -178,6 +138,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         userFederatedLabel.text = "Já sou federado? : " + userFed!
         userCellPhoneLabel.text = "Meu celeular: " + userMobile!
         
+        */
         let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as? PFFile
         
         profilePictureObject!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
@@ -188,7 +149,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
             }
             
         }
-*/
+
 
     }
     
