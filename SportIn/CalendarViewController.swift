@@ -38,6 +38,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         var location = CLLocationCoordinate2DMake(48.88182,2.43952)
         
+        
         var span = MKCoordinateSpanMake(0.002, 0.002)
         
         var region = MKCoordinateRegion(center: location, span: span)
@@ -51,10 +52,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         eventsMaps.addAnnotation(annotation)
         
-        
-        
     }
-
     
     
     /*
@@ -70,15 +68,6 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         loadCollectionViewDataPast()
     }
 
-    
-    /*
-    ==========================================================================================
-    Function for Geo Localization
-    ==========================================================================================
-    */
-    
-    
-    
     
     /*
     ==========================================================================================
@@ -186,31 +175,25 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         if indexPath.section == 1 {
             
-            //var valueC: PFGeoPoint = PFGeoPoint()
-            
             let valueA = itensOnNewEvent[indexPath.row]["titulo"] as? String
             let valueB = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
-            let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
-            
-            //let currentPoints = PFGeoPoint(latitude: latitude, longitude: longitude)
-            //let point = localizacao[indexPath.row]["LatLong"] as? GeoPoint
+            let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? PFGeoPoint
             mycellMaps.textLabel?.text = valueA
             mycellMaps.detailTextLabel?.text = valueB
-            println(valueC)
-            
         }
-        if indexPath.section == 2{
+        
+        if indexPath.section == 2 {
             let valueAP = itensOnPastEvent[indexPath.row]["titulo"] as? String
             let valueBP = itensOnPastEvent[indexPath.row]["subtitulo"] as? String
-            let valueCP = itensOnPastEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
+            let valueCP = itensOnPastEvent[indexPath.row]["LatLong"] as? PFGeoPoint
             mycellMaps.textLabel?.text = valueAP
             mycellMaps.detailTextLabel?.text = valueBP
-            
         }
         
-        
         return mycellMaps
+        
     }
+    
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
@@ -226,9 +209,76 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     
     /*
     ==========================================================================================
+    Function for Geo Localization
+    ==========================================================================================
+    */
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("Row \(indexPath.row)selected")
+        
+        println("Section \(indexPath.section)selected")
+        
+        if indexPath.section == 1 {
+            
+            println("Section \(indexPath.section) foi selected 1")
+            
+            let valueA = itensOnNewEvent[indexPath.row]["titulo"] as? String
+            let valueB = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
+            let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? PFGeoPoint
+            
+            var latitude: CLLocationDegrees = valueC!.latitude
+            var longtitude: CLLocationDegrees = valueC!.longitude
+            var location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:latitude, longitude:longtitude)
+            
+            var span = MKCoordinateSpanMake(0.009, 0.009)
+            
+            var region = MKCoordinateRegion(center: location, span: span)
+            eventsMaps.setRegion(region, animated: true)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = valueA
+            annotation.subtitle = valueB
+            eventsMaps.addAnnotation(annotation)
+        
+        }
+        
+        if indexPath.section == 2 {
+            
+            println("Section \(indexPath.section) foi selected 2")
+            
+            let valueAP = itensOnNewEvent[indexPath.row]["titulo"] as? String
+            let valueBP = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
+            let valueCP = itensOnNewEvent[indexPath.row]["LatLong"] as? PFGeoPoint
+            
+            var latitudeP: CLLocationDegrees = valueCP!.latitude
+            var longtitudeP: CLLocationDegrees = valueCP!.longitude
+            var locationP: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:latitudeP, longitude:longtitudeP)
+            
+            var span = MKCoordinateSpanMake(0.009, 0.009)
+            
+            var regionP = MKCoordinateRegion(center: locationP, span: span)
+            eventsMaps.setRegion(regionP, animated: true)
+            let annotationP = MKPointAnnotation()
+            annotationP.coordinate = locationP
+            annotationP.title = valueAP
+            annotationP.subtitle = valueBP
+            eventsMaps.addAnnotation(annotationP)
+        
+        }
+       
+        
+
+        mySearchBar.resignFirstResponder()
+        
+    }
+    
+    
+    /*
+    ==========================================================================================
     Segue methods
     ==========================================================================================
     */
+    
     
     
     
@@ -294,10 +344,10 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         }
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        mySearchBar.resignFirstResponder()
-    }
+    //func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    //{
+      //  mySearchBar.resignFirstResponder()
+    //}
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar)
     {
