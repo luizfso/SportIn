@@ -62,26 +62,96 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
     func loadUserDetails() {
         
         let user:PFUser = PFUser.currentUser()!
-        let sameuser:PFObject = PFObject(className: "UserPlayer")
         
-        var query1 = PFQuery(className:"UserPlayer")
-        query1.includeKey("playerKey")
-        query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+        let userProfileType = PFUser.currentUser()?.objectForKey("profile_type") as? String
+        
+        if userProfileType == "Jogador"{
             
+            let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            if let objects = objects {
+            var query1 = PFQuery(className:"UserPlayer")
+            query1.includeKey("playerKey")
+            query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
-                for object in objects {
+                
+                if let objects = objects {
                     
-                    var userFirstName = object["first_name"]  as! String
-                    
-                    var userLastName =  object["last_name"]  as! String
-                    
-                    self.userFNameLabel.text = "Nome: " + userFirstName
-                    self.userLNameLabel.text = "Sobrenome: " + userLastName
-                    
+                    for object in objects {
+                        
+                        var userFirstName = object["first_name"]  as! String
+                        
+                        var userLastName =  object["last_name"]  as! String
+                        
+                        self.userFNameLabel.text = "Nome: " + userFirstName
+                        self.userLNameLabel.text = "Sobrenome: " + userLastName
+                        
+                    }
                 }
             }
+            
+            
+        }
+        
+        if userProfileType == "Empresario"{
+            
+            let sameuser:PFObject = PFObject(className: "UserEmpresario")
+            
+            var query1 = PFQuery(className:"UserEmpresario")
+            query1.includeKey("empKey")
+            query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        var userFirstName = object["first_name"]  as! String
+                        
+                        var userLastName =  object["last_name"]  as! String
+                        
+                        self.userFNameLabel.text = "Nome: " + userFirstName
+                        self.userLNameLabel.text = "Sobrenome: " + userLastName
+                        
+                        self.userKickFootLabel.hidden = true
+                        self.userHightLabel.hidden = true
+                        self.userWeightLabel.hidden = true
+                        self.imcCalcLabel.hidden = true
+                        self.userNumFootLabel.hidden = true
+                        self.userPositionLabel.hidden = true
+                        self.userLevelLabel.hidden = true
+
+                    }
+                }
+            }
+            
+            
+        }
+        
+        if userProfileType == "Clube"{
+            
+            let sameuser:PFObject = PFObject(className: "UserClube")
+            
+            var query1 = PFQuery(className:"UserEmpresario")
+            query1.includeKey("clubeKey")
+            query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        var userFirstName = object["first_name"]  as! String
+                        
+                        var userLastName =  object["last_name"]  as! String
+                        
+                        self.userFNameLabel.text = "Nome: " + userFirstName
+                        self.userLNameLabel.text = "Sobrenome: " + userLastName
+                        
+                    }
+                }
+            }
+            
+            
         }
       
         

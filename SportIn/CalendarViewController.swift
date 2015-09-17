@@ -161,15 +161,16 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if section == 0 {
-            return itensOnNewEvent.count
-        }
-        if section == 1{
-            return itensOnPastEvent.count
-        }
-        if section == 2{
+        if section == 0{
             return searchResults.count
         }
+        if section == 1 {
+            return itensOnNewEvent.count
+        }
+        if section == 2{
+            return itensOnPastEvent.count
+        }
+        
         return 0
     }
    
@@ -178,39 +179,48 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     {
         let mycellMaps = tableView.dequeueReusableCellWithIdentifier("cellMaps", forIndexPath: indexPath) as! UITableViewCell
         
-        if indexPath.section == 0 {
+        if indexPath.section == 0{
+            
+            mycellMaps.textLabel?.text = searchResults[indexPath.row]
+        }
+        
+        if indexPath.section == 1 {
+            
+            //var valueC: PFGeoPoint = PFGeoPoint()
             
             let valueA = itensOnNewEvent[indexPath.row]["titulo"] as? String
             let valueB = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
             let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
+            
+            //let currentPoints = PFGeoPoint(latitude: latitude, longitude: longitude)
+            //let point = localizacao[indexPath.row]["LatLong"] as? GeoPoint
             mycellMaps.textLabel?.text = valueA
             mycellMaps.detailTextLabel?.text = valueB
+            println(valueC)
+            
         }
-        if indexPath.section == 1{
+        if indexPath.section == 2{
             let valueAP = itensOnPastEvent[indexPath.row]["titulo"] as? String
             let valueBP = itensOnPastEvent[indexPath.row]["subtitulo"] as? String
-            let valueCP = itensOnNewEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
+            let valueCP = itensOnPastEvent[indexPath.row]["LatLong"] as? CLLocationCoordinate2D
             mycellMaps.textLabel?.text = valueAP
             mycellMaps.detailTextLabel?.text = valueBP
             
         }
-        if indexPath.section == 2{
-            
-            mycellMaps.textLabel?.text = searchResults[indexPath.row]
-        }
+        
         
         return mycellMaps
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Novos eventos"
+            return "Resultado de Pesquisa"
         }
         if section == 1{
-            return "Eventos que já aconteceram"
+            return "Novos eventos"
         }
         else{
-            return "Resultado de Pesquisa"
+            return "Eventos que já aconteceram"
         }
     }
     

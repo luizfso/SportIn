@@ -263,49 +263,77 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
         if(userType == "Empresario"){
             
-            var query = PFQuery(className:"User")
-            //query.whereKey("first_name", equalTo:"Sean Plott")
-            query.findObjectsInBackgroundWithBlock {
-                (objects: [AnyObject]?, error: NSError?) -> Void in
+            var query1 = PFQuery(className:"UserEmpresario")
+            query1.includeKey("playerKey")
+            query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
-                if error == nil {
-                    // The find succeeded.
-                    println("Successfully retrieved \(objects!.count) scores.")
-                    // Do something with the found objects
-                    if let objects = objects as? [PFObject] {
-                        for object in objects {
-                            println(object.objectId)
-                        }
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        var userFirstName = object["first_name"]  as! String
+                        var userLastName =  object["last_name"]  as! String
+                        
+                        self.userFullNameLabel.text = userFirstName + " " + userLastName
+                        
                     }
-                } else {
-                    // Log details of the failure
-                    println("Error: \(error!) \(error!.userInfo!)")
                 }
-
             }
-    
-
+            
+            //let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
+            //let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
             
             
-        /*var query = PFQuery(className: "Empresario")
-            let userFirstName:String? = PFObject["first_name"] as? String
-            let userLastName:String? = PFObject()["last_name"] as? String
-    
-        userFullNameLabel.text = userFirstName! + " " + userLastName!
-    
-        let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
-    
-        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-    
-        if(imageData != nil)
-        {
-        self.userProfilePicture.image = UIImage(data: imageData!)
+            let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+            
+            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                if(imageData != nil)
+                {
+                    self.userProfilePicture.image = UIImage(data: imageData!)
+                }
+                
+            }
+            
         }
-        }*/
-    
-   
-    
-      }
+        
+        if(userType == "Clube"){
+            
+            var query1 = PFQuery(className:"UserClube")
+            query1.includeKey("playerKey")
+            query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        var userFirstName = object["first_name"]  as! String
+                        var userLastName =  object["last_name"]  as! String
+                        
+                        self.userFullNameLabel.text = userFirstName + " " + userLastName
+                        
+                    }
+                }
+            }
+            
+            //let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
+            //let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
+            
+            
+            let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+            
+            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                if(imageData != nil)
+                {
+                    self.userProfilePicture.image = UIImage(data: imageData!)
+                }
+                
+            }
+            
+        }
 
     }
 
