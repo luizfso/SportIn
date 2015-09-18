@@ -88,69 +88,99 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         
         
-        // Load user details if they no Blanks
-        /*
-        ==========================================================================================
-        Load Personal Info
-        ==========================================================================================
-        */
-        let userFName = PFUser.currentUser()?.objectForKey("first_name") as? String
-        userFNameTextField.text = userFName
+       
         
-        let userLName = PFUser.currentUser()?.objectForKey("last_name") as? String
-        userLNameTextField.text = userLName
+        //let sameuser:PFObject = PFObject(className: "UserPlayer")
         
-        let userCPF = PFUser.currentUser()?.objectForKey("user_CPF") as? String
-        CPFTextField.text = userCPF
-        
-        let userBirth = PFUser.currentUser()?.objectForKey("user_birth") as? String
-        nascDataTextField.text = userBirth
-        
-        let userApelido = PFUser.currentUser()?.objectForKey("user_apelido") as? String
-        apelidoTextField.text = userApelido
+        var query = PFQuery(className:"UserPlayer")
+        query.includeKey("playerKey")
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            
+            
+            if let objects = objects as? [PFObject]{
+                
+                for object in objects {
+                    
+                    // Load user details if they no Blanks
+                    /*
+                    ==========================================================================================
+                    Load Personal Info
+                    ==========================================================================================
+                    */
+                    
+                    let userFirstName = object["first_name"] as? String
+                    self.userFNameTextField.text = userFirstName
+                    
+                    let userLastName = object["last_name"] as? String
+                    self.userLNameTextField.text = userLastName
+                    
+                    let userCPF = object["pCPF"] as? String
+                    self.CPFTextField.text = userCPF
+                    
+                    let userBirth = object["pNascimento"] as? String
+                    self.nascDataTextField.text = userBirth
+                    
+                    let userApelido = object["pApelido"] as? String
+                    self.apelidoTextField.text = userApelido
+                    
+                    let userGen = object["pGenero"] as? String
+                    self.generoTextField.text = userGen
+                    
+                    let userNationality = object["pNacionalidade"] as? String
+                    self.nacionalidadeTextField.text = userNationality
+                    
+                    let userAddress = object["pEndereco"] as? String
+                    self.addressTextField.text = userAddress
+                    
+                    // Password is in another position on this code
+                    
+                    /*
+                    ==========================================================================================
+                    Load Professional Info
+                    ==========================================================================================
+                    */
+                    
+                    var userModal =  object["user_modal"] as? String
+                    self.userModalTextField.text = userModal
+                    
+                    var userKickFoot =  object["user_kickfoot"] as? String
+                    self.userKickFootTextField.text = userKickFoot
+                    
+                    var userHight =  object["user_height"] as? String
+                    self.userHightTextField.text = userHight
+                    
+                    var userWeight =  object["user_weight"] as? String
+                    self.userWeightTextField.text = userWeight
+                    
+                    
+                    var userNumFoot =  object["user_numfoot"] as? String
+                    self.userNumFootTextField.text = userNumFoot
+                    var userPosition =  object["user_position"] as? String
+                    self.userPositionTextField.text = userPosition
+                    var userLevel =  object["user_level"] as? String
+                    self.userLevelTextField.text = userLevel
 
-        let userGen = PFUser.currentUser()?.objectForKey("user_gen") as? String
-        generoTextField.text = userGen
-        
-        let userNationality = PFUser.currentUser()?.objectForKey("user_natio") as? String
-        nacionalidadeTextField.text = userNationality
-        
-        let userAddress = PFUser.currentUser()?.objectForKey("user_address") as? String
-        addressTextField.text = userAddress
-        
-        // Password is in another position on this code
-        
-        /*
-        ==========================================================================================
-        Load Professional Info
-        ==========================================================================================
-        */
-        
-        let userModal = PFUser.currentUser()?.objectForKey("user_modal") as? String
-        userModalTextField.text = userModal
-        
-        let userKickFoot = PFUser.currentUser()?.objectForKey("user_kickfoot") as? String
-        userKickFootTextField.text = userKickFoot
-        
-        let userHight = PFUser.currentUser()?.objectForKey("user_height") as? String
-        userHightTextField.text = userHight
-        
-        let userWeight = PFUser.currentUser()?.objectForKey("user_weight") as? String
-        userWeightTextField.text = userWeight
+                    
+                    
+                    
+                }
+            }
+        }
         
         
-        let userNumFoot = PFUser.currentUser()?.objectForKey("user_numfoot") as? String
-        userNumFootTextField.text = userNumFoot
-        let userPosition = PFUser.currentUser()?.objectForKey("user_position") as? String
-        userPositionTextField.text = userPosition
-        let userLevel = PFUser.currentUser()?.objectForKey("user_level") as? String
-        userLevelTextField.text = userLevel
+        
+        
+     
+        
+        
+       
+        
         
         /*
         ==========================================================================================
         Load Link Info
         ==========================================================================================
-        */
+
         
         let userLk1 = PFUser.currentUser()?.objectForKey("user_linkone") as? String
         userLinkOneTextField.text = userLk1
@@ -161,11 +191,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let userLk4 = PFUser.currentUser()?.objectForKey("user_linkfour") as? String
         userLinkOneTextField.text = userLk4
         
-        /*
+        
         ==========================================================================================
         Load Plus Informations
         ==========================================================================================
-        */
+
         
         
         let userSchool = PFUser.currentUser()?.objectForKey("user_grade") as? String
@@ -179,11 +209,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let userFed = PFUser.currentUser()?.objectForKey("user_federated") as? String
         userFederatedTextField.text = userFed
         
-        /*
+
         ==========================================================================================
         Load Contact Informations
         ==========================================================================================
-        */
+
         
         let userMPro = PFUser.currentUser()?.objectForKey("user_emailpro") as? String
         userEmailProTextField.text = userMPro
@@ -197,11 +227,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         userCellPhoneTextField.text = userMobile
         
       
-        /*
+        
         ==========================================================================================
         Load Picture User
         ==========================================================================================
         */
+
         if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
         {
             let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
