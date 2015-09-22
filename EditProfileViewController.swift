@@ -26,11 +26,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordVerifTextField: UITextField!
     @IBOutlet weak var CPFTextField: UITextField!
+    @IBOutlet weak var CNPJTextField: UITextField!
     @IBOutlet weak var nascDataTextField: UITextField!
     @IBOutlet weak var apelidoTextField: UITextField!
     @IBOutlet weak var generoTextField: UITextField!
     @IBOutlet weak var nacionalidadeTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var stateTextField: UITextField!
     
     //Professional Info
     @IBOutlet weak var userModalTextField: UITextField!
@@ -86,165 +89,515 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePictureImageView.layer.borderWidth = 1
         profilePictureImageView.layer.borderColor = UIColor.whiteColor().CGColor
         
+        let user:PFUser = PFUser.currentUser()!
+        
+        let userProfileType = PFUser.currentUser()?.objectForKey("profile_type") as? String
         
         
-       
+        /*
+        ==========================================================================================
+        Verify Profile Type and Load Info - Jogador
+        ==========================================================================================
+        */
         
-        //let sameuser:PFObject = PFObject(className: "UserPlayer")
-        
-        var query = PFQuery(className:"UserPlayer")
-        query.includeKey("playerKey")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+        if userProfileType == "Jogador"{
             
+            //let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            if let objects = objects as? [PFObject]{
+            var query = PFQuery(className:"UserPlayer")
+            query.includeKey("playerKey")
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
-                for object in objects {
+                
+                if let objects = objects as? [PFObject]{
                     
-                    // Load user details if they no Blanks
-                    /*
-                    ==========================================================================================
-                    Load Personal Info
-                    ==========================================================================================
-                    */
-                    
-                    let userFirstName = object["first_name"] as? String
-                    self.userFNameTextField.text = userFirstName
-                    
-                    let userLastName = object["last_name"] as? String
-                    self.userLNameTextField.text = userLastName
-                    
-                    let userCPF = object["pCPF"] as? String
-                    self.CPFTextField.text = userCPF
-                    
-                    let userBirth = object["pNascimento"] as? String
-                    self.nascDataTextField.text = userBirth
-                    
-                    let userApelido = object["pApelido"] as? String
-                    self.apelidoTextField.text = userApelido
-                    
-                    let userGen = object["pGenero"] as? String
-                    self.generoTextField.text = userGen
-                    
-                    let userNationality = object["pNacionalidade"] as? String
-                    self.nacionalidadeTextField.text = userNationality
-                    
-                    let userAddress = object["pEndereco"] as? String
-                    self.addressTextField.text = userAddress
-                    
-                    // Password is in another position on this code
-                    
-                    /*
-                    ==========================================================================================
-                    Load Professional Info
-                    ==========================================================================================
-                    */
-                    
-                    var userModal =  object["user_modal"] as? String
-                    self.userModalTextField.text = userModal
-                    
-                    var userKickFoot =  object["user_kickfoot"] as? String
-                    self.userKickFootTextField.text = userKickFoot
-                    
-                    var userHight =  object["user_height"] as? String
-                    self.userHightTextField.text = userHight
-                    
-                    var userWeight =  object["user_weight"] as? String
-                    self.userWeightTextField.text = userWeight
-                    
-                    
-                    var userNumFoot =  object["user_numfoot"] as? String
-                    self.userNumFootTextField.text = userNumFoot
-                    var userPosition =  object["user_position"] as? String
-                    self.userPositionTextField.text = userPosition
-                    var userLevel =  object["user_level"] as? String
-                    self.userLevelTextField.text = userLevel
-
-                    
-                    
-                    
+                    for object in objects {
+                        
+                        // Load user details if they no Blanks
+                        /*
+                        ==========================================================================================
+                        Load Personal Info - Jogador
+                        ==========================================================================================
+                        */
+                        
+                        let userFirstName = object["first_name"] as? String
+                        self.userFNameTextField.text = userFirstName
+                        
+                        let userLastName = object["last_name"] as? String
+                        self.userLNameTextField.text = userLastName
+                        
+                        let userCPF = object["pCPF"] as? String
+                        self.CPFTextField.text = userCPF
+                        
+                        // Hide no CNPJ se for Jogador
+                        self.CNPJTextField.hidden = true
+                        
+                        
+                        let userApelido = object["pApelido"] as? String
+                        self.apelidoTextField.text = userApelido
+                        
+                        let userGen = object["pGenero"] as? String
+                        self.generoTextField.text = userGen
+                        
+                        let userBirth = object["pNascimento"] as? String
+                        self.nascDataTextField.text = userBirth
+                        
+                        let userNationality = object["pNacionalidade"] as? String
+                        self.nacionalidadeTextField.text = userNationality
+                        
+                        let userAddress = object["pEndereco"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        let userCity = object["pCidade"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        let userState = object["pEstado"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        // Password is in another position on this code
+                        
+                        /*
+                        ==========================================================================================
+                        Load Professional Info - Jogador
+                        ==========================================================================================
+                        */
+                        
+                        var userModal = object["pModalidade"] as? String
+                        self.userModalTextField.text = userModal
+                        
+                        var userKickFoot = object["pKickfoot"] as? String
+                        self.userKickFootTextField.text = userKickFoot
+                        
+                        var userHight = object["pAltura"] as? String
+                        self.userHightTextField.text = userHight
+                        
+                        var userWeight = object["pPeso"] as? String
+                        self.userWeightTextField.text = userWeight
+                        
+                        var userNumFoot = object["pNumfoot"] as? String
+                        self.userNumFootTextField.text = userNumFoot
+                        
+                        var userPosition = object["pPosicao"] as? String
+                        self.userPositionTextField.text = userPosition
+                        
+                        var userLevel = object["pNivel"] as? String
+                        self.userLevelTextField.text = userLevel
+                        
+                        
+                        /*
+                        ==========================================================================================
+                        Load Plus Informations - Jogador
+                        ==========================================================================================
+                        */
+                        
+                        var userBrands = object["pPrefMarcas"] as? String
+                        self.userLevelTextField.text = userBrands
+                        
+                        var userSchool = object["pEscolaridade"] as? String
+                        self.userLevelTextField.text = userSchool
+                        
+                        var userMClub = object["pClube"] as? String
+                        self.userLevelTextField.text = userMClub
+                        
+                        var userFed = object["pFederado"] as? String
+                        self.userLevelTextField.text = userFed
+                        
+                        var userDream = object["pDreamTeam"] as? String
+                        self.userLevelTextField.text = userDream
+                        
+                        /*
+                        ==========================================================================================
+                        Load Contact Informations - Jogador
+                        ==========================================================================================
+                        */
+                        
+                        var userMobile = object["pCelular"] as? String
+                        self.userLevelTextField.text = userMobile
+                        
+                        var userFBLPage = object["pFB"] as? String
+                        self.userLevelTextField.text = userFBLPage
+                        
+                        var userTWLinkPage = object["pTwitter"] as? String
+                        self.userLevelTextField.text = userTWLinkPage
+                        
+                        var userLNLPage = object["pLinkedIn"] as? String
+                        self.userLevelTextField.text = userLNLPage
+                        
+                        var userMPro = object["pEmailPro"] as? String
+                        self.userLevelTextField.text = userMPro
+                        
+                        /*
+                        ==========================================================================================
+                        Load Link Info - Jogador
+                        ==========================================================================================
+                        */
+                        
+                        var userLk1 = object["pLink1"] as? String
+                        self.userLevelTextField.text = userLk1
+                        
+                        var userLk2 = object["pLink2"] as? String
+                        self.userLevelTextField.text = userLk2
+                        
+                        var userLk3 = object["pLink3"] as? String
+                        self.userLevelTextField.text = userLk3
+                        
+                        var userLk4 = object["pLink4"] as? String
+                        self.userLevelTextField.text = userLk4
+                    }
                 }
             }
+            
+            /*
+            ==========================================================================================
+            Load Picture User - Jogador
+            ==========================================================================================
+            */
+            
+            if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+            {
+                let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                
+                userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if(imageData != nil)
+                    {
+                        self.profilePictureImageView.image = UIImage(data: imageData!)
+                    }
+                    
+                })
+            }
+            
         }
         
         
         
         
-     
-        
-        
-       
         
         
         /*
         ==========================================================================================
-        Load Link Info
-        ==========================================================================================
-
-        
-        let userLk1 = PFUser.currentUser()?.objectForKey("user_linkone") as? String
-        userLinkOneTextField.text = userLk1
-        let userLk2 = PFUser.currentUser()?.objectForKey("user_linktwo") as? String
-        userLinkTwoTextField.text = userLk2
-        let userLk3 = PFUser.currentUser()?.objectForKey("user_linktree") as? String
-        userLinkThreeTextField.text = userLk3
-        let userLk4 = PFUser.currentUser()?.objectForKey("user_linkfour") as? String
-        userLinkOneTextField.text = userLk4
-        
-        
-        ==========================================================================================
-        Load Plus Informations
-        ==========================================================================================
-
-        
-        
-        let userSchool = PFUser.currentUser()?.objectForKey("user_grade") as? String
-        userGradeTextField.text = userSchool
-        let userMClub = PFUser.currentUser()?.objectForKey("user_menberclub") as? String
-        userMemberClubTextField.text = userMClub
-        let userDream = PFUser.currentUser()?.objectForKey("user_teamdream") as? String
-        userTeamDreamTextField.text = userDream
-        let userBrands = PFUser.currentUser()?.objectForKey("user_prefbrands") as? String
-        userPrefBrandsTextField.text = userBrands
-        let userFed = PFUser.currentUser()?.objectForKey("user_federated") as? String
-        userFederatedTextField.text = userFed
-        
-
-        ==========================================================================================
-        Load Contact Informations
-        ==========================================================================================
-
-        
-        let userMPro = PFUser.currentUser()?.objectForKey("user_emailpro") as? String
-        userEmailProTextField.text = userMPro
-        let userFBLPage = PFUser.currentUser()?.objectForKey("user_fbpage") as? String
-        userFBLinkPageTextField.text = userFBLPage
-        let userLNLPage = PFUser.currentUser()?.objectForKey("user_lipage") as? String
-        userLInLinkPageTextField.text = userLNLPage
-        let userTWLinkPage = PFUser.currentUser()?.objectForKey("user_twtpage") as? String
-        userTwtLinkPageTextField.text = userTWLinkPage
-        let userMobile = PFUser.currentUser()?.objectForKey("user_cellphone") as? String
-        userCellPhoneTextField.text = userMobile
-        
-      
-        
-        ==========================================================================================
-        Load Picture User
+        Verify Profile Type and Load Info - Empresario
         ==========================================================================================
         */
-
-        if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
-        {
-            let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+        if userProfileType == "Empresario"{
             
-            userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+            //let sameuser:PFObject = PFObject(className: "UserPlayer")
+            
+            var query = PFQuery(className:"UserEmpresario")
+            query.includeKey("empKey")
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
-                if(imageData != nil)
-                {
-                    self.profilePictureImageView.image = UIImage(data: imageData!)
+                
+                if let objects = objects as? [PFObject]{
+                    
+                    for object in objects {
+                        
+                        // Load user details if they no Blanks
+                        /*
+                        ==========================================================================================
+                        Load Personal Info - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        let userFirstName = object["first_name"] as? String
+                        self.userFNameTextField.text = userFirstName
+                        
+                        let userLastName = object["last_name"] as? String
+                        self.userLNameTextField.text = userLastName
+                        
+                        let userCPF = object["eCPF"] as? String
+                        self.CPFTextField.text = userCPF
+                        
+                        let userCNPJ = object["eCNPJ"] as? String
+                        self.CNPJTextField.text = userCNPJ
+                        
+                        let userApelido = object["eApelido"] as? String
+                        self.apelidoTextField.text = userApelido
+                        
+                        let userGen = object["eGenero"] as? String
+                        self.generoTextField.text = userGen
+                        
+                        let userBirth = object["eNascimento"] as? String
+                        self.nascDataTextField.text = userBirth
+                        
+                        let userNationality = object["eNacionalidade"] as? String
+                        self.nacionalidadeTextField.text = userNationality
+                        
+                        let userAddress = object["eEndereco"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        let userCity = object["eCidade"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        let userState = object["eEstado"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        // Password is in another position on this code
+                        
+                        /*
+                        ==========================================================================================
+                        Load Professional Info - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        var userModal =  object["eModalidade"] as? String
+                        self.userModalTextField.text = userModal
+                        
+                        self.userKickFootTextField.hidden = true
+                        
+                        self.userHightTextField.hidden = true
+                        
+                        self.userWeightTextField.hidden = true
+                        
+                        self.userNumFootTextField.hidden = true
+                        
+                        self.userPositionTextField.hidden = true
+                        
+                        var userLevel =  object["eNivel"] as? String
+                        self.userLevelTextField.text = userLevel
+                        
+                        
+                        /*
+                        ==========================================================================================
+                        Load Plus Informations - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        var userBrands = object["ePrefMarcas"] as? String
+                        self.userLevelTextField.text = userBrands
+                        
+                        var userSchool = object["eEscolaridade"] as? String
+                        self.userLevelTextField.text = userSchool
+                        
+                        var userMClub = object["eClube"] as? String
+                        self.userLevelTextField.text = userMClub
+                        
+                        var userFed = object["eFederado"] as? String
+                        self.userLevelTextField.text = userFed
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        /*
+                        ==========================================================================================
+                        Load Contact Informations - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        var userMobile = object["eCelular"] as? String
+                        self.userLevelTextField.text = userMobile
+                        
+                        var userFBLPage = object["eFB"] as? String
+                        self.userLevelTextField.text = userFBLPage
+                        
+                        var userTWLinkPage = object["eTwitter"] as? String
+                        self.userLevelTextField.text = userTWLinkPage
+                        
+                        var userLNLPage = object["eLinkedIn"] as? String
+                        self.userLevelTextField.text = userLNLPage
+                        
+                        var userMPro = object["eEmailPro"] as? String
+                        self.userLevelTextField.text = userMPro
+                        
+                        /*
+                        ==========================================================================================
+                        Load Link Info - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                    }
                 }
+            }
+            
+            /*
+            ==========================================================================================
+            Load Picture User - Empresario
+            ==========================================================================================
+            */
+            
+            if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+            {
+                let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
                 
-            })
+                userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if(imageData != nil)
+                    {
+                        self.profilePictureImageView.image = UIImage(data: imageData!)
+                    }
+                    
+                })
+            }
+            
+        }
+        
+        
+        
+        
+        /*
+        ==========================================================================================
+        Verify Profile Type and Load Info - Clube
+        ==========================================================================================
+        */
+        if userProfileType == "Clube"{
+            
+            //let sameuser:PFObject = PFObject(className: "UserPlayer")
+            
+            var query = PFQuery(className:"UserClube")
+            query.includeKey("clubeKey")
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects as? [PFObject]{
+                    
+                    for object in objects {
+                        
+                        // Load user details if they no Blanks
+                        /*
+                        ==========================================================================================
+                        Load Personal Info - Clube
+                        ==========================================================================================
+                        */
+                        
+                        let userFirstName = object["first_name"] as? String
+                        self.userFNameTextField.text = userFirstName
+                        
+                        let userLastName = object["last_name"] as? String
+                        self.userLNameTextField.text = userLastName
+                        
+                        let userCPF = object["cCPF"] as? String
+                        self.CPFTextField.text = userCPF
+                        
+                        let userCNPJ = object["cCNPJ"] as? String
+                        self.CNPJTextField.text = userCNPJ
+                        
+                        self.apelidoTextField.hidden = true
+                        
+                        let userGen = object["cGenero"] as? String
+                        self.generoTextField.text = userGen
+                        
+                        let userBirth = object["cNascimento"] as? String
+                        self.nascDataTextField.text = userBirth
+                        
+                        let userNationality = object["cNacionalidade"] as? String
+                        self.nacionalidadeTextField.text = userNationality
+                        
+                        let userAddress = object["cEndereco"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        let userCity = object["cCidade"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        let userState = object["cEstado"] as? String
+                        self.addressTextField.text = userAddress
+                        
+                        // Password is in another position on this code
+                        
+                        /*
+                        ==========================================================================================
+                        Load Professional Info - Clube
+                        ==========================================================================================
+                        */
+                        
+                        var userModal =  object["cModalidade"] as? String
+                        self.userModalTextField.text = userModal
+                        
+                        self.userKickFootTextField.hidden = true
+                        
+                        self.userHightTextField.hidden = true
+                        
+                        self.userWeightTextField.hidden = true
+                        
+                        self.userNumFootTextField.hidden = true
+                        
+                        self.userPositionTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        
+                        /*
+                        ==========================================================================================
+                        Load Plus Informations - Clube
+                        ==========================================================================================
+                        */
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        var userMClub = object["cClube"] as? String
+                        self.userLevelTextField.text = userMClub
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        /*
+                        ==========================================================================================
+                        Load Contact Informations - Clube
+                        ==========================================================================================
+                        */
+                        
+                        var userMobile = object["cCelular"] as? String
+                        self.userLevelTextField.text = userMobile
+                        
+                        var userFBLPage = object["cFB"] as? String
+                        self.userLevelTextField.text = userFBLPage
+                        
+                        var userTWLinkPage = object["cTwitter"] as? String
+                        self.userLevelTextField.text = userTWLinkPage
+                        
+                        var userLNLPage = object["cLinkedIn"] as? String
+                        self.userLevelTextField.text = userLNLPage
+                        
+                        var userMPro = object["cEmailPro"] as? String
+                        self.userLevelTextField.text = userMPro
+                        
+                        /*
+                        ==========================================================================================
+                        Load Link Info - Clube
+                        ==========================================================================================
+                        */
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                        self.userLevelTextField.hidden = true
+                        
+                    }
+                }
+            }
+            
+            /*
+            ==========================================================================================
+            Load Picture User - Clube
+            ==========================================================================================
+            */
+            
+            if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+            {
+                let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                
+                userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if(imageData != nil)
+                    {
+                        self.profilePictureImageView.image = UIImage(data: imageData!)
+                    }
+                    
+                })
+            }
+            
         }
         
     }
@@ -326,7 +679,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
+    
     @IBAction func saveButton(sender: AnyObject) {
+        
         
         // Get current user
         let myUser:PFUser = PFUser.currentUser()!
@@ -371,85 +726,239 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         
-        // Set new values for user first name and last name
-        let userFName = userFNameTextField.text
-        let userLName = userLNameTextField.text
-        let userCPF = CPFTextField.text
-        let userBirth = nascDataTextField.text
-        let userApelido = apelidoTextField.text
-        let userGen = generoTextField.text
-        let userNationality = nacionalidadeTextField.text
-        let userAddress = addressTextField.text
+        let user:PFUser = PFUser.currentUser()!
         
-        // Set new values for Pro Info
-        let userMod = userModalTextField.text
-        let userKFoot = userKickFootTextField.text
-        let userHth = userHightTextField.text
-        let userWth = userWeightTextField.text
-        let userNmFoot = userNumFootTextField.text
-        let userPos = userPositionTextField.text
-        let userLvl = userLevelTextField.text
-        
-        // Set new values for Pro Info
-        let userLk1 = userLinkOneTextField.text
-        let userLk2 = userLinkTwoTextField.text
-        let userLk3 = userLinkThreeTextField.text
-        let userLk4 = userLinkFourTextField.text
-        
-        // Set new values for Pro Info
-        let userSchool = userGradeTextField.text
-        let userMClub = userMemberClubTextField.text
-        let userDream = userTeamDreamTextField.text
-        let userBrands = userPrefBrandsTextField.text
-        let userFed = userFederatedTextField.text
-        
-        // Set new values for Pro Info
-        let userMPro = userEmailProTextField.text
-        let userFBLPage = userFBLinkPageTextField.text
-        let userLNLPage = userLInLinkPageTextField.text
-        let userTWLinkPage = userTwtLinkPageTextField.text
-        let userMobile = userCellPhoneTextField.text
+        let userProfileType = PFUser.currentUser()?.objectForKey("profile_type") as? String
         
         
-        // Set new values for Personal Info
-        myUser.setObject(userFName, forKey: "first_name")
-        myUser.setObject(userLName, forKey: "last_name")
-        myUser.setObject(userCPF, forKey: "user_CPF")
-        myUser.setObject(userBirth, forKey: "user_birth")
-        myUser.setObject(userApelido, forKey: "user_apelido")
-        myUser.setObject(userGen, forKey: "user_gen")
-        myUser.setObject(userNationality, forKey: "user_natio")
-        myUser.setObject(userAddress, forKey: "user_address")
+        /*
+        ==========================================================================================
+        Verify Profile Type and Load Info - Jogador
+        ==========================================================================================
+        */
         
-        // Set new values for Pro Info
-        myUser.setObject(userMod, forKey: "user_modal")
-        myUser.setObject(userKFoot, forKey: "user_kickfoot")
-        myUser.setObject(userHth, forKey: "user_height")
-        myUser.setObject(userWth, forKey: "user_weight")
-        myUser.setObject(userNmFoot, forKey: "user_numfoot")
-        myUser.setObject(userPos, forKey: "user_position")
-        myUser.setObject(userLvl, forKey: "user_level")
+        if userProfileType == "Jogador"{
+            
+            let user:PFUser = PFUser.currentUser()!
+            
+            println(user.objectId)
+            
+            let userID = user.objectId
+            
+            // Create the Player query
+            
+            var playerQuery = PFQuery(className:"UserPlayer")
+            
+            
+            // Constrain the query to the current user
+            
+            playerQuery.whereKey("playerKey", equalTo: PFUser.currentUser()!)
+            
+            
+            playerQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+                if (error == nil) {
+                    if let playerArray = objects as? [PFObject] {
+                        for player in playerArray {
+                            // Do something with the player object
+                            // If you modify the object, save it asynchronously when done
+                            
+                            /*
+                            ==========================================================================================
+                            Save Personal Info - Jogador
+                            ==========================================================================================
+                            */
+                            player["first_name"] = self.userFNameTextField.text
+                            player["last_name"] = self.userLNameTextField.text
+                            player["pCPF"] = self.CPFTextField.text
+                            player["pApelido"] = self.apelidoTextField.text
+                            player["pGenero"] = self.generoTextField.text
+                            player["pNascimento"] = self.nascDataTextField.text
+                            player["pNacionalidade"] = self.nacionalidadeTextField.text
+                            player["pEndereco"] = self.addressTextField.text
+                            player["pCidade"] = self.addressTextField.text
+                            player["pEstado"] = self.addressTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Save Professional Info - Jogador
+                            ==========================================================================================
+                            */
+                            
+                            player["pModalidade"] = self.userModalTextField.text
+                            player["pKickfoot"] = self.userKickFootTextField.text
+                            player["pAltura"] = self.userHightTextField.text
+                            player["pPeso"] = self.userWeightTextField.text
+                            player["pNumfoot"] = self.userNumFootTextField.text
+                            player["pPosicao"] = self.userPositionTextField.text
+                            player["pNivel"] = self.userLevelTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Save Plus Informations - Jogador
+                            ==========================================================================================
+                            */
+                            
+                            player["pPrefMarcas"] = self.userLevelTextField.text
+                            player["pEscolaridade"] = self.userLevelTextField.text
+                            player["pClube"] = self.userLevelTextField.text
+                            player["pFederado"] = self.userLevelTextField.text
+                            player["pDreamTeam"] = self.userLevelTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Load Contact Informations - Jogador
+                            ==========================================================================================
+                            */
+                            
+                            player["pCelular"] = self.userLevelTextField.text
+                            player["pFB"] = self.userLevelTextField.text
+                            player["pTwitter"] = self.userLevelTextField.text
+                            player["pLinkedIn"] = self.userLevelTextField.text
+                            player["pEmailPro"] = self.userLevelTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Load Link Info - Jogador
+                            ==========================================================================================
+                            */
+                            
+                            player["pLink1"] = self.userLevelTextField.text
+                            player["pLink2"] = self.userLevelTextField.text
+                            player["pLink3"] = self.userLevelTextField.text
+                            player["pLink4"] = self.userLevelTextField.text
+                            
+                            
+                            player.saveInBackground()
+                            
+                            /*
+                            ==========================================================================================
+                            Load Picture User - Jogador
+                            ==========================================================================================
+                            */
+                            
+                            if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+                            {
+                                let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                                
+                                userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                    
+                                    if(imageData != nil)
+                                    {
+                                        self.profilePictureImageView.image = UIImage(data: imageData!)
+                                    }
+                                    
+                                })
+                            }
+                            
+                            
+                        }
+                    }
+                } else {
+                    // Log the details of the failure
+                    
+                    println("query error: \(error) \(error!.userInfo!)")
+                    
+                }
+            }
+            
+        }
         
-        // Set new values for Pro Info
-        myUser.setObject(userLk1, forKey: "user_linkone")
-        myUser.setObject(userLk2, forKey: "user_linktwo")
-        myUser.setObject(userLk3, forKey: "user_linktree")
-        myUser.setObject(userLk4, forKey: "user_linkfour")
         
-        // Set new values for Pro Info
-        myUser.setObject(userSchool, forKey: "user_grade")
-        myUser.setObject(userMClub, forKey: "user_menberclub")
-        myUser.setObject(userDream, forKey: "user_teamdream")
-        myUser.setObject(userBrands, forKey: "user_prefbrands")
-        myUser.setObject(userFed, forKey: "user_federated")
+        /*
+        ==========================================================================================
+        Verify Profile Type and Load Info - Empresario
+        ==========================================================================================
+        */
+        if userProfileType == "Empresario"{
+            
+            //let sameuser:PFObject = PFObject(className: "UserPlayer")
+            
+            var query = PFQuery(className:"UserEmpresario")
+            query.includeKey("empKey")
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects as? [PFObject]{
+                    
+                    for object in objects {
+                        
+                      //Arrumar
+                        
+                    }
+                }
+            }
+            
+            /*
+            ==========================================================================================
+            Load Picture User - Empresario
+            ==========================================================================================
+            */
+            
+            if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+            {
+                let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                
+                userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if(imageData != nil)
+                    {
+                        self.profilePictureImageView.image = UIImage(data: imageData!)
+                    }
+                    
+                })
+            }
+            
+        }
         
-        // Set new values for Pro Info
-        myUser.setObject(userMPro, forKey: "user_emailpro")
-        myUser.setObject(userFBLPage, forKey: "user_fbpage")
-        myUser.setObject(userLNLPage, forKey: "user_lipage")
-        myUser.setObject(userTWLinkPage, forKey: "user_twtpage")
-        myUser.setObject(userMobile, forKey: "user_cellphone")
         
+        
+        
+        /*
+        ==========================================================================================
+        Verify Profile Type and Load Info - Clube
+        ==========================================================================================
+        */
+        if userProfileType == "Clube"{
+            
+            //let sameuser:PFObject = PFObject(className: "UserPlayer")
+            
+            var query = PFQuery(className:"UserClube")
+            query.includeKey("clubeKey")
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                
+                
+                if let objects = objects as? [PFObject]{
+                    
+                    for object in objects {
+                        
+                        // Arrumar
+                        
+                    }
+                }
+            }
+            
+            /*
+            ==========================================================================================
+            Load Picture User - Clube
+            ==========================================================================================
+            */
+            
+            if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+            {
+                let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                
+                userImageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if(imageData != nil)
+                    {
+                        self.profilePictureImageView.image = UIImage(data: imageData!)
+                    }
+                    
+                })
+            }
+            
+        }
+    
         
         // set new password
         if(!passwordTextField.text.isEmpty)
@@ -523,5 +1032,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
 }

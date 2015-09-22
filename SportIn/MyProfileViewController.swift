@@ -79,7 +79,6 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                     for object in objects {
                         
                         var userFirstName = object["first_name"]  as! String
-                        
                         var userLastName =  object["last_name"]  as! String
                         
                         self.userFNameLabel.text = "Nome: " + userFirstName
@@ -106,7 +105,6 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                     for object in objects {
                         
                         var userFirstName = object["first_name"]  as! String
-                        
                         var userLastName =  object["last_name"]  as! String
                         
                         self.userFNameLabel.text = "Nome: " + userFirstName
