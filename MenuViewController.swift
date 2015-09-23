@@ -17,7 +17,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var menuItems:[String] = ["Home","Meu Perfil","Conexoes","Calendario","Configuracoes","Sobre","Parceiros","Sign out"]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

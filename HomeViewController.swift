@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var itemView: UIImageView!
     
+    var imagens = [PFFile]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,8 @@ class HomeViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
+       
+        
         // codigo para personalizar o navigationBar
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         //self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
@@ -46,6 +49,8 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     @IBAction func menuButton(sender: AnyObject) {
         var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

@@ -209,6 +209,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         myUser.password = userPassword
         myUser.email = userEmail
         myUser.setObject(userCPF, forKey: "user_CPF")
+        myUser.setObject(userFirstName, forKey: "first_name")
         myUser.setObject(selectedProfile, forKey: "profile_type")
         
         let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)

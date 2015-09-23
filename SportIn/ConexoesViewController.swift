@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-var conexoes = [PFUser]()
+var conexoes = [PFObject]()
 
 class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
@@ -30,7 +30,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
         searchBar.delegate = self
         
         // Resize size of collection view items in grid so that we achieve 3 boxes across
-        let cellWidth = ((UIScreen.mainScreen().bounds.width) - 32 - 30 ) / 3
+        let cellWidth = ((UIScreen.mainScreen().bounds.width) - 34 - 32 ) / 3
         let cellLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         cellLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
         
@@ -115,12 +115,13 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ConexoesCollectionViewCell
+        let myCellC = collectionView.dequeueReusableCellWithReuseIdentifier("myCellC", forIndexPath: indexPath) as! ConexoesCollectionViewCell
         
         // Display the country name
 
         if let value = conexoes[indexPath.row]["first_name"] as? String {
-            cell.cellTitle.text = value
+            myCellC.userNameLabel.text = value
+            println(value)
         }
         
         // Display "initial" flag image
@@ -134,12 +135,12 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                 (imageData: NSData?, error: NSError?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
-                        cell.cellImage.image = UIImage(data:imageData)
+                        myCellC.imageUserView.image = UIImage(data:imageData)
                     }
                 }
             }
         }
-        return cell
+        return myCellC
     }
     
     /*

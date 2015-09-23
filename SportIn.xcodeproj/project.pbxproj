@@ -50,6 +50,7 @@
 		169F2FDA1B7037A5000DF6E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FD91B7037A5000DF6E6 /* Images.xcassets */; };
 		169F2FDD1B7037A5000DF6E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 169F2FDB1B7037A5000DF6E6 /* LaunchScreen.xib */; };
 		169F2FE91B7037A6000DF6E6 /* SportInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169F2FE81B7037A6000DF6E6 /* SportInTests.swift */; };
+		16B4BD291BB2426F002561DD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B4BD281BB2426F002561DD /* DetailViewController.swift */; };
 		16C07D1B1B98B3790001A867 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C07D1A1B98B3790001A867 /* SettingsViewController.swift */; };
 		16C07D1D1B99E2A00001A867 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C07D1C1B99E2A00001A867 /* MapKit.framework */; };
 		16C07D221B9C08C10001A867 /* ConexoesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C07D211B9C08C10001A867 /* ConexoesCollectionViewCell.swift */; };
@@ -123,6 +124,7 @@
 		169F2FE21B7037A6000DF6E6 /* SportInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		169F2FE71B7037A6000DF6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		169F2FE81B7037A6000DF6E6 /* SportInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportInTests.swift; sourceTree = "<group>"; };
+		16B4BD281BB2426F002561DD /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		16C07D1A1B98B3790001A867 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		16C07D1C1B99E2A00001A867 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		16C07D211B9C08C10001A867 /* ConexoesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConexoesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		169F2FCF1B7037A5000DF6E6 /* SportIn */ = {
 			isa = PBXGroup;
 			children = (
+				16B4BD271BB241E0002561DD /* ConexoesInCollectionView */,
 				164B95421B89A9EF004515B3 /* MMDrawer */,
 				16CA96B41B8B704000599D7B /* MBProcess HUD */,
 				16CA96B31B8B6FCF00599D7B /* Menu Pages */,
@@ -282,6 +285,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		16B4BD271BB241E0002561DD /* ConexoesInCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				16C07D211B9C08C10001A867 /* ConexoesCollectionViewCell.swift */,
+				16B4BD281BB2426F002561DD /* DetailViewController.swift */,
+				16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */,
+			);
+			name = ConexoesInCollectionView;
+			sourceTree = "<group>";
+		};
 		16CA96B11B8B6FB500599D7B /* Login Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,8 +324,6 @@
 				164B95431B89AA4F004515B3 /* MenuViewController.swift */,
 				164B95231B898D46004515B3 /* HomeViewController.swift */,
 				16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */,
-				16CA96B51B8B70B800599D7B /* ConexoesViewController.swift */,
-				16C07D211B9C08C10001A867 /* ConexoesCollectionViewCell.swift */,
 				16CA96B91B8B70F400599D7B /* CalendarViewController.swift */,
 				16C07D1A1B98B3790001A867 /* SettingsViewController.swift */,
 				164B95471B89C6C8004515B3 /* AboutViewController.swift */,
@@ -453,6 +464,7 @@
 				164B954E1B8A3AC0004515B3 /* EditProfileViewController.swift in Sources */,
 				164B95521B8AC973004515B3 /* FeedPageViewController.swift in Sources */,
 				16CA96B61B8B70B800599D7B /* ConexoesViewController.swift in Sources */,
+				16B4BD291BB2426F002561DD /* DetailViewController.swift in Sources */,
 				164B95461B89AA79004515B3 /* RSSFeedViewController.swift in Sources */,
 				164B95561B8AC9A4004515B3 /* NewFeedViewController.swift in Sources */,
 				164B95541B8AC98F004515B3 /* FeedTableViewController.swift in Sources */,

@@ -149,10 +149,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         self.addressTextField.text = userAddress
                         
                         let userCity = object["pCidade"] as? String
-                        self.addressTextField.text = userAddress
+                        self.addressTextField.text = userCity
                         
                         let userState = object["pEstado"] as? String
-                        self.addressTextField.text = userAddress
+                        self.addressTextField.text = userState
                         
                         // Password is in another position on this code
                         
@@ -775,8 +775,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             player["pNascimento"] = self.nascDataTextField.text
                             player["pNacionalidade"] = self.nacionalidadeTextField.text
                             player["pEndereco"] = self.addressTextField.text
-                            player["pCidade"] = self.addressTextField.text
-                            player["pEstado"] = self.addressTextField.text
+                            player["pCidade"] = self.cityTextField.text
+                            player["pEstado"] = self.stateTextField.text
                             
                             /*
                             ==========================================================================================
@@ -873,16 +873,83 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             //let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            var query = PFQuery(className:"UserEmpresario")
-            query.includeKey("empKey")
-            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-                
-                
-                if let objects = objects as? [PFObject]{
-                    
-                    for object in objects {
+            var empQuery = PFQuery(className:"UserEmpresario")
+            
+            empQuery.whereKey("empKey", equalTo: PFUser.currentUser()!)
+            
+            
+            empQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+                if (error == nil) {
+                    if let empArray = objects as? [PFObject] {
+                        for empresario in empArray {
                         
-                      //Arrumar
+                        /*
+                        ==========================================================================================
+                        Save Personal Info - Empresario
+                        ==========================================================================================
+                        */
+                        empresario["first_name"] = self.userFNameTextField.text
+                        empresario["last_name"] = self.userLNameTextField.text
+                        empresario["eCPF"] = self.CPFTextField.text
+                        empresario["eApelido"] = self.apelidoTextField.text
+                        empresario["eGenero"] = self.generoTextField.text
+                        empresario["eNascimento"] = self.nascDataTextField.text
+                        empresario["eNacionalidade"] = self.nacionalidadeTextField.text
+                        empresario["eEndereco"] = self.addressTextField.text
+                        empresario["eCidade"] = self.cityTextField.text
+                        empresario["eEstado"] = self.stateTextField.text
+                        
+                        /*
+                        ==========================================================================================
+                        Save Professional Info - Empresario
+                        ==========================================================================================
+                        */
+                        empresario["eCNPJ"] = self.CNPJTextField.text
+                        empresario["eModalidade"] = self.userModalTextField.text
+                        //empresario["eKickfoot"] = self.userKickFootTextField.text
+                        //empresario["eAltura"] = self.userHightTextField.text
+                        //empresario["ePeso"] = self.userWeightTextField.text
+                        //empresario["eNumfoot"] = self.userNumFootTextField.text
+                        //empresario["ePosicao"] = self.userPositionTextField.text
+                        empresario["eNivel"] = self.userLevelTextField.text
+                        
+                        /*
+                        ==========================================================================================
+                        Save Plus Informations - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        empresario["ePrefMarcas"] = self.userLevelTextField.text
+                        empresario["eEscolaridade"] = self.userLevelTextField.text
+                        empresario["eClube"] = self.userLevelTextField.text
+                        empresario["eFederado"] = self.userLevelTextField.text
+                        //empresario["eDreamTeam"] = self.userLevelTextField.text
+                        
+                        /*
+                        ==========================================================================================
+                        Load Contact Informations - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        empresario["eCelular"] = self.userLevelTextField.text
+                        empresario["eFB"] = self.userLevelTextField.text
+                        empresario["eTwitter"] = self.userLevelTextField.text
+                        empresario["eLinkedIn"] = self.userLevelTextField.text
+                        empresario["eEmailPro"] = self.userLevelTextField.text
+                        
+                        /*
+                        ==========================================================================================
+                        Load Link Info - Empresario
+                        ==========================================================================================
+                        */
+                        
+                        //empresario["eLink1"] = self.userLevelTextField.text
+                        //empresario["eLink2"] = self.userLevelTextField.text
+                        //empresario["eLink3"] = self.userLevelTextField.text
+                        //empresario["eLink4"] = self.userLevelTextField.text
+                        
+                        
+                        empresario.saveInBackground()
                         
                     }
                 }
@@ -910,7 +977,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
         }
         
-        
+        }
         
         
         /*
@@ -922,20 +989,87 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             //let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            var query = PFQuery(className:"UserClube")
-            query.includeKey("clubeKey")
-            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-                
-                
-                if let objects = objects as? [PFObject]{
-                    
-                    for object in objects {
-                        
-                        // Arrumar
-                        
+            var clubeQuery = PFQuery(className:"UserClube")
+            clubeQuery.whereKey("empKey", equalTo: PFUser.currentUser()!)
+            
+            
+            clubeQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+                if (error == nil) {
+                    if let clubeArray = objects as? [PFObject] {
+                        for clube in clubeArray {
+                            
+                            /*
+                            ==========================================================================================
+                            Save Personal Info - Clube
+                            ==========================================================================================
+                            */
+                            clube["first_name"] = self.userFNameTextField.text
+                            clube["last_name"] = self.userLNameTextField.text
+                            clube["cCPF"] = self.CPFTextField.text
+                            //clube["eApelido"] = self.apelidoTextField.text
+                            clube["cGenero"] = self.generoTextField.text
+                            clube["cNascimento"] = self.nascDataTextField.text
+                            clube["cNacionalidade"] = self.nacionalidadeTextField.text
+                            clube["cEndereco"] = self.addressTextField.text
+                            clube["cCidade"] = self.cityTextField.text
+                            clube["cEstado"] = self.stateTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Save Professional Info - Clube
+                            ==========================================================================================
+                            */
+                            clube["cCNPJ"] = self.CNPJTextField.text
+                            clube["cModalidade"] = self.userModalTextField.text
+                            //empresario["eKickfoot"] = self.userKickFootTextField.text
+                            //empresario["eAltura"] = self.userHightTextField.text
+                            //empresario["ePeso"] = self.userWeightTextField.text
+                            //empresario["eNumfoot"] = self.userNumFootTextField.text
+                            //empresario["ePosicao"] = self.userPositionTextField.text
+                            clube["cNivel"] = self.userLevelTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Save Plus Informations - Clube
+                            ==========================================================================================
+                            */
+                            
+                            //clube["ePrefMarcas"] = self.userLevelTextField.text
+                            //clube["eEscolaridade"] = self.userLevelTextField.text
+                            clube["cClube"] = self.userLevelTextField.text
+                            //clube["eFederado"] = self.userLevelTextField.text
+                            //empresario["eDreamTeam"] = self.userLevelTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Load Contact Informations - Clube
+                            ==========================================================================================
+                            */
+                            
+                            clube["cCelular"] = self.userLevelTextField.text
+                            clube["cFB"] = self.userLevelTextField.text
+                            clube["cTwitter"] = self.userLevelTextField.text
+                            clube["cLinkedIn"] = self.userLevelTextField.text
+                            clube["cEmailPro"] = self.userLevelTextField.text
+                            
+                            /*
+                            ==========================================================================================
+                            Load Link Info - Clube
+                            ==========================================================================================
+                            */
+                            
+                            //empresario["eLink1"] = self.userLevelTextField.text
+                            //empresario["eLink2"] = self.userLevelTextField.text
+                            //empresario["eLink3"] = self.userLevelTextField.text
+                            //empresario["eLink4"] = self.userLevelTextField.text
+                            
+                            
+                            clube.saveInBackground()
+                            
+                        }
                     }
                 }
-            }
+            
             
             /*
             ==========================================================================================
@@ -956,6 +1090,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     
                 })
             }
+            
+        }
             
         }
     
