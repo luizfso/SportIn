@@ -221,6 +221,14 @@
 			name = MMDrawer;
 			sourceTree = "<group>";
 		};
+		167CE8CD1BB3020200A9F997 /* Configurações */ = {
+			isa = PBXGroup;
+			children = (
+				16C07D1A1B98B3790001A867 /* SettingsViewController.swift */,
+			);
+			name = "Configurações";
+			sourceTree = "<group>";
+		};
 		169F2FC41B7037A5000DF6E6 = {
 			isa = PBXGroup;
 			children = (
@@ -244,7 +252,6 @@
 		169F2FCF1B7037A5000DF6E6 /* SportIn */ = {
 			isa = PBXGroup;
 			children = (
-				16B4BD271BB241E0002561DD /* ConexoesInCollectionView */,
 				164B95421B89A9EF004515B3 /* MMDrawer */,
 				16CA96B41B8B704000599D7B /* MBProcess HUD */,
 				16CA96B31B8B6FCF00599D7B /* Menu Pages */,
@@ -322,13 +329,14 @@
 			isa = PBXGroup;
 			children = (
 				164B95431B89AA4F004515B3 /* MenuViewController.swift */,
+				164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */,
 				164B95231B898D46004515B3 /* HomeViewController.swift */,
 				16CA96B71B8B70E100599D7B /* MyProfileViewController.swift */,
+				16B4BD271BB241E0002561DD /* ConexoesInCollectionView */,
 				16CA96B91B8B70F400599D7B /* CalendarViewController.swift */,
-				16C07D1A1B98B3790001A867 /* SettingsViewController.swift */,
+				167CE8CD1BB3020200A9F997 /* Configurações */,
 				164B95471B89C6C8004515B3 /* AboutViewController.swift */,
 				164B95491B89C714004515B3 /* PartnersViewController.swift */,
-				164B954D1B8A3AC0004515B3 /* EditProfileViewController.swift */,
 			);
 			name = "Menu Pages";
 			sourceTree = "<group>";

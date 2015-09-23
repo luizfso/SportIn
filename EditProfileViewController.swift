@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate,  UIScrollViewDelegate{
     
     @IBOutlet weak var parcInfoView: UIView!
     @IBOutlet weak var proInfoView: UIView!
@@ -71,6 +71,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyborad")
+        view.addGestureRecognizer(tap)
         
         // codigo para personalizar o navigationBar
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
@@ -191,19 +194,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         */
                         
                         var userBrands = object["pPrefMarcas"] as? String
-                        self.userLevelTextField.text = userBrands
+                        self.userPrefBrandsTextField.text = userBrands
                         
                         var userSchool = object["pEscolaridade"] as? String
-                        self.userLevelTextField.text = userSchool
+                        self.userGradeTextField.text = userSchool
                         
                         var userMClub = object["pClube"] as? String
-                        self.userLevelTextField.text = userMClub
+                        self.userMemberClubTextField.text = userMClub
                         
                         var userFed = object["pFederado"] as? String
-                        self.userLevelTextField.text = userFed
+                        self.userFederatedTextField.text = userFed
                         
                         var userDream = object["pDreamTeam"] as? String
-                        self.userLevelTextField.text = userDream
+                        self.userTeamDreamTextField.text = userDream
                         
                         /*
                         ==========================================================================================
@@ -212,19 +215,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         */
                         
                         var userMobile = object["pCelular"] as? String
-                        self.userLevelTextField.text = userMobile
+                        self.userCellPhoneTextField.text = userMobile
                         
                         var userFBLPage = object["pFB"] as? String
-                        self.userLevelTextField.text = userFBLPage
+                        self.userFBLinkPageTextField.text = userFBLPage
                         
                         var userTWLinkPage = object["pTwitter"] as? String
-                        self.userLevelTextField.text = userTWLinkPage
+                        self.userTwtLinkPageTextField.text = userTWLinkPage
                         
                         var userLNLPage = object["pLinkedIn"] as? String
-                        self.userLevelTextField.text = userLNLPage
+                        self.userLInLinkPageTextField.text = userLNLPage
                         
                         var userMPro = object["pEmailPro"] as? String
-                        self.userLevelTextField.text = userMPro
+                        self.userEmailProTextField.text = userMPro
                         
                         /*
                         ==========================================================================================
@@ -233,16 +236,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         */
                         
                         var userLk1 = object["pLink1"] as? String
-                        self.userLevelTextField.text = userLk1
+                        self.userLinkOneTextField.text = userLk1
                         
                         var userLk2 = object["pLink2"] as? String
-                        self.userLevelTextField.text = userLk2
+                        self.userLinkTwoTextField.text = userLk2
                         
                         var userLk3 = object["pLink3"] as? String
-                        self.userLevelTextField.text = userLk3
+                        self.userLinkThreeTextField.text = userLk3
                         
                         var userLk4 = object["pLink4"] as? String
-                        self.userLevelTextField.text = userLk4
+                        self.userLinkFourTextField.text = userLk4
                     }
                 }
             }
@@ -357,6 +360,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         self.userLevelTextField.text = userLevel
                         
                         
+                        
+                        
+                        
+                        
                         /*
                         ==========================================================================================
                         Load Plus Informations - Empresario
@@ -364,18 +371,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         */
                         
                         var userBrands = object["ePrefMarcas"] as? String
-                        self.userLevelTextField.text = userBrands
+                        self.userPrefBrandsTextField.text = userBrands
                         
                         var userSchool = object["eEscolaridade"] as? String
-                        self.userLevelTextField.text = userSchool
+                        self.userGradeTextField.text = userSchool
                         
                         var userMClub = object["eClube"] as? String
-                        self.userLevelTextField.text = userMClub
+                        self.userMemberClubTextField.text = userMClub
                         
                         var userFed = object["eFederado"] as? String
-                        self.userLevelTextField.text = userFed
+                        self.userFederatedTextField.text = userFed
                         
-                        self.userLevelTextField.hidden = true
+                        self.userTeamDreamTextField.hidden = true
+                        
                         
                         /*
                         ==========================================================================================
@@ -384,19 +392,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         */
                         
                         var userMobile = object["eCelular"] as? String
-                        self.userLevelTextField.text = userMobile
+                        self.userCellPhoneTextField.text = userMobile
                         
                         var userFBLPage = object["eFB"] as? String
-                        self.userLevelTextField.text = userFBLPage
+                        self.userFBLinkPageTextField.text = userFBLPage
                         
                         var userTWLinkPage = object["eTwitter"] as? String
-                        self.userLevelTextField.text = userTWLinkPage
+                        self.userTwtLinkPageTextField.text = userTWLinkPage
                         
                         var userLNLPage = object["eLinkedIn"] as? String
-                        self.userLevelTextField.text = userLNLPage
+                        self.userLInLinkPageTextField.text = userLNLPage
                         
                         var userMPro = object["eEmailPro"] as? String
-                        self.userLevelTextField.text = userMPro
+                        self.userEmailProTextField.text = userMPro
                         
                         /*
                         ==========================================================================================
@@ -404,13 +412,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkOneTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkTwoTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkThreeTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkFourTextField.hidden = true
                         
                     }
                 }
@@ -528,16 +536,17 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        self.userLevelTextField.hidden = true
+                        self.userPrefBrandsTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userGradeTextField.hidden = true
                         
                         var userMClub = object["cClube"] as? String
-                        self.userLevelTextField.text = userMClub
+                        self.userMemberClubTextField.text = userMClub
                         
-                        self.userLevelTextField.hidden = true
+                        self.userFederatedTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userTeamDreamTextField.hidden = true
+                        
                         
                         /*
                         ==========================================================================================
@@ -546,19 +555,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         */
                         
                         var userMobile = object["cCelular"] as? String
-                        self.userLevelTextField.text = userMobile
+                        self.userCellPhoneTextField.text = userMobile
                         
                         var userFBLPage = object["cFB"] as? String
-                        self.userLevelTextField.text = userFBLPage
+                        self.userFBLinkPageTextField.text = userFBLPage
                         
                         var userTWLinkPage = object["cTwitter"] as? String
-                        self.userLevelTextField.text = userTWLinkPage
+                        self.userTwtLinkPageTextField.text = userTWLinkPage
                         
                         var userLNLPage = object["cLinkedIn"] as? String
-                        self.userLevelTextField.text = userLNLPage
+                        self.userLInLinkPageTextField.text = userLNLPage
                         
                         var userMPro = object["cEmailPro"] as? String
-                        self.userLevelTextField.text = userMPro
+                        self.userEmailProTextField.text = userMPro
                         
                         /*
                         ==========================================================================================
@@ -566,13 +575,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkOneTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkTwoTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkThreeTextField.hidden = true
                         
-                        self.userLevelTextField.hidden = true
+                        self.userLinkFourTextField.hidden = true
                         
                     }
                 }
@@ -604,6 +613,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
+    }
+    
+    func DismissKeyborad(){
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -1157,6 +1170,29 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        userFNameTextField.resignFirstResponder()
+        userLNameTextField.resignFirstResponder()
+        CPFTextField.resignFirstResponder()
+        apelidoTextField.resignFirstResponder()
+        generoTextField.resignFirstResponder()
+        nascDataTextField.resignFirstResponder()
+        nacionalidadeTextField.resignFirstResponder()
+        addressTextField.resignFirstResponder()
+        cityTextField.resignFirstResponder()
+        stateTextField.resignFirstResponder()
+        userModalTextField.resignFirstResponder()
+        userKickFootTextField.resignFirstResponder()
+        userHightTextField.resignFirstResponder()
+        userWeightTextField.resignFirstResponder()
+        userNumFootTextField.resignFirstResponder()
+        userPositionTextField.resignFirstResponder()
+        userLevelTextField.resignFirstResponder()
+       
+        
+        return true
     }
     
     /*

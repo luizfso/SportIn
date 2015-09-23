@@ -14,4 +14,5 @@ class ConexoesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     
     
+    
 }

@@ -210,6 +210,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         myUser.email = userEmail
         myUser.setObject(userCPF, forKey: "user_CPF")
         myUser.setObject(userFirstName, forKey: "first_name")
+        myUser.setObject(userFirstName, forKey: "last_name")
         myUser.setObject(selectedProfile, forKey: "profile_type")
         
         let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
@@ -268,9 +269,15 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     myUserPlayer.setObject(userCPF, forKey: "pCPF")
                     
                     // Set da imagem na Tabela Player
-                    let profileImageFile = PFFile(data: profileImgData)
-                    myUserPlayer.setObject(profileImageFile, forKey: "profile_picture")
                     
+                    if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+                    {
+                        let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                        
+                        myUserPlayer.setObject(userImageFile, forKey: "profile_picture")
+                        
+                       
+                    }
                     // Set informacoes em branco para evitar conflito de informacoes
                     // Set new values for Personal Info
                     myUserPlayer.setObject("", forKey: "pApelido")
@@ -336,6 +343,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUser.password = userPassword
             myUser.email = userEmail
             myUser.setObject(userCPF, forKey: "user_CPF")
+            myUser.setObject(userFirstName, forKey: "first_name")
+            myUser.setObject(userFirstName, forKey: "last_name")
             myUser.setObject(selectedProfile, forKey: "profile_type")
             
             let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
@@ -394,9 +403,14 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         myUserEmpresario.setObject(userCPF, forKey: "eCPF")
                         
                         // Set da imagem na Tabela Empresario
-                        let profileImageFile = PFFile(data: profileImgData)
-                        myUserEmpresario.setObject(profileImageFile, forKey: "profile_picture")
-                        
+                        if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+                        {
+                            let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                            
+                            myUserEmpresario.setObject(userImageFile, forKey: "profile_picture")
+                            
+                            
+                        }
                         
                         // Set informacoes em branco para evitar conflito de informacoes
                         // Set new values for Personal Info
@@ -466,6 +480,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUser.password = userPassword
             myUser.email = userEmail
             myUser.setObject(userCPF, forKey: "user_CPF")
+            myUser.setObject(userFirstName, forKey: "first_name")
+            myUser.setObject(userFirstName, forKey: "last_name")
             myUser.setObject(selectedProfile, forKey: "profile_type")
             
             let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
@@ -523,10 +539,14 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         myUserClube.setObject(userLastName, forKey: "last_name")
                         myUserClube.setObject(userCPF, forKey: "eCPF")
                         
-                        // Set da imagem na Tabela Empresario
-                        let profileImageFile = PFFile(data: profileImgData)
-                        myUserClube.setObject(profileImageFile, forKey: "profile_picture")
-                        
+                        if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
+                        {
+                            let userImageFile:PFFile = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
+                            
+                            myUserClube.setObject(userImageFile, forKey: "profile_picture")
+                            
+                            
+                        }
                         
                         // Set informacoes em branco para evitar conflito de informacoes
                         // Set new values for Personal Info

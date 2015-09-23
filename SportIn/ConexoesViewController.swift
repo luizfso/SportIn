@@ -23,6 +23,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
     // Connection to the collection view
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,6 +137,12 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                 if error == nil {
                     if let imageData = imageData {
                         myCellC.imageUserView.image = UIImage(data:imageData)
+                        //Circular Image
+                        myCellC.imageUserView.layer.cornerRadius = 18 //profilePictureImageView.frame.size.width/3
+                        myCellC.imageUserView.clipsToBounds = true
+                        myCellC.imageUserView.layer.borderWidth = 1
+                        myCellC.imageUserView.layer.borderColor = UIColor.whiteColor().CGColor
+
                     }
                 }
             }
@@ -188,6 +195,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
         self.loadCollectionViewData()
     }
     
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         // Dismiss the keyboard
@@ -196,6 +204,8 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
         // Reload of table data
         self.loadCollectionViewData()
     }
+
+    
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         

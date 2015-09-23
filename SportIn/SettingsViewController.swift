@@ -12,8 +12,6 @@ import Parse
 
 class SettingsViewController: UIViewController {
     
-    
-        
         let personalSettings = [
             ("Parceiros","Saiba quem sao nossos parceiros"),
             ("Opcao de Compartilhamento","ajuste suas opcoes de share"),
