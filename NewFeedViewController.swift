@@ -39,7 +39,7 @@ class NewFeedViewController: UIViewController {
     }
     
     @IBAction func sFeedGlobo(sender: AnyObject) {
-        textFieldNewFeedUrl.text = "http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/campeonatos-estaduais/campeonato-paulista/feed.rss"
+        textFieldNewFeedUrl.text = "http://globoesporte.globo.com/servico/semantica/editorias/plantao/futebol/feed.rss.xml"
     }
     
     @IBAction func sFeedBBC(sender: AnyObject) {

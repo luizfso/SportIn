@@ -26,7 +26,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //Circular Image
-        userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.width/2
+        //userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.width/2
+        userProfilePicture.layer.cornerRadius = 40
         userProfilePicture.clipsToBounds = true
         userProfilePicture.layer.borderWidth = 1
         userProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor

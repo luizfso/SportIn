@@ -87,15 +87,20 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.contactInfoView.hidden = true
         
         //Circular Image
-        profilePictureImageView.layer.cornerRadius = 11 //profilePictureImageView.frame.size.width/3
+        profilePictureImageView.layer.cornerRadius = 40 //profilePictureImageView.frame.size.width/3
         profilePictureImageView.clipsToBounds = true
         profilePictureImageView.layer.borderWidth = 1
         profilePictureImageView.layer.borderColor = UIColor.whiteColor().CGColor
         
+        loadUserDetails()
+        
+    }
+    
+    func loadUserDetails(){
+        
+    
         let user:PFUser = PFUser.currentUser()!
-        
         let userProfileType = PFUser.currentUser()?.objectForKey("profile_type") as? String
-        
         
         /*
         ==========================================================================================
@@ -137,10 +142,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         
                         
                         let userApelido = object["pApelido"] as? String
-                        self.apelidoTextField.text = userApelido
+                        self.apelidoTextField.text = userApelido!
+                        println(userApelido)
                         
                         let userGen = object["pGenero"] as? String
-                        self.generoTextField.text = userGen
+                        self.generoTextField.text = userGen!
                         
                         let userBirth = object["pNascimento"] as? String
                         self.nascDataTextField.text = userBirth
@@ -273,10 +279,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         
-        
-        
-        
-        
         /*
         ==========================================================================================
         Verify Profile Type and Load Info - Empresario
@@ -358,11 +360,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         
                         var userLevel =  object["eNivel"] as? String
                         self.userLevelTextField.text = userLevel
-                        
-                        
-                        
-                        
-                        
                         
                         /*
                         ==========================================================================================
@@ -611,10 +608,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
-    
     func DismissKeyborad(){
         view.endEditing(true)
     }
@@ -695,6 +688,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func saveButton(sender: AnyObject) {
         
+        self.view.endEditing(true)
         
         // Get current user
         let myUser:PFUser = PFUser.currentUser()!
@@ -1165,8 +1159,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 
             }
             
-            
-            
         }
         
         
@@ -1193,6 +1185,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
        
         
         return true
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
     
     /*

@@ -106,7 +106,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                         var userDream =  object["pDreamTeam"]  as! String
                         var userMobile =  object["pCelular"]  as! String
                         
-                        self.userProfileType.text = "Tipo de usuario: " + userType
+                        self.userProfileType.text = "T-User" + userType
                         self.userFNameLabel.text = "Nome: " + userFirstName
                         self.userLNameLabel.text = "Sobrenome: " + userLastName
                         self.CPFLabel.text = "Meu Cpf: " + userCPF
@@ -174,7 +174,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                         //var userDream =  object["eDreamTeam"]  as! String
                         var userMobile =  object["eCelular"]  as! String
                         
-                        self.userProfileType.text = "Tipo de usuario: " + userType
+                        self.userProfileType.text = userType
                         self.userFNameLabel.text = "Nome: " + userFirstName
                         self.userLNameLabel.text = "Sobrenome: " + userLastName
                         self.CPFLabel.text = "Meu Cpf: " + userCPF

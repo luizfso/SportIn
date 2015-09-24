@@ -68,15 +68,16 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
     func loadCollectionViewData() {
         
         // Build a parse query object
-        var query = PFUser.query()
+        var query = PFQuery(className:"UserPlayer")
         
         // Check to see if there is a search term
         if searchBar.text != "" {
-            query!.whereKey("searchText", containsString: searchBar.text.lowercaseString)
+            query.whereKey("searchText", containsString: searchBar.text)
         }
         
         // Fetch data from the parse platform
-        query!.findObjectsInBackgroundWithBlock {
+        
+        query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
             // The find succeeded now rocess the found objects into the countries array
@@ -86,7 +87,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                 conexoes.removeAll(keepCapacity: true)
                 
                 // Add country objects to our array
-                if let objects = objects as? [PFUser] {
+                if let objects = objects as? [PFObject] {
                     conexoes = Array(objects.generate())
                 }
                 
@@ -141,7 +142,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                         myCellC.imageUserView.layer.cornerRadius = 18 //profilePictureImageView.frame.size.width/3
                         myCellC.imageUserView.clipsToBounds = true
                         myCellC.imageUserView.layer.borderWidth = 1
-                        myCellC.imageUserView.layer.borderColor = UIColor.whiteColor().CGColor
+                        myCellC.imageUserView.layer.borderColor = UIColor.blackColor().CGColor
 
                     }
                 }
@@ -171,12 +172,12 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
             currentObject = sender as? PFObject
         } else {
             // No cell selected in collectionView - must be a new country record being created
-            currentObject = PFObject(className:"User")
+            currentObject = PFObject(className:"UserPlayer")
         }
         
         // Get a handle on the next story board controller and set the currentObject ready for the viewDidLoad method
-        //var detailScene = segue.destinationViewController as! DetailViewController
-        //detailScene.currentObject = (currentObject)
+        var detailScene = segue.destinationViewController as! DetailViewController
+        detailScene.currentObject = (currentObject)
     }
     
     

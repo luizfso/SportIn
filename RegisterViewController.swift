@@ -141,9 +141,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
-    @IBAction func cancelButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    
 
     
     @IBAction func registrarButton(sender: AnyObject) {
@@ -609,10 +607,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    @IBAction func backButton(sender: AnyObject) {
+    @IBAction func cancelButton(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     
     /*
     // MARK: - Navigation
