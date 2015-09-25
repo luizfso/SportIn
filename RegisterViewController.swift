@@ -22,6 +22,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var userTypeSelected: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var perfilSelected: UILabel!
+    @IBOutlet weak var registerButton: UIButton!
+    
     
     
     let userType = ["Selecionar Meu Perfil","Jogador", "Empresario", "Clube"]
@@ -53,6 +55,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             userTypeSelected.text = pickedProfile
             perfilSelected.text = pickedProfile
             self.pickerView.hidden = true
+            self.registerButton.hidden = false
             
         case 2:
             println("Empresario Selecionado")
@@ -60,6 +63,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             userTypeSelected.text = pickedProfile
             perfilSelected.text = pickedProfile
             self.pickerView.hidden = true
+            self.registerButton.hidden = false
             
         case 3:
             println("Clube Selecionado")
@@ -67,6 +71,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             userTypeSelected.text = pickedProfile
             perfilSelected.text = pickedProfile
             self.pickerView.hidden = true
+            self.registerButton.hidden = false
             
         default:
             userTypeSelected.text = ""
@@ -89,7 +94,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         profileImgView.layer.cornerRadius = 10 //profilePictureImageView.frame.size.width/3
         profileImgView.clipsToBounds = true
         
+        registerButton.layer.cornerRadius = 6
+        registerButton.clipsToBounds = true
+        
         self.pickerView.hidden = true
+        self.registerButton.hidden = true
         
     }
 
@@ -121,6 +130,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func openPickerView(sender: AnyObject) {
         self.pickerView.hidden = false
+        self.registerButton.hidden = true
+        
+    
     }
     
     @IBAction func selectProfilePhotoButton(sender: AnyObject) {

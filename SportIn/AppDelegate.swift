@@ -87,6 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let userName:String? =  NSUserDefaults.standardUserDefaults().stringForKey("user_name")
         
+        
         if(userName != nil)
         {
             // Navigate to Protected page

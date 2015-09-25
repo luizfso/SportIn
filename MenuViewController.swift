@@ -219,7 +219,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func loadUserDetails() {
         
-        let myUserPlayer = PFObject(className: "UserPlayer")
         
         let userType = PFUser.currentUser()?.objectForKey("profile_type") as! String
         
@@ -236,30 +235,24 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         var userFirstName = object["first_name"]  as! String
                         var userLastName =  object["last_name"]  as! String
+                        var profilePictureObject = object["profile_picture"] as! PFFile
                         
                         self.userFullNameLabel.text = userFirstName + " " + userLastName
-
+                        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                            
+                            if(imageData != nil)
+                            {
+                                self.userProfilePicture.image = UIImage(data: imageData!)
+                            }
+                            
+                        }
                     }
                 }
             }
             
-            //let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
-            //let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
             
             
-            let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
-            
-            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-                
-                if(imageData != nil)
-                {
-                    self.userProfilePicture.image = UIImage(data: imageData!)
-                }
-                
-            }
-            
-            }
-        
+        }
     
         if(userType == "Empresario"){
             
@@ -274,27 +267,22 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         var userFirstName = object["first_name"]  as! String
                         var userLastName =  object["last_name"]  as! String
+                        var profilePictureObject = object["profile_picture"] as! PFFile
                         
                         self.userFullNameLabel.text = userFirstName + " " + userLastName
-                        
+                        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                            
+                            if(imageData != nil)
+                            {
+                                self.userProfilePicture.image = UIImage(data: imageData!)
+                            }
+                            
+                        }
+
                     }
                 }
             }
             
-            //let userFirstName = PFUser.currentUser()?.objectForKey("first_name") as! String
-            //let userLastName = PFUser.currentUser()?.objectForKey("last_name") as! String
-            
-            
-            let profilePictureObject = PFUser.currentUser()?.objectForKey("profile_picture") as! PFFile
-            
-            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-                
-                if(imageData != nil)
-                {
-                    self.userProfilePicture.image = UIImage(data: imageData!)
-                }
-                
-            }
             
         }
         
@@ -311,6 +299,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         var userFirstName = object["first_name"]  as! String
                         var userLastName =  object["last_name"]  as! String
+                        
                         
                         self.userFullNameLabel.text = userFirstName + " " + userLastName
                         
