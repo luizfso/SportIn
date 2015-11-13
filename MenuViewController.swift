@@ -37,7 +37,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
          
         
     }
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
 
@@ -53,7 +53,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! UITableViewCell
+        let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) 
         
         myCell.textLabel?.text = menuItems[indexPath.row]
         
@@ -67,12 +67,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 0:
             // open Home page
             
-            var homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+            let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
             
-            var homePageNav = UINavigationController(rootViewController: homeViewController)
+            let homePageNav = UINavigationController(rootViewController: homeViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = homePageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -83,12 +83,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 1:
             // open "Meu Perfil"
             
-            var myProfileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MyProfileViewController") as! MyProfileViewController
+            let myProfileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MyProfileViewController") as! MyProfileViewController
             
-            var myProfilePageNav = UINavigationController(rootViewController: myProfileViewController)
+            let myProfilePageNav = UINavigationController(rootViewController: myProfileViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = myProfilePageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -97,12 +97,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 2:
             // open "Conexoes"
             
-            var conexoesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConexoesViewController") as! ConexoesViewController
+            let conexoesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConexoesViewController") as! ConexoesViewController
             
-            var conexoesPageNav = UINavigationController(rootViewController: conexoesViewController)
+            let conexoesPageNav = UINavigationController(rootViewController: conexoesViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = conexoesPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -111,12 +111,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 3:
             // open "Calendario"
             
-            var calendarViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CalendarViewController") as! CalendarViewController
+            let calendarViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CalendarViewController") as! CalendarViewController
             
-            var calendarPageNav = UINavigationController(rootViewController: calendarViewController)
+            let calendarPageNav = UINavigationController(rootViewController: calendarViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = calendarPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -125,12 +125,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 4:
             // open "Configuracoes"
             
-            var settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
+            let settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
             
-            var settingsPageNav = UINavigationController(rootViewController: settingsViewController)
+            let settingsPageNav = UINavigationController(rootViewController: settingsViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = settingsPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -139,12 +139,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 5:
             // open "Sobre"
             
-            var aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
+            let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
             
-            var aboutPageNav = UINavigationController(rootViewController: aboutViewController)
+            let aboutPageNav = UINavigationController(rootViewController: aboutViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = aboutPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -153,12 +153,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 6:
             // open "Parceiros"
             
-            var partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
+            let partnersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PartnersViewController") as! PartnersViewController
             
-            var partnersPageNav = UINavigationController(rootViewController: partnersViewController)
+            let partnersPageNav = UINavigationController(rootViewController: partnersViewController)
             
             
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.drawerContainer!.centerViewController = partnersPageNav
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -187,11 +187,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 // Navigate to Protected page
                 let mainStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                 
-                var loginPage:LoginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                let loginPage:LoginViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
                 
-                var loginPageNav = UINavigationController(rootViewController:loginPage)
+                let loginPageNav = UINavigationController(rootViewController:loginPage)
                 
-                var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 appDelegate.window?.rootViewController = loginPageNav
                 
@@ -203,13 +203,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
             
         default:
-            println("Option is not handled")
+            print("Option is not handled")
             
         }
         
     }
     @IBAction func editProfileButton(sender: AnyObject) {
-        var editProfile = self.storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
+        let editProfile = self.storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
         editProfile.opener = self
         
         let editProfileNav = UINavigationController(rootViewController: editProfile)
@@ -224,7 +224,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(userType == "Jogador"){
             
-            var query1 = PFQuery(className:"UserPlayer")
+            let query1 = PFQuery(className:"UserPlayer")
             query1.includeKey("playerKey")
             query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
@@ -233,12 +233,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     for object in objects {
                         
-                        var userFirstName = object["first_name"]  as! String
-                        var userLastName =  object["last_name"]  as! String
-                        var profilePictureObject = object["profile_picture"] as! PFFile
+                        let userFirstName = object["first_name"]  as? String
+                        let userLastName =  object["last_name"]  as? String
+                        let profilePictureObject = object["profile_picture"] as? PFFile
                         
-                        self.userFullNameLabel.text = userFirstName + " " + userLastName
-                        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                        self.userFullNameLabel.text = userFirstName! + " " + userLastName!
+                        profilePictureObject!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
                             
                             if(imageData != nil)
                             {
@@ -256,7 +256,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
         if(userType == "Empresario"){
             
-            var query1 = PFQuery(className:"UserEmpresario")
+            let query1 = PFQuery(className:"UserEmpresario")
             query1.includeKey("playerKey")
             query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
@@ -265,9 +265,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     for object in objects {
                         
-                        var userFirstName = object["first_name"]  as! String
-                        var userLastName =  object["last_name"]  as! String
-                        var profilePictureObject = object["profile_picture"] as! PFFile
+                        let userFirstName = object["first_name"]  as! String
+                        let userLastName =  object["last_name"]  as! String
+                        let profilePictureObject = object["profile_picture"] as! PFFile
                         
                         self.userFullNameLabel.text = userFirstName + " " + userLastName
                         profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
@@ -288,7 +288,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(userType == "Clube"){
             
-            var query1 = PFQuery(className:"UserClube")
+            let query1 = PFQuery(className:"UserClube")
             query1.includeKey("playerKey")
             query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
@@ -297,8 +297,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     for object in objects {
                         
-                        var userFirstName = object["first_name"]  as! String
-                        var userLastName =  object["last_name"]  as! String
+                        let userFirstName = object["first_name"]  as! String
+                        let userLastName =  object["last_name"]  as! String
                         
                         
                         self.userFullNameLabel.text = userFirstName + " " + userLastName
@@ -323,8 +323,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
         }
-
+        
     }
+    
 
 
     /*

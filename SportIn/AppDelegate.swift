@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        //PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         buildUserInterface()
         
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
-        annotation: AnyObject?) -> Bool {
+        annotation: AnyObject) -> Bool {
             return FBSDKApplicationDelegate.sharedInstance().application(application,
                 openURL: url,
                 sourceApplication: sourceApplication,
@@ -94,16 +94,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
             
             // Create View Controllers
-            var homePage:HomeViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+            let homePage:HomeViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
             
-            var menuPage:MenuViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+            let menuPage:MenuViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
             
-            var feedPage:FeedTableViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("FeedTableViewController") as! FeedTableViewController
+            let feedPage:FeedTableViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("FeedTableViewController") as! FeedTableViewController
   
             // Wrap into Navigation controllers
-            var homePageNav = UINavigationController(rootViewController:homePage)
-            var menuPageNav = UINavigationController(rootViewController:menuPage)
-            var feedPageNav = UINavigationController(rootViewController:feedPage)
+            let homePageNav = UINavigationController(rootViewController:homePage)
+            let menuPageNav = UINavigationController(rootViewController:menuPage)
+            let feedPageNav = UINavigationController(rootViewController:feedPage)
             
             drawerContainer = MMDrawerController(centerViewController: homePageNav, leftDrawerViewController: menuPageNav, rightDrawerViewController: feedPageNav)
             

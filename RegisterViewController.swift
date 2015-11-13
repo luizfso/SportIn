@@ -36,7 +36,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         return userType.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return userType[row]
     }
     
@@ -45,12 +45,12 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         switch row {
             
         case 0:
-            println("Selecionar Meu Perfil")
+            print("Selecionar Meu Perfil")
             userTypeSelected.text = ""
-            println("Nada Selecionado")
+            print("Nada Selecionado")
             
         case 1:
-            println("Jogador Selecionado")
+            print("Jogador Selecionado")
             let pickedProfile = userType[row]
             userTypeSelected.text = pickedProfile
             perfilSelected.text = pickedProfile
@@ -58,7 +58,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             self.registerButton.hidden = false
             
         case 2:
-            println("Empresario Selecionado")
+            print("Empresario Selecionado")
             let pickedProfile = userType[row]
             userTypeSelected.text = pickedProfile
             perfilSelected.text = pickedProfile
@@ -66,7 +66,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             self.registerButton.hidden = false
             
         case 3:
-            println("Clube Selecionado")
+            print("Clube Selecionado")
             let pickedProfile = userType[row]
             userTypeSelected.text = pickedProfile
             perfilSelected.text = pickedProfile
@@ -75,14 +75,14 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             
         default:
             userTypeSelected.text = ""
-            println("Nada Selecionado")
+            print("Nada Selecionado")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyborad")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyborad")
         view.addGestureRecognizer(tap)
         //scrollView.delegate = self
 
@@ -107,7 +107,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
@@ -136,7 +136,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func selectProfilePhotoButton(sender: AnyObject) {
-        var myPickerController = UIImagePickerController()
+        let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         
@@ -144,7 +144,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         
         profileImgView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -169,10 +169,10 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         let userCPF = userCPFText.text
         
         
-        if(userEmail.isEmpty || userPassword.isEmpty || userPasswordVerif.isEmpty || userFirstName.isEmpty || userLastName.isEmpty || userCPF.isEmpty)
+        if(userEmail!.isEmpty || userPassword!.isEmpty || userPasswordVerif!.isEmpty || userFirstName!.isEmpty || userLastName!.isEmpty || userCPF!.isEmpty)
         {
             
-            var myAlert = UIAlertController(title:"Alert", message:"Todos os campos devem ser preenchidos", preferredStyle:UIAlertControllerStyle.Alert)
+            let myAlert = UIAlertController(title:"Alert", message:"Todos os campos devem ser preenchidos", preferredStyle:UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -185,7 +185,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if(userPassword != userPasswordVerif)
         {
-            var myAlert = UIAlertController(title:"Alert", message:"Password não é o mesmo. Tente novamente", preferredStyle:UIAlertControllerStyle.Alert)
+            let myAlert = UIAlertController(title:"Alert", message:"Password não é o mesmo. Tente novamente", preferredStyle:UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -199,7 +199,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         if(selectedProfile == "")
         {
             
-            var myAlert = UIAlertController(title:"Alert", message:"Selecione ao menos uma opção para seu perfil", preferredStyle:UIAlertControllerStyle.Alert)
+            let myAlert = UIAlertController(title:"Alert", message:"Selecione ao menos uma opção para seu perfil", preferredStyle:UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
             
@@ -218,16 +218,16 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         myUser.username = userEmail
         myUser.password = userPassword
         myUser.email = userEmail
-        myUser.setObject(userCPF, forKey: "user_CPF")
-        myUser.setObject(userFirstName, forKey: "first_name")
-        myUser.setObject(userFirstName, forKey: "last_name")
-        myUser.setObject(selectedProfile, forKey: "profile_type")
+        myUser.setObject(userCPF!, forKey: "user_CPF")
+        myUser.setObject(userFirstName!, forKey: "first_name")
+        myUser.setObject(userLastName!, forKey: "last_name")
+        myUser.setObject(selectedProfile!, forKey: "profile_type")
         
-        let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
+        let profileImgData = UIImageJPEGRepresentation(profileImgView.image!, 1)
         
         if(profileImgData != nil)
         {
-            let profileImageFile = PFFile(data: profileImgData)
+            let profileImageFile = PFFile(data: profileImgData!)
             
             myUser.setObject(profileImageFile, forKey: "profile_picture")
         }
@@ -252,7 +252,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             }
             
             
-            var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
+            let myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default){ action in
                 
@@ -262,7 +262,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     
                     let user = PFUser.currentUser()
                     
-                    println(user?.objectId)
+                    print(user?.objectId)
                     
                     let userID = user!.objectId
                     
@@ -272,11 +272,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     myUserPlayer["playerKey"] = PFUser.objectWithoutDataWithObjectId(userID)
                     
                     // Set Basic infos
-                    myUserPlayer.setObject(userEmail, forKey: "username")
-                    myUserPlayer.setObject(selectedProfile, forKey: "profile_type")
-                    myUserPlayer.setObject(userFirstName, forKey: "first_name")
-                    myUserPlayer.setObject(userLastName, forKey: "last_name")
-                    myUserPlayer.setObject(userCPF, forKey: "pCPF")
+                    myUserPlayer.setObject(userEmail!, forKey: "username")
+                    myUserPlayer.setObject(selectedProfile!, forKey: "profile_type")
+                    myUserPlayer.setObject(userFirstName!, forKey: "first_name")
+                    myUserPlayer.setObject(userLastName!, forKey: "last_name")
+                    myUserPlayer.setObject(userCPF!, forKey: "pCPF")
                     
                     // Set da imagem na Tabela Player
                     
@@ -352,16 +352,16 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUser.username = userEmail
             myUser.password = userPassword
             myUser.email = userEmail
-            myUser.setObject(userCPF, forKey: "user_CPF")
-            myUser.setObject(userFirstName, forKey: "first_name")
-            myUser.setObject(userFirstName, forKey: "last_name")
-            myUser.setObject(selectedProfile, forKey: "profile_type")
+            myUser.setObject(userCPF!, forKey: "user_CPF")
+            myUser.setObject(userFirstName!, forKey: "first_name")
+            myUser.setObject(userLastName!, forKey: "last_name")
+            myUser.setObject(selectedProfile!, forKey: "profile_type")
             
-            let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
+            let profileImgData = UIImageJPEGRepresentation(profileImgView.image!, 1)
             
             if(profileImgData != nil)
             {
-                let profileImageFile = PFFile(data: profileImgData)
+                let profileImageFile = PFFile(data: profileImgData!)
                 
                 myUser.setObject(profileImageFile, forKey: "profile_picture")
             }
@@ -386,7 +386,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 }
                 
                 
-                var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
+                let myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
                 
                 let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default){ action in
                     
@@ -396,7 +396,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         
                         let user = PFUser.currentUser()
                         
-                        println(user?.objectId)
+                        print(user?.objectId)
                         
                         let userID = user!.objectId
                         
@@ -406,11 +406,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         myUserEmpresario["empKey"] = PFUser.objectWithoutDataWithObjectId(userID)
                         
                         // Set Basic infos
-                        myUserEmpresario.setObject(userEmail, forKey: "username")
-                        myUserEmpresario.setObject(selectedProfile, forKey: "profile_type")
-                        myUserEmpresario.setObject(userFirstName, forKey: "first_name")
-                        myUserEmpresario.setObject(userLastName, forKey: "last_name")
-                        myUserEmpresario.setObject(userCPF, forKey: "eCPF")
+                        myUserEmpresario.setObject(userEmail!, forKey: "username")
+                        myUserEmpresario.setObject(selectedProfile!, forKey: "profile_type")
+                        myUserEmpresario.setObject(userFirstName!, forKey: "first_name")
+                        myUserEmpresario.setObject(userLastName!, forKey: "last_name")
+                        myUserEmpresario.setObject(userCPF!, forKey: "eCPF")
                         
                         // Set da imagem na Tabela Empresario
                         if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
@@ -489,16 +489,16 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             myUser.username = userEmail
             myUser.password = userPassword
             myUser.email = userEmail
-            myUser.setObject(userCPF, forKey: "user_CPF")
-            myUser.setObject(userFirstName, forKey: "first_name")
-            myUser.setObject(userFirstName, forKey: "last_name")
-            myUser.setObject(selectedProfile, forKey: "profile_type")
+            myUser.setObject(userCPF!, forKey: "user_CPF")
+            myUser.setObject(userFirstName!, forKey: "first_name")
+            myUser.setObject(userLastName!, forKey: "last_name")
+            myUser.setObject(selectedProfile!, forKey: "profile_type")
             
-            let profileImgData = UIImageJPEGRepresentation(profileImgView.image, 1)
+            let profileImgData = UIImageJPEGRepresentation(profileImgView.image!, 1)
             
             if(profileImgData != nil)
             {
-                let profileImageFile = PFFile(data: profileImgData)
+                let profileImageFile = PFFile(data: profileImgData!)
                 
                 myUser.setObject(profileImageFile, forKey: "profile_picture")
             }
@@ -523,7 +523,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 }
                 
                 
-                var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
+                let myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle:UIAlertControllerStyle.Alert)
                 
                 let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default){ action in
                     
@@ -533,7 +533,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         
                         let user = PFUser.currentUser()
                         
-                        println(user?.objectId)
+                        print(user?.objectId)
                         
                         let userID = user!.objectId
                         
@@ -543,11 +543,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         myUserClube["clubeKey"] = PFUser.objectWithoutDataWithObjectId(userID)
                         
                         // Set Basic infos
-                        myUserClube.setObject(userEmail, forKey: "username")
-                        myUserClube.setObject(selectedProfile, forKey: "profile_type")
-                        myUserClube.setObject(userFirstName, forKey: "first_name")
-                        myUserClube.setObject(userLastName, forKey: "last_name")
-                        myUserClube.setObject(userCPF, forKey: "eCPF")
+                        myUserClube.setObject(userEmail!, forKey: "username")
+                        myUserClube.setObject(selectedProfile!, forKey: "profile_type")
+                        myUserClube.setObject(userFirstName!, forKey: "first_name")
+                        myUserClube.setObject(userLastName!, forKey: "last_name")
+                        myUserClube.setObject(userCPF!, forKey: "eCPF")
                         
                         if(PFUser.currentUser()?.objectForKey("profile_picture") != nil)
                         {

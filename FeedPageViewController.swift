@@ -25,7 +25,7 @@ class FeedPageViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         // Do any additional setup after loading the view, typically from a nib.
-        var feedContent:String! = "<h3>\(selectedFeedTitle)</h3>\(selectedFeedFeedContent)"
+        let feedContent:String! = "<h3>\(selectedFeedTitle)</h3>\(selectedFeedFeedContent)"
         myWebView.loadHTMLString(feedContent, baseURL: nil)
     }
     

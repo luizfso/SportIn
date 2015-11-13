@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate, NSXMLParserDelegate {
+class FeedTableViewController: UITableViewController, NSXMLParserDelegate {
     
     var myFeed : NSArray = []
     var url: NSURL = NSURL()
@@ -28,19 +28,19 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
         // Set feed url. http://www.formula1.com/rss/news/latest.rss
         url = NSURL(string: "http://www.skysports.com/rss/0,20514,11661,00.xml")!
         // Call custom function.
-        loadRss(url);
+       // loadRss(url);
         
     }
     
-    func loadRss(data: NSURL) {
+    /*func loadRss(data: NSURL) {
         // XmlParserManager instance/object/variable
-        var myParser : XmlParserManager = XmlParserManager.alloc().initWithURL(data) as! XmlParserManager
+        let myParser : XmlParserManager = XmlParserManager.allFeeds(XmlParserManager) as! XmlParserManager
         // Put feed in array
         myFeed = myParser.feeds
         
         tableView.reloadData()
     }
-    
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,7 +48,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let newUrl = segue.destinationViewController as? NewFeedViewController {
+        /*if let newUrl = segue.destinationViewController as? NewFeedViewController {
             newUrl.onDataAvailable = {[weak self]
                 (data) in
                 if let weakSelf = self {
@@ -59,7 +59,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             
         else if segue.identifier == "openPage" {
             
-            var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
             //let selectedFeedURL: String = feeds[indexPath.row].objectForKey("link") as String
             let selectedFTitle: String = myFeed[indexPath.row].objectForKey("title") as! String
             let selectedFContent: String = myFeed[indexPath.row].objectForKey("description") as! String
@@ -71,7 +71,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
             fpvc.selectedFeedTitle = selectedFTitle
             fpvc.selectedFeedFeedContent = selectedFContent
             fpvc.selectedFeedURL = selectedFURL
-        }
+        }*/
     }
     
     
@@ -87,7 +87,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         
         // Feeds dictionary.
         var dict : NSDictionary! = myFeed.objectAtIndex(indexPath.row) as! NSDictionary

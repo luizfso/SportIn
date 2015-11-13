@@ -31,7 +31,7 @@ class NewFeedViewController: UIViewController {
         
         // Send new Url
         if (textFieldNewFeedUrl.text != "") {
-            self.onDataAvailable?(data: NSURL(string: textFieldNewFeedUrl.text)!)
+            self.onDataAvailable?(data: NSURL(string: textFieldNewFeedUrl.text!)!)
             self.navigationController?.popToRootViewControllerAnimated(true)
         } else {
             self.navigationController?.popToRootViewControllerAnimated(true)

@@ -32,7 +32,7 @@ class RecoverViewController: UIViewController, UITextFieldDelegate {
         
         let emailAddress = emailAddressTextField.text
         
-        if emailAddress.isEmpty
+        if emailAddress!.isEmpty
         {
             // Display a warning message
             let userMessage:String = "please type in your email address"
@@ -41,7 +41,7 @@ class RecoverViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        PFUser.requestPasswordResetForEmailInBackground(emailAddress, block: { (success:Bool, error:NSError?) -> Void in
+        PFUser.requestPasswordResetForEmailInBackground(emailAddress!, block: { (success:Bool, error:NSError?) -> Void in
             
             if(error != nil)
             {
@@ -60,7 +60,7 @@ class RecoverViewController: UIViewController, UITextFieldDelegate {
     
     func displayMessage(userMessage:String)
     {
-        var myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default) {
             action in
@@ -75,7 +75,7 @@ class RecoverViewController: UIViewController, UITextFieldDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
 

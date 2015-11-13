@@ -63,7 +63,7 @@ class SettingsViewController: UIViewController {
 
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
-            var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
             
             if indexPath.section == 0 {
                 let (courseTitle,courseAuthor) = personalSettings[indexPath.row]
@@ -136,7 +136,7 @@ class SettingsViewController: UIViewController {
         // MARK: - Table view data source
         
         @IBAction func menuButton(sender: AnyObject) {
-            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
         }
         

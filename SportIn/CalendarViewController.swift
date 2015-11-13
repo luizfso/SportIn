@@ -36,12 +36,12 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        var location = CLLocationCoordinate2DMake(48.88182,2.43952)
+        let location = CLLocationCoordinate2DMake(48.88182,2.43952)
         
         
-        var span = MKCoordinateSpanMake(0.002, 0.002)
+        let span = MKCoordinateSpanMake(0.002, 0.002)
         
-        var region = MKCoordinateRegion(center: location, span: span)
+        let region = MKCoordinateRegion(center: location, span: span)
         
         eventsMaps.setRegion(region, animated: true)
         
@@ -84,17 +84,17 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         // Check to see if there is a search term
         if mySearchBar.text != "" {
-            query.whereKey("searchText", containsString: mySearchBar.text.lowercaseString)
+            query.whereKey("searchText", containsString: mySearchBar.text!.lowercaseString)
         }
         // Fetch data from the parse platform
         query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
+            (objects: [PFObject]?, error: NSError?) -> Void in
             // The find succeeded now rocess the found objects into the events array
             if error == nil {
             // Clear existing event data
             self.itensOnNewEvent.removeAll(keepCapacity: true)
             // Add events objects to our array
-            if let objects = objects as? [PFObject] {
+            if let objects = objects {
                 self.itensOnNewEvent = Array(objects.generate())
             }
             // reload our data into the collection view
@@ -102,7 +102,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
             }
             else {
                 // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
+                print("Error: \(error!) \(error!.userInfo)")
             }
         }
     }
@@ -116,17 +116,17 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         // Check to see if there is a search term
         if mySearchBar.text != "" {
-            query.whereKey("searchText", containsString: mySearchBar.text.lowercaseString)
+            query.whereKey("searchText", containsString: mySearchBar.text!.lowercaseString)
         }
         // Fetch data from the parse platform
         query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
+            (objects: [PFObject]?, error: NSError?) -> Void in
             // The find succeeded now rocess the found objects into the events array
             if error == nil {
             // Clear existing event data
             self.itensOnPastEvent.removeAll(keepCapacity: true)
             // Add events objects to our array
-            if let objects = objects as? [PFObject] {
+            if let objects = objects {
                 self.itensOnPastEvent = Array(objects.generate())
             }
             // reload our data into the collection view
@@ -134,7 +134,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
             }
             else {
                 // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
+                print("Error: \(error!) \(error!.userInfo)")
             }
         }
     }
@@ -166,7 +166,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let mycellMaps = tableView.dequeueReusableCellWithIdentifier("cellMaps", forIndexPath: indexPath) as! UITableViewCell
+        let mycellMaps = tableView.dequeueReusableCellWithIdentifier("cellMaps", forIndexPath: indexPath) 
         
         if indexPath.section == 0{
             
@@ -214,25 +214,25 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     */
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("Row \(indexPath.row)selected")
+        print("Row \(indexPath.row)selected")
         
-        println("Section \(indexPath.section)selected")
+        print("Section \(indexPath.section)selected")
         
         if indexPath.section == 1 {
             
-            println("Section \(indexPath.section) foi selected 1")
+            print("Section \(indexPath.section) foi selected 1")
             
             let valueA = itensOnNewEvent[indexPath.row]["titulo"] as? String
             let valueB = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
             let valueC = itensOnNewEvent[indexPath.row]["LatLong"] as? PFGeoPoint
             
-            var latitude: CLLocationDegrees = valueC!.latitude
-            var longtitude: CLLocationDegrees = valueC!.longitude
-            var location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:latitude, longitude:longtitude)
+            let latitude: CLLocationDegrees = valueC!.latitude
+            let longtitude: CLLocationDegrees = valueC!.longitude
+            let location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:latitude, longitude:longtitude)
             
-            var span = MKCoordinateSpanMake(0.009, 0.009)
+            let span = MKCoordinateSpanMake(0.009, 0.009)
             
-            var region = MKCoordinateRegion(center: location, span: span)
+            let region = MKCoordinateRegion(center: location, span: span)
             eventsMaps.setRegion(region, animated: true)
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
@@ -244,19 +244,19 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
         
         if indexPath.section == 2 {
             
-            println("Section \(indexPath.section) foi selected 2")
+            print("Section \(indexPath.section) foi selected 2")
             
             let valueAP = itensOnNewEvent[indexPath.row]["titulo"] as? String
             let valueBP = itensOnNewEvent[indexPath.row]["subtitulo"] as? String
             let valueCP = itensOnNewEvent[indexPath.row]["LatLong"] as? PFGeoPoint
             
-            var latitudeP: CLLocationDegrees = valueCP!.latitude
-            var longtitudeP: CLLocationDegrees = valueCP!.longitude
-            var locationP: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:latitudeP, longitude:longtitudeP)
+            let latitudeP: CLLocationDegrees = valueCP!.latitude
+            let longtitudeP: CLLocationDegrees = valueCP!.longitude
+            let locationP: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:latitudeP, longitude:longtitudeP)
             
-            var span = MKCoordinateSpanMake(0.009, 0.009)
+            let span = MKCoordinateSpanMake(0.009, 0.009)
             
-            var regionP = MKCoordinateRegion(center: locationP, span: span)
+            let regionP = MKCoordinateRegion(center: locationP, span: span)
             eventsMaps.setRegion(regionP, animated: true)
             let annotationP = MKPointAnnotation()
             annotationP.coordinate = locationP
@@ -296,23 +296,23 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
         searchBar.resignFirstResponder()
-        println("Search word = \(searchBar.text)")
+        print("Search word = \(searchBar.text)")
         
-        var tituloNameQuery = PFQuery(className:"Events")
+        let tituloNameQuery = PFQuery(className:"Events")
         tituloNameQuery.whereKey("titulo", containsString: searchBar.text)
         
-        var subtituloNameQuery = PFQuery(className:"Events")
+        let subtituloNameQuery = PFQuery(className:"Events")
         subtituloNameQuery.whereKey("subtitulo", matchesRegex: "(?i)\(searchBar.text)")
         // a regular expression that will match the search word and the value in the Parse class
         // and the comparison will be case insensetive.
         
-        var queryFromSearch = PFQuery.orQueryWithSubqueries([tituloNameQuery, subtituloNameQuery])
+        let queryFromSearch = PFQuery.orQueryWithSubqueries([tituloNameQuery, subtituloNameQuery])
         
         queryFromSearch.findObjectsInBackgroundWithBlock {
-            (resultsFromSearch: [AnyObject]?, error: NSError?) -> Void in
+            (resultsFromSearch: [PFObject]?, error: NSError?) -> Void in
             
             if error != nil {
-                var myAlert = UIAlertController(title:"Alert", message:error?.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
+                let myAlert = UIAlertController(title:"Alert", message:error?.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
                 
                 let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
                 
@@ -323,7 +323,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
                 return
             }
             
-            if let objectsSearch = resultsFromSearch as? [PFObject] {
+            if let objectsSearch = resultsFromSearch {
                 
                 self.searchResults.removeAll(keepCapacity: false)
                 
@@ -358,7 +358,7 @@ class CalendarViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     @IBAction func menuButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
     

@@ -8,12 +8,15 @@
 
 import UIKit
 import Parse
+import iAd
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ADBannerViewDelegate {
 
     
     @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var itemView: UIImageView!
+    @IBOutlet var iAdHome: ADBannerView?
+    
     
     var imagens = [PFFile]()
     
@@ -53,13 +56,13 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func menuButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
         
     }
     
     @IBAction func rssFeedButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Right, animated: true, completion: nil)
     }
 

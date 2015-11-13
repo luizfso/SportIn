@@ -25,7 +25,7 @@ class PartnersViewController: UIViewController {
     }
     
     @IBAction func menuButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
 

@@ -72,7 +72,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyborad")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyborad")
         view.addGestureRecognizer(tap)
         
         // codigo para personalizar o navigationBar
@@ -112,12 +112,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             //let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            var query = PFQuery(className:"UserPlayer")
+            let query = PFQuery(className:"UserPlayer")
             query.includeKey("playerKey")
             query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
                 
-                if let objects = objects as? [PFObject]{
+                if let objects = objects {
                     
                     for object in objects {
                         
@@ -140,10 +140,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         // Hide no CNPJ se for Jogador
                         self.CNPJTextField.hidden = true
                         
-                        
                         let userApelido = object["pApelido"] as? String
                         self.apelidoTextField.text = userApelido!
-                        println(userApelido)
+                        print(userApelido)
                         
                         let userGen = object["pGenero"] as? String
                         self.generoTextField.text = userGen!
@@ -171,25 +170,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userModal = object["pModalidade"] as? String
+                        let userModal = object["pModalidade"] as? String
                         self.userModalTextField.text = userModal
                         
-                        var userKickFoot = object["pKickfoot"] as? String
+                        let userKickFoot = object["pKickfoot"] as? String
                         self.userKickFootTextField.text = userKickFoot
                         
-                        var userHight = object["pAltura"] as? String
+                        let userHight = object["pAltura"] as? String
                         self.userHightTextField.text = userHight
                         
-                        var userWeight = object["pPeso"] as? String
+                        let userWeight = object["pPeso"] as? String
                         self.userWeightTextField.text = userWeight
                         
-                        var userNumFoot = object["pNumfoot"] as? String
+                        let userNumFoot = object["pNumfoot"] as? String
                         self.userNumFootTextField.text = userNumFoot
                         
-                        var userPosition = object["pPosicao"] as? String
+                        let userPosition = object["pPosicao"] as? String
                         self.userPositionTextField.text = userPosition
                         
-                        var userLevel = object["pNivel"] as? String
+                        let userLevel = object["pNivel"] as? String
                         self.userLevelTextField.text = userLevel
                         
                         
@@ -199,19 +198,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userBrands = object["pPrefMarcas"] as? String
+                        let userBrands = object["pPrefMarcas"] as? String
                         self.userPrefBrandsTextField.text = userBrands
                         
-                        var userSchool = object["pEscolaridade"] as? String
+                        let userSchool = object["pEscolaridade"] as? String
                         self.userGradeTextField.text = userSchool
                         
-                        var userMClub = object["pClube"] as? String
+                        let userMClub = object["pClube"] as? String
                         self.userMemberClubTextField.text = userMClub
                         
-                        var userFed = object["pFederado"] as? String
+                        let userFed = object["pFederado"] as? String
                         self.userFederatedTextField.text = userFed
                         
-                        var userDream = object["pDreamTeam"] as? String
+                        let userDream = object["pDreamTeam"] as? String
                         self.userTeamDreamTextField.text = userDream
                         
                         /*
@@ -220,19 +219,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userMobile = object["pCelular"] as? String
+                        let userMobile = object["pCelular"] as? String
                         self.userCellPhoneTextField.text = userMobile
                         
-                        var userFBLPage = object["pFB"] as? String
+                        let userFBLPage = object["pFB"] as? String
                         self.userFBLinkPageTextField.text = userFBLPage
                         
-                        var userTWLinkPage = object["pTwitter"] as? String
+                        let userTWLinkPage = object["pTwitter"] as? String
                         self.userTwtLinkPageTextField.text = userTWLinkPage
                         
-                        var userLNLPage = object["pLinkedIn"] as? String
+                        let userLNLPage = object["pLinkedIn"] as? String
                         self.userLInLinkPageTextField.text = userLNLPage
                         
-                        var userMPro = object["pEmailPro"] as? String
+                        let userMPro = object["pEmailPro"] as? String
                         self.userEmailProTextField.text = userMPro
                         
                         /*
@@ -241,16 +240,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userLk1 = object["pLink1"] as? String
+                        let userLk1 = object["pLink1"] as? String
                         self.userLinkOneTextField.text = userLk1
                         
-                        var userLk2 = object["pLink2"] as? String
+                        let userLk2 = object["pLink2"] as? String
                         self.userLinkTwoTextField.text = userLk2
                         
-                        var userLk3 = object["pLink3"] as? String
+                        let userLk3 = object["pLink3"] as? String
                         self.userLinkThreeTextField.text = userLk3
                         
-                        var userLk4 = object["pLink4"] as? String
+                        let userLk4 = object["pLink4"] as? String
                         self.userLinkFourTextField.text = userLk4
                     }
                 }
@@ -288,12 +287,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             //let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            var query = PFQuery(className:"UserEmpresario")
+            let query = PFQuery(className:"UserEmpresario")
             query.includeKey("empKey")
             query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
                 
-                if let objects = objects as? [PFObject]{
+                if let objects = objects {
                     
                     for object in objects {
                         
@@ -345,7 +344,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userModal =  object["eModalidade"] as? String
+                        let userModal =  object["eModalidade"] as? String
                         self.userModalTextField.text = userModal
                         
                         self.userKickFootTextField.hidden = true
@@ -358,7 +357,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         
                         self.userPositionTextField.hidden = true
                         
-                        var userLevel =  object["eNivel"] as? String
+                        let userLevel =  object["eNivel"] as? String
                         self.userLevelTextField.text = userLevel
                         
                         /*
@@ -367,16 +366,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userBrands = object["ePrefMarcas"] as? String
+                        let userBrands = object["ePrefMarcas"] as? String
                         self.userPrefBrandsTextField.text = userBrands
                         
-                        var userSchool = object["eEscolaridade"] as? String
+                        let userSchool = object["eEscolaridade"] as? String
                         self.userGradeTextField.text = userSchool
                         
-                        var userMClub = object["eClube"] as? String
+                        let userMClub = object["eClube"] as? String
                         self.userMemberClubTextField.text = userMClub
                         
-                        var userFed = object["eFederado"] as? String
+                        let userFed = object["eFederado"] as? String
                         self.userFederatedTextField.text = userFed
                         
                         self.userTeamDreamTextField.hidden = true
@@ -388,19 +387,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userMobile = object["eCelular"] as? String
+                        let userMobile = object["eCelular"] as? String
                         self.userCellPhoneTextField.text = userMobile
                         
-                        var userFBLPage = object["eFB"] as? String
+                        let userFBLPage = object["eFB"] as? String
                         self.userFBLinkPageTextField.text = userFBLPage
                         
-                        var userTWLinkPage = object["eTwitter"] as? String
+                        let userTWLinkPage = object["eTwitter"] as? String
                         self.userTwtLinkPageTextField.text = userTWLinkPage
                         
-                        var userLNLPage = object["eLinkedIn"] as? String
+                        let userLNLPage = object["eLinkedIn"] as? String
                         self.userLInLinkPageTextField.text = userLNLPage
                         
-                        var userMPro = object["eEmailPro"] as? String
+                        let userMPro = object["eEmailPro"] as? String
                         self.userEmailProTextField.text = userMPro
                         
                         /*
@@ -455,12 +454,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             //let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            var query = PFQuery(className:"UserClube")
+            let query = PFQuery(className:"UserClube")
             query.includeKey("clubeKey")
             query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
                 
-                if let objects = objects as? [PFObject]{
+                if let objects = objects {
                     
                     for object in objects {
                         
@@ -511,7 +510,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userModal =  object["cModalidade"] as? String
+                        let userModal =  object["cModalidade"] as? String
                         self.userModalTextField.text = userModal
                         
                         self.userKickFootTextField.hidden = true
@@ -537,7 +536,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         
                         self.userGradeTextField.hidden = true
                         
-                        var userMClub = object["cClube"] as? String
+                        let userMClub = object["cClube"] as? String
                         self.userMemberClubTextField.text = userMClub
                         
                         self.userFederatedTextField.hidden = true
@@ -551,19 +550,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         ==========================================================================================
                         */
                         
-                        var userMobile = object["cCelular"] as? String
+                        let userMobile = object["cCelular"] as? String
                         self.userCellPhoneTextField.text = userMobile
                         
-                        var userFBLPage = object["cFB"] as? String
+                        let userFBLPage = object["cFB"] as? String
                         self.userFBLinkPageTextField.text = userFBLPage
                         
-                        var userTWLinkPage = object["cTwitter"] as? String
+                        let userTWLinkPage = object["cTwitter"] as? String
                         self.userTwtLinkPageTextField.text = userTWLinkPage
                         
-                        var userLNLPage = object["cLinkedIn"] as? String
+                        let userLNLPage = object["cLinkedIn"] as? String
                         self.userLInLinkPageTextField.text = userLNLPage
                         
-                        var userMPro = object["cEmailPro"] as? String
+                        let userMPro = object["cEmailPro"] as? String
                         self.userEmailProTextField.text = userMPro
                         
                         /*
@@ -619,7 +618,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func selectTypeEdit(sender: AnyObject) {
         if typeEdit.selectedSegmentIndex == 0{
-            println("Personal info")
+            print("Personal info")
             self.parcInfoView.hidden = false
             self.proInfoView.hidden = true
             self.videoInfoView.hidden = true
@@ -628,7 +627,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
         }
         if typeEdit.selectedSegmentIndex == 1{
-            println("Professional info")
+            print("Professional info")
             self.parcInfoView.hidden = true
             self.proInfoView.hidden = false
             self.videoInfoView.hidden = true
@@ -636,7 +635,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             self.contactInfoView.hidden = true
         }
         if typeEdit.selectedSegmentIndex == 2{
-            println("Video info")
+            print("Video info")
             self.parcInfoView.hidden = true
             self.proInfoView.hidden = true
             self.videoInfoView.hidden = false
@@ -644,7 +643,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             self.contactInfoView.hidden = true
         }
         if typeEdit.selectedSegmentIndex == 3{
-            println("Features info")
+            print("Features info")
             self.parcInfoView.hidden = true
             self.proInfoView.hidden = true
             self.videoInfoView.hidden = true
@@ -652,7 +651,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             self.contactInfoView.hidden = true
         }
         if typeEdit.selectedSegmentIndex == 4{
-            println("Features info")
+            print("Features info")
             self.parcInfoView.hidden = true
             self.proInfoView.hidden = true
             self.videoInfoView.hidden = true
@@ -669,7 +668,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func chooseProfileButtonTapped(sender: AnyObject) {
         
-        var myPickerController = UIImagePickerController()
+        let myPickerController = UIImagePickerController()
         myPickerController.delegate = self;
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         
@@ -677,13 +676,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         profilePictureImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     
     
     @IBAction func saveButton(sender: AnyObject) {
@@ -694,10 +693,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let myUser:PFUser = PFUser.currentUser()!
         
         // Get profile image data
-        let profileImageData = UIImageJPEGRepresentation(profilePictureImageView.image, 1)
+        let profileImageData = UIImageJPEGRepresentation(profilePictureImageView.image!, 1)
         
         // Check if all fields are empty
-        if(passwordTextField.text.isEmpty && userFNameTextField.text.isEmpty && userLNameTextField.text.isEmpty && (profileImageData == nil))
+        if(passwordTextField.text!.isEmpty && userFNameTextField.text!.isEmpty && userLNameTextField.text!.isEmpty && (profileImageData == nil))
         {
             
             var myAlert = UIAlertController(title:"Alert", message:"All fields cannot be empty", preferredStyle: UIAlertControllerStyle.Alert);
@@ -709,7 +708,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         // If user decided to update their password make sure there is no typo
-        if(!passwordTextField.text.isEmpty && (passwordTextField.text != passwordVerifTextField.text))
+        if(!passwordTextField.text!.isEmpty && (passwordTextField.text != passwordVerifTextField.text))
         {
             var myAlert = UIAlertController(title:"Alert", message:"Passwords do not match", preferredStyle: UIAlertControllerStyle.Alert);
             
@@ -721,7 +720,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         // Check if First name and Last name are not empty
-        if(userFNameTextField.text.isEmpty || userLNameTextField.text.isEmpty)
+        if(userFNameTextField.text!.isEmpty || userLNameTextField.text!.isEmpty)
         {
             
             var myAlert = UIAlertController(title:"Alert", message:"First name and Last name are required fields", preferredStyle: UIAlertControllerStyle.Alert);
@@ -748,7 +747,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             let user:PFUser = PFUser.currentUser()!
             
-            println(user.objectId)
+            print(user.objectId)
             
             let userID = user.objectId
             
@@ -762,9 +761,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             playerQuery.whereKey("playerKey", equalTo: PFUser.currentUser()!)
             
             
-            playerQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+            playerQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 if (error == nil) {
-                    if let playerArray = objects as? [PFObject] {
+                    if let playerArray = objects {
                         for player in playerArray {
                             // Do something with the player object
                             // If you modify the object, save it asynchronously when done
@@ -835,6 +834,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             player["pLink4"] = self.userLevelTextField.text
                             
                             
+                            
+                            
+
+                            
                             player.saveInBackground()
                             
                             /*
@@ -852,6 +855,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                                     if(imageData != nil)
                                     {
                                         self.profilePictureImageView.image = UIImage(data: imageData!)
+                                        player["profile_picture"] =  userImageFile as PFFile
                                     }
                                     
                                 })
@@ -863,7 +867,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 } else {
                     // Log the details of the failure
                     
-                    println("query error: \(error) \(error!.userInfo!)")
+                    print("query error: \(error) \(error!.userInfo)")
                     
                 }
             }
@@ -885,9 +889,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             empQuery.whereKey("empKey", equalTo: PFUser.currentUser()!)
             
             
-            empQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+            empQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 if (error == nil) {
-                    if let empArray = objects as? [PFObject] {
+                    if let empArray = objects {
                         for empresario in empArray {
                         
                         /*
@@ -1000,9 +1004,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             clubeQuery.whereKey("empKey", equalTo: PFUser.currentUser()!)
             
             
-            clubeQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+            clubeQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 if (error == nil) {
-                    if let clubeArray = objects as? [PFObject] {
+                    if let clubeArray = objects {
                         for clube in clubeArray {
                             
                             /*
@@ -1104,7 +1108,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
         
         // set new password
-        if(!passwordTextField.text.isEmpty)
+        if(!passwordTextField.text!.isEmpty)
         {
             let userPassword = passwordTextField.text
             myUser.password = userPassword
@@ -1114,7 +1118,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Set profile picture
         if(profileImageData != nil)
         {
-            let profileFileObject = PFFile(data:profileImageData)
+            let profileFileObject = PFFile(data:profileImageData!)
             myUser.setObject(profileFileObject, forKey: "profile_picture")
         }
         
@@ -1146,7 +1150,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 var userMessage = "Profile details successfully updated"
                 var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle: UIAlertControllerStyle.Alert);
                 
-                let okAction =  UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                let okAction =  UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
                     
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         self.opener.loadUserDetails()
@@ -1187,7 +1191,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         return true
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     

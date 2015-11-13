@@ -58,7 +58,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func menuButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
 
@@ -73,7 +73,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
             
             let sameuser:PFObject = PFObject(className: "UserPlayer")
             
-            var query1 = PFQuery(className:"UserPlayer")
+            let query1 = PFQuery(className:"UserPlayer")
             query1.includeKey("playerKey")
             query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
@@ -82,31 +82,31 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     for object in objects {
                         
-                        var userType = object["profile_type"]  as! String
-                        var userFirstName = object["first_name"]  as! String
-                        var userLastName =  object["last_name"]  as! String
-                        var userCPF =  object["pCPF"]  as! String
-                        var userNickName =  object["pApelido"]  as! String
-                        var userGen =  object["pGenero"]  as! String
-                        var userNationality =  object["pNacionalidade"]  as! String
-                        var userAddress =  object["pEndereco"]  as! String
-                        var userCity =  object["pCidade"]  as! String
-                        var userState =  object["pEstado"]  as! String
-                        var userMod =  object["pModalidade"]  as! String
-                        var userKFoot =  object["pKickfoot"]  as! String
-                        var userHth =  object["pAltura"]  as! String
-                        var userWth =  object["pPeso"]  as! String
-                        var userNmFoot =  object["pNumfoot"]  as! String
-                        var userPos =  object["pPosicao"]  as! String
-                        var userLvl =  object["pNivel"]  as! String
-                        var userPrefBrands =  object["pPrefMarcas"]  as! String
-                        var userSchool =  object["pEscolaridade"]  as! String
-                        var userMClub =  object["pClube"]  as! String
-                        var userFed =  object["pFederado"]  as! String
-                        var userDream =  object["pDreamTeam"]  as! String
-                        var userMobile =  object["pCelular"]  as! String
+                        let userType = object["profile_type"]  as! String
+                        let userFirstName = object["first_name"]  as! String
+                        let userLastName =  object["last_name"]  as! String
+                        let userCPF =  object["pCPF"]  as! String
+                        let userNickName =  object["pApelido"]  as! String
+                        let userGen =  object["pGenero"]  as! String
+                        let userNationality =  object["pNacionalidade"]  as! String
+                        let userAddress =  object["pEndereco"]  as! String
+                        let userCity =  object["pCidade"]  as! String
+                        let userState =  object["pEstado"]  as! String
+                        let userMod =  object["pModalidade"]  as! String
+                        let userKFoot =  object["pKickfoot"]  as! String
+                        let userHth =  object["pAltura"]  as! String
+                        let userWth =  object["pPeso"]  as! String
+                        let userNmFoot =  object["pNumfoot"]  as! String
+                        let userPos =  object["pPosicao"]  as! String
+                        let userLvl =  object["pNivel"]  as! String
+                        let userPrefBrands =  object["pPrefMarcas"]  as! String
+                        let userSchool =  object["pEscolaridade"]  as! String
+                        let userMClub =  object["pClube"]  as! String
+                        let userFed =  object["pFederado"]  as! String
+                        let userDream =  object["pDreamTeam"]  as! String
+                        let userMobile =  object["pCelular"]  as! String
                         
-                        self.userProfileType.text = "T-User" + userType
+                        self.userProfileType.text = "Tipo de User" + userType
                         self.userFNameLabel.text = "Nome: " + userFirstName
                         self.userLNameLabel.text = "Sobrenome: " + userLastName
                         self.CPFLabel.text = "Meu Cpf: " + userCPF
@@ -118,8 +118,8 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                         self.stateLabel.text = "Estado: " + userState
                         self.userModalLabel.text = "Minha modalidade: " + userMod
                         self.userKickFootLabel.text = "Perna que chuto: " + userKFoot
-                        self.userHightLabel.text = "Minha altura: " + userHth + "cm"
-                        self.userWeightLabel.text = "Meu peso atual: " + userWth + "Kg"
+                        self.userHightLabel.text = userHth
+                        self.userWeightLabel.text = userWth
                         self.userNumFootLabel.text = "Meu No de calçado: " + userNmFoot
                         self.userPositionLabel.text = "Posição que jogo melhor: " + userPos
                         self.userLevelLabel.text = "Meu nivel é: " + userLvl
@@ -130,10 +130,21 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                         self.userTeamDreamLabel.text = "Time que eu sonho em jogar: " + userDream
                         self.userCellPhoneLabel.text = "Meu celeular: " + userMobile
                         
+                        print("fase 1")
+                        
                     }
+                    
                 }
+                /*
+                var calcIMCaltura = Float(self.userHightLabel.text!)!
+                let calcIMCpeso = Float(self.userWeightLabel.text!)!
+                calcIMCaltura = calcIMCaltura * calcIMCaltura
+                let calculo = calcIMCpeso / calcIMCaltura
+                self.imcCalcLabel.text = "seu IMC é \(calculo)"
+                print("fase 2")
+                */
             }
-            
+            print("fase 3")
             
         }
         
@@ -141,7 +152,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
             
             let sameuser:PFObject = PFObject(className: "UserEmpresario")
             
-            var query1 = PFQuery(className:"UserEmpresario")
+            let query1 = PFQuery(className:"UserEmpresario")
             query1.includeKey("empKey")
             query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
@@ -150,29 +161,29 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     for object in objects {
                         
-                        var userType = object["profile_type"]  as! String
-                        var userFirstName = object["first_name"]  as! String
-                        var userLastName =  object["last_name"]  as! String
-                        var userCPF =  object["eCPF"]  as! String
-                        var userNickName =  object["eApelido"]  as! String
-                        var userGen =  object["eGenero"]  as! String
-                        var userNationality =  object["eNacionalidade"]  as! String
-                        var userAddress =  object["eEndereco"]  as! String
-                        var userCity =  object["eCidade"]  as! String
-                        var userState =  object["eEstado"]  as! String
-                        var userMod =  object["eModalidade"]  as! String
+                        let userType = object["profile_type"]  as! String
+                        let userFirstName = object["first_name"]  as! String
+                        let userLastName =  object["last_name"]  as! String
+                        let userCPF =  object["eCPF"]  as! String
+                        let userNickName =  object["eApelido"]  as! String
+                        let userGen =  object["eGenero"]  as! String
+                        let userNationality =  object["eNacionalidade"]  as! String
+                        let userAddress =  object["eEndereco"]  as! String
+                        let userCity =  object["eCidade"]  as! String
+                        let userState =  object["eEstado"]  as! String
+                        let userMod =  object["eModalidade"]  as! String
                         //var userKFoot =  object["eKickfoot"]  as! String
                         //var userHth =  object["eAltura"]  as! String
                         //var userWth =  object["ePeso"]  as! String
                         //var userNmFoot =  object["eNumfoot"]  as! String
                         //var userPos =  object["ePosicao"]  as! String
-                        var userLvl =  object["eNivel"]  as! String
-                        var userPrefBrands =  object["ePrefMarcas"]  as! String
-                        var userSchool =  object["eEscolaridade"]  as! String
-                        var userMClub =  object["eClube"]  as! String
-                        var userFed =  object["eFederado"]  as! String
+                        let userLvl =  object["eNivel"]  as! String
+                        let userPrefBrands =  object["ePrefMarcas"]  as! String
+                        let userSchool =  object["eEscolaridade"]  as! String
+                        let userMClub =  object["eClube"]  as! String
+                        let userFed =  object["eFederado"]  as! String
                         //var userDream =  object["eDreamTeam"]  as! String
-                        var userMobile =  object["eCelular"]  as! String
+                        let userMobile =  object["eCelular"]  as! String
                         
                         self.userProfileType.text = userType
                         self.userFNameLabel.text = "Nome: " + userFirstName
@@ -207,9 +218,9 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
         
         if userProfileType == "Clube"{
             
-            let sameuser:PFObject = PFObject(className: "UserClube")
+            var sameuser:PFObject = PFObject(className: "UserClube")
             
-            var query1 = PFQuery(className:"UserEmpresario")
+            let query1 = PFQuery(className:"UserEmpresario")
             query1.includeKey("clubeKey")
             query1.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 
@@ -218,17 +229,17 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     for object in objects {
                         
-                        var userType = object["profile_type"]  as! String
-                        var userFirstName = object["first_name"]  as! String
-                        var userLastName =  object["last_name"]  as! String
-                        var userCPF =  object["cCPF"]  as! String
+                        let userType = object["profile_type"]  as! String
+                        let userFirstName = object["first_name"]  as! String
+                        let userLastName =  object["last_name"]  as! String
+                        let userCPF =  object["cCPF"]  as! String
                         //var userNickName =  object["eApelido"]  as! String
-                        var userGen =  object["cGenero"]  as! String
-                        var userNationality =  object["cNacionalidade"]  as! String
-                        var userAddress =  object["cEndereco"]  as! String
-                        var userCity =  object["cCidade"]  as! String
-                        var userState =  object["cEstado"]  as! String
-                        var userMod =  object["cModalidade"]  as! String
+                        let userGen =  object["cGenero"]  as! String
+                        let userNationality =  object["cNacionalidade"]  as! String
+                        let userAddress =  object["cEndereco"]  as! String
+                        let userCity =  object["cCidade"]  as! String
+                        let userState =  object["cEstado"]  as! String
+                        let userMod =  object["cModalidade"]  as! String
                         //var userKFoot =  object["cKickfoot"]  as! String
                         //var userHth =  object["cAltura"]  as! String
                         //var userWth =  object["cPeso"]  as! String
@@ -237,10 +248,10 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
                         //var userLvl =  object["cNivel"]  as! String
                         //var userPrefBrands =  object["cPrefMarcas"]  as! String
                         //var userSchool =  object["cEscolaridade"]  as! String
-                        var userMClub =  object["cClube"]  as! String
+                        let userMClub =  object["cClube"]  as! String
                         //var userFed =  object["cFederado"]  as! String
                         //var userDream =  object["cDreamTeam"]  as! String
-                        var userMobile =  object["cCelular"]  as! String
+                        let userMobile =  object["cCelular"]  as! String
                         
                         self.userProfileType.text = "Tipo de usuario: " + userType
                         self.userFNameLabel.text = "Nome: " + userFirstName
@@ -288,7 +299,7 @@ class MyProfileViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func editProfileButton(sender: AnyObject) {
-        var editProfile = self.storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
+        let editProfile = self.storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
         //editProfile.opener = self
         
         let editProfileNav = UINavigationController(rootViewController: editProfile)

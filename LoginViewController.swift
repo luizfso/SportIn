@@ -38,9 +38,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         if(FBSDKAccessToken.currentAccessToken() == nil)
         {
-            println("user is not logged in")
+            print("user is not logged in")
         }else{
-            println("user is logged in")
+            print("user is logged in")
         }
         
         loginButton.delegate = self
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     {
         if(error != nil)
         {
-            println(error.localizedDescription)
+            print(error.localizedDescription)
             return
         }
         
@@ -69,8 +69,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             //get user access token
             let token:FBSDKAccessToken = result.token
             
-            println("Token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
-            println("User ID = \(FBSDKAccessToken.currentAccessToken().userID)")
+            print("Token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
+            print("User ID = \(FBSDKAccessToken.currentAccessToken().userID)")
         
             let registerPage = self.storyboard?.instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
         
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
     {
-        println("user is logged out")
+        print("user is logged out")
     }
     
     
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         let userEmail = userEmailTextField.text
         let userPassword = userPasswordTextField.text
         
-        if(userEmail.isEmpty || userPassword.isEmpty)
+        if(userEmail!.isEmpty || userPassword!.isEmpty)
         {
             return
         }
@@ -117,7 +117,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         //spiningActivity.userInteractionEnabled = false
         
         
-        PFUser.logInWithUsernameInBackground(userEmail, password: userPassword) { (user:PFUser?, error:NSError?) -> Void in
+        PFUser.logInWithUsernameInBackground(userEmail!, password: userPassword!) { (user:PFUser?, error:NSError?) -> Void in
             
         MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             
@@ -159,7 +159,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     

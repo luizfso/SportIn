@@ -55,7 +55,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
     
     
     @IBAction func menuButton(sender: AnyObject) {
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.drawerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
     
@@ -78,7 +78,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
         // Fetch data from the parse platform
         
         query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
+            (objects: [PFObject]?, error: NSError?) -> Void in
             
             // The find succeeded now rocess the found objects into the countries array
             if error == nil {
@@ -87,7 +87,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                 conexoes.removeAll(keepCapacity: true)
                 
                 // Add country objects to our array
-                if let objects = objects as? [PFObject] {
+                if let objects = objects {
                     conexoes = Array(objects.generate())
                 }
                 
@@ -96,7 +96,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                 
             } else {
                 // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
+                print("Error: \(error!) \(error!.userInfo)")
             }
         }
     }
@@ -123,7 +123,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
 
         if let value = conexoes[indexPath.row]["first_name"] as? String {
             myCellC.userNameLabel.text = value
-            println(value)
+            print(value)
         }
         
         // Display "initial" flag image
@@ -137,7 +137,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
                 (imageData: NSData?, error: NSError?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
-                        myCellC.imageUserView.image = UIImage(data:imageData)
+                        myCellC.imageUserView.image = UIImage(data:imageData)!
                         //Circular Image
                         myCellC.imageUserView.layer.cornerRadius = 18 //profilePictureImageView.frame.size.width/3
                         myCellC.imageUserView.clipsToBounds = true
@@ -176,7 +176,7 @@ class ConexoesViewController: UIViewController, UICollectionViewDataSource, UICo
         }
         
         // Get a handle on the next story board controller and set the currentObject ready for the viewDidLoad method
-        var detailScene = segue.destinationViewController as! DetailViewController
+        let detailScene = segue.destinationViewController as! DetailViewController
         detailScene.currentObject = (currentObject)
     }
     

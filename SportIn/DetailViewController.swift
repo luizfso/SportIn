@@ -56,14 +56,14 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             updateObject["currencyCode"] = userContato.text
             
             // Create a string of text that is used by search capabilites
-            var searchText = (nomeCompleto.text! + " " + modalidade.text! + " " + userContato.text! + " " + userNivel.text! + " "  + idadeUser.text!)
+            let searchText = (nomeCompleto.text! + " " + modalidade.text! + " " + userContato.text! + " " + userNivel.text! + " "  + idadeUser.text!)
             updateObject["searchText"] = searchText
             
             // Upload any flag image
             if imageDidChange == true {
-                let imageData = UIImagePNGRepresentation(userFoto.image)
+                let imageData = UIImagePNGRepresentation(userFoto.image!)
                 let fileName = nomeCompleto.text! + ".png"
-                let imageFile = PFFile(name:fileName, data:imageData)
+                let imageFile = PFFile(name:fileName, data:imageData!)
                 updateObject["flag"] = imageFile
             }
             
@@ -71,7 +71,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             updateObject.ACL = PFACL(user: PFUser.currentUser()!)
             
             // Save the data back to the server in a background task
-            updateObject.save()
+            updateObject.saveInBackground()
         }
         
         // Return to table view
@@ -93,8 +93,8 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     // Process selected image - add image to the parse object model
-    /*
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             // Update the image within the app interface
@@ -109,7 +109,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
